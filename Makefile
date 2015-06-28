@@ -1,5 +1,6 @@
 vpath %.c src test
-SOURCES=main.c 
+SOURCES=main.c\
+	game.c
 
 
 TESTSOURCES=test.c
@@ -7,7 +8,7 @@ TESTSOURCES=test.c
 
 OBJECTS=$(patsubst %.c, src/obj/%.o, $(SOURCES))
 TESTOBJECTS=$(patsubst %.c, test/obj/%.o, $(TESTSOURCES))
-CFLAGS=-Wall -g `sdl2-config --cflags --libs` -lSDL2 -Wno-write-strings
+CFLAGS=-Wall -g `sdl2-config --cflags --libs` -lSDL2 -Wno-write-strings -Iinclude
 CXX=g++
 CC=gcc
 
