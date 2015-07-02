@@ -6,12 +6,11 @@
 
 bool m_bRunning;
 
-bool init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+bool FUR_init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
-void render();
-void update();
-void handleEvents();
-void clean();
+void FUR_render();
+void FUR_update();
+void FUR_clean();
 
 SDL_Window* m_pWindow;
 SDL_Renderer* m_pRenderer;

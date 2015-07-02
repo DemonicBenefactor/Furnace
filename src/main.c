@@ -2,11 +2,20 @@
 #include <stdio.h>
 
 #include "game.h"
+#include "handleEvents.h"
 
 int main( int argc, char* argv[])
 {
-    printf("herro moto.  \n");
-    printf("I love you nitchka\n");
+    FUR_init( "Furnace", 100, 100, 640, 480, 0);
+
+    while( m_bRunning )
+    {
+	FUR_handleEvents();
+	FUR_update();
+	FUR_render();
+    }
+
+    FUR_clean();
     return 0;
 }
 
