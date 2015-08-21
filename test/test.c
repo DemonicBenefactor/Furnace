@@ -1,7 +1,14 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//#include <SDL2/SDL.h>
+
+
 // We begin with our linked list (for seperate chaining)
 typedef struct _list_t_
 {
-	char *string;
+	char *str;
 	struct _list_t_ *next;
 } list_t;
 
@@ -16,11 +23,12 @@ typedef struct _hash_table_t_
 hash_table_t *create_hash_table( int size )
 {
 	hash_table_t *new_table;
+	int i;
 
 	if ( size < 1 ) return NULL; //invalid size for table
 	
 	// Attempt to allocate memory for the table structure
-	if ((new_table = malloc( sizeof( hash_value_t ))) == NULL )
+	if ((new_table = malloc( sizeof( hash_table_t ))) == NULL )
 	{
 		return NULL;
 	}
@@ -90,6 +98,8 @@ list_t *lookup_string( hash_table_t *hashtable, char *str )
 		}
 		return NULL;
 	}
+
+	return NULL;
 }
 
 // Insert function
