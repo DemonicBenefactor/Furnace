@@ -159,7 +159,31 @@ int main ( int argc, char* argv[] )
 {
 	hash_table_t *myHashTable;
 	int sizeOfTable = 12;
+	int stringAdded;
+	char inputString[64];
 	myHashTable =  create_hash_table( sizeOfTable );
+
+	printf( "Please enter a word to add to the list: " );
+	fgets( inputString, 64, stdin );
+	stringAdded = add_string( myHashTable, inputString );
+
+	switch (stringAdded)
+	{
+	case 1:
+		printf( "Couldn't Allocate memory for some reason\n" );
+		break;
+	case 2:
+		printf( "This string is already in the list\n" );
+		break;
+	case 0:
+		printf( "Success adding string: %s\n", inputString );
+		break;
+	default:
+		printf( "unknown error\n" );
+		break;
+	}
+
+	free_table( myHashTable );
 	
 	return 0;
 }
