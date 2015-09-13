@@ -18,7 +18,7 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 	    if ( m_pRenderer != 0 ) // renderer init success
 	    {
 		printf( "renderer init success\n" );
-		SDL_SetRenderDrawColor( m_pRenderer, 255, 255, 255, 255 );
+		SDL_SetRenderDrawColor( m_pRenderer, 200, 200, 200, 255 );
 	    }
 	    else
 	    {

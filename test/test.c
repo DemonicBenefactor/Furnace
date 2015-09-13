@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define strdup _strdup 
+
 //#include <SDL2/SDL.h>
 
 

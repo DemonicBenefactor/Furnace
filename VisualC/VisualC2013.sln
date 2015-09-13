@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VisualC2013", "Furnace\VisualC2013.vcxproj", "{1C5AA958-08A1-49CA-AE38-909B84D18A14}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Furnace\Test.vcxproj", "{6295B1A6-5882-4A86-BE9E-269352551B19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +23,12 @@ Global
 		{1C5AA958-08A1-49CA-AE38-909B84D18A14}.Release|Win32.Build.0 = Release|Win32
 		{1C5AA958-08A1-49CA-AE38-909B84D18A14}.Release|x64.ActiveCfg = Release|x64
 		{1C5AA958-08A1-49CA-AE38-909B84D18A14}.Release|x64.Build.0 = Release|x64
+		{6295B1A6-5882-4A86-BE9E-269352551B19}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6295B1A6-5882-4A86-BE9E-269352551B19}.Debug|Win32.Build.0 = Debug|Win32
+		{6295B1A6-5882-4A86-BE9E-269352551B19}.Debug|x64.ActiveCfg = Debug|Win32
+		{6295B1A6-5882-4A86-BE9E-269352551B19}.Release|Win32.ActiveCfg = Release|Win32
+		{6295B1A6-5882-4A86-BE9E-269352551B19}.Release|Win32.Build.0 = Release|Win32
+		{6295B1A6-5882-4A86-BE9E-269352551B19}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
