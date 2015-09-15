@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef windows
 #define strdup _strdup 
-
+#endif
 //#include <SDL2/SDL.h>
 
 
