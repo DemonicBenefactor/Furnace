@@ -15,8 +15,8 @@ int FUR_textureLoad( const char* fileName, int id, SDL_Renderer* pRenderer )
 		printf( IMG_GetError() );
 		return false;
 	}
-
-	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
+	
+	pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
 
 	SDL_FreeSurface(pTempSurface);
 

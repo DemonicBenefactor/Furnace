@@ -13,6 +13,7 @@ void FUR_textureDrawFrame(int id, int x, int y, int width, int height,
 	int currentRow, int currentFrame, SDL_Renderer* pRenderer,
 	double angle, int alpha, SDL_RendererFlip flip /*= SDL_FLIP_NONE*/);
 
+SDL_Texture* pTexture;
 SDL_Texture* a_TextureList[64];
 
 #endif //__textureManager__
