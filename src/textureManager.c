@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 
 #include "stdbool.h"
-#include "TextureManager.h"
+#include "textureManager.h"
 #include "SDL_image.h"
 
 

@@ -1,7 +1,8 @@
 vpath %.c src test
 SOURCES=main.c\
 	game.c\
-	handleEvents.c
+	handleEvents.c\
+	textureManager.c
 
 
 TESTSOURCES=test.c
@@ -9,7 +10,7 @@ TESTSOURCES=test.c
 
 OBJECTS=$(patsubst %.c, src/obj/%.o, $(SOURCES))
 TESTOBJECTS=$(patsubst %.c, test/obj/%.o, $(TESTSOURCES))
-CFLAGS=-Wall -g `sdl2-config --cflags --libs` -lSDL2 -Wno-write-strings -Iinclude
+CFLAGS=-Wall -g `sdl2-config --cflags --libs` -lSDL2 -lSDL2_image -Wno-write-strings -Iinclude
 CXX=g++
 CC=gcc
 
