@@ -68,24 +68,28 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>..\..\include;..\..\..\SDL2-2.0.3\include;..\..\..\SDL2_image-2.0.0;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug;..\..\..\SDL2-2.0.3\VisualC\SDLmain\Win32\Debug;..\..\..\SDL2_image-2.0.0\VisualC\Win32\Debug;$(LibraryPath)</LibraryPath>
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>Furnace32dbg</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>..\..\include;..\..\..\SDL2-2.0.3\include;..\..\..\SDL2_image-2.0.0;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Debug;..\..\..\SDL2-2.0.3\VisualC\SDLmain\x64\Debug;..\..\..\SDL2_image-2.0.0\VisualC\x64\Debug;$(LibraryPath)</LibraryPath>
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..</OutDir>
+    <TargetName>Furnace64dbg</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\..\include;..\..\..\SDL2-2.0.3\include;..\..\..\SDL2_image-2.0.0;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release;..\..\..\SDL2-2.0.3\VisualC\SDLmain\Win32\Release;..\..\..\SDL2_image-2.0.0\VisualC\Win32\Release;$(LibraryPath)</LibraryPath>
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>Furnace32</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>..\..\include;..\..\..\SDL2-2.0.3\include;..\..\..\SDL2_image-2.0.0;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Release;..\..\..\SDL2-2.0.3\VisualC\SDLmain\x64\Release;..\..\..\SDL2_image-2.0.0\VisualC\x64\Release;$(LibraryPath)</LibraryPath>
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..</OutDir>
+    <TargetName>Furnace64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,9 +102,9 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\Win32\Debug\SDL2_image.dll $(Platform)\$(Configuration)\
-copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x86\*.dll $(Platform)\$(Configuration)\
-copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug\SDL2.dll $(Platform)\$(Configuration)\</Command>
+      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\Win32\Debug\SDL2_image.dll $(SolutionDir)..
+copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x86\*.dll $(SolutionDir)..
+copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -114,9 +118,9 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug\SDL2.dll $(Platform)\$(Configur
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\x64\Debug\SDL2_image.dll $(Platform)\$(Configuration)\
-copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x64\*.dll $(Platform)\$(Configuration)\
-copy ..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Debug\SDL2.dll $(Platform)\$(Configuration)\</Command>
+      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\x64\Debug\SDL2_image.dll $(SolutionDir)..
+copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x64\*.dll $(SolutionDir)..
+copy ..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Debug\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -134,9 +138,9 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Debug\SDL2.dll $(Platform)\$(Configurat
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\Win32\Release\SDL2_image.dll $(Platform)\$(Configuration)\
-copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x86\*.dll $(Platform)\$(Configuration)\
-copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release\SDL2.dll $(Platform)\$(Configuration)\</Command>
+      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\Win32\Release\SDL2_image.dll $(SolutionDir)..
+copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x86\*.dll $(SolutionDir)..
+copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -154,9 +158,9 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release\SDL2.dll $(Platform)\$(Config
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\x64\Release\SDL2_image.dll $(Platform)\$(Configuration)\
-copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x64\*.dll $(Platform)\$(Configuration)\
-copy ..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Release\SDL2.dll $(Platform)\$(Configuration)\</Command>
+      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\x64\Release\SDL2_image.dll $(SolutionDir)..
+copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x64\*.dll $(SolutionDir)..
+copy ..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Release\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -19,7 +19,8 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 	    {
 		printf( "renderer init success\n" );
 		SDL_SetRenderDrawColor( m_pRenderer, 200, 200, 200, 255 );
-		FUR_textureLoad("../../images/biped.png", 0, m_pRenderer);
+		//FUR_textureLoad("../../images/biped.png", 0, m_pRenderer);
+		FUR_textureLoad("images/biped.png", 0, m_pRenderer);
 	    }
 	    else
 	    {
