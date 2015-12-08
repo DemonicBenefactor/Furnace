@@ -89,12 +89,14 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release\SDL2.dll $(SolutionDir)..</Co
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\game.c" />
+    <ClCompile Include="..\..\src\gameObject.c" />
     <ClCompile Include="..\..\src\handleEvents.c" />
     <ClCompile Include="..\..\src\main.c" />
     <ClCompile Include="..\..\src\textureManager.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\game.h" />
+    <ClInclude Include="..\..\include\gameObject.h" />
     <ClInclude Include="..\..\include\handleEvents.h" />
     <ClInclude Include="..\..\include\stdbool.h" />
     <ClInclude Include="..\..\include\textureManager.h" />
