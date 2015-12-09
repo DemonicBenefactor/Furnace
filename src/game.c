@@ -20,6 +20,7 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 		printf( "renderer init success\n" );
 		SDL_SetRenderDrawColor( m_pRenderer, 200, 200, 200, 255 );
 		FUR_createObject( "images/biped.png",0,-50, 150, 250,250,0,0,0.0,255,m_pRenderer,SDL_FLIP_NONE, pGameObject);
+		FUR_createObject( "images/biped.png",1,420, 150, 250,250,0,0,0.0,255,m_pRenderer,SDL_FLIP_HORIZONTAL, pGameObject);
 		//FUR_textureLoad("images/biped.png", 0, m_pRenderer);
 	    }
 	    else
@@ -53,6 +54,7 @@ void FUR_render()
     SDL_RenderClear( m_pRenderer  ); // clear the renderer to draw the color
 
     FUR_drawObject( m_pRenderer, a_gameObjects[0] );
+    FUR_drawObject( m_pRenderer, a_gameObjects[1] );
     //FUR_textureDrawFrame(0, -50, 150, 250, 250, 0, 0, 0, 255, m_pRenderer, SDL_FLIP_NONE);
 
     SDL_RenderPresent( m_pRenderer ); // draw to the screen
