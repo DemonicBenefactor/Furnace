@@ -6,12 +6,9 @@
 
 int FUR_textureLoad( const char* fileName, int id, SDL_Renderer* pRenderer );
 
-void FUR_textureDraw( int id, int x, int y, int width, int height,
-			SDL_Renderer* pRenderer, SDL_RendererFlip flip /*= SDL_FLIP_NONE*/ );
-
 void FUR_textureDrawFrame(int id, int x, int y, int width, int height,
-	int currentRow, int currentFrame, SDL_Renderer* pRenderer,
-	double angle, int alpha, SDL_RendererFlip flip /*= SDL_FLIP_NONE*/);
+	int currentRow, int currentFrame, double angle, int alpha, 
+	SDL_Renderer* pRenderer, SDL_RendererFlip flip /*= SDL_FLIP_NONE*/);
 
 SDL_Texture* pTexture;
 SDL_Texture* a_TextureList[64];

@@ -13,6 +13,8 @@ int main( int argc, char* argv[])
 	FUR_handleEvents();
 	FUR_update();
 	FUR_render();
+
+	SDL_Delay(10);
     }
 
     FUR_clean();

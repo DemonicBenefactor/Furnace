@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 
 #include "textureManager.h"
+#include "gameObject.h"
 
 int m_currentFrame;
 bool m_bRunning;
