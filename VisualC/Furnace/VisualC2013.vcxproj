@@ -165,12 +165,14 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Release\SDL2.dll $(SolutionDir)..</Comm
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\game.c" />
+    <ClCompile Include="..\..\src\gameObject.c" />
     <ClCompile Include="..\..\src\handleEvents.c" />
     <ClCompile Include="..\..\src\main.c" />
     <ClCompile Include="..\..\src\textureManager.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\game.h" />
+    <ClInclude Include="..\..\include\gameObject.h" />
     <ClInclude Include="..\..\include\handleEvents.h" />
     <ClInclude Include="..\..\include\textureManager.h" />
   </ItemGroup>
