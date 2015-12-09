@@ -21,7 +21,7 @@ typedef struct {
 
 int FUR_createObject( const char* fileName, int id, int x, int y, int width,
 		int height, int currentRow, int currentFrame, double angle,
-		int alpha, SDL_Renderer* pRenderer, SDL_RendererFlip flip);
+		int alpha, SDL_Renderer* pRenderer, SDL_RendererFlip flip, gameObject* object);
 
 void FUR_drawObject( SDL_Renderer *pRenderer, gameObject *pGameObject );
 void FUR_updateObject( gameObject *pGameObject );
