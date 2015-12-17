@@ -62,8 +62,9 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\Debug\SDL2_image.dll $(SolutionDir)..
+copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x86\*.dll $(SolutionDir)..
+copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
