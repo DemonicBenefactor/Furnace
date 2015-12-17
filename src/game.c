@@ -19,8 +19,8 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 	    {
 		printf( "renderer init success\n" );
 		SDL_SetRenderDrawColor( m_pRenderer, 200, 200, 200, 255 );
-		FUR_createObject( "images/biped.png",0,-50, 150, 250,250,0,0,0.0,255,m_pRenderer,SDL_FLIP_NONE, pGameObject);
-		FUR_createObject( "images/biped.png",1,420, 150, 250,250,0,0,0.0,255,m_pRenderer,SDL_FLIP_HORIZONTAL, pGameObject);
+		FUR_createObject( "images/biped.png",0, -50.0f, 150.0f, 250,250,0,0,0.0,255,m_pRenderer,SDL_FLIP_NONE );
+		FUR_createObject( "images/biped.png",1, 420.0f, 150.0f, 250,250,0,0,0.0,255,m_pRenderer,SDL_FLIP_HORIZONTAL );
 		//FUR_textureLoad("images/biped.png", 0, m_pRenderer);
 	    }
 	    else

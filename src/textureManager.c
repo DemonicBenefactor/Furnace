@@ -29,7 +29,7 @@ int FUR_textureLoad( const char* fileName, int id, SDL_Renderer* pRenderer )
 	return false;
 }
 
-void FUR_textureDrawFrame(int id, int x, int y, int width, int height,
+void FUR_textureDrawFrame(int id, vector2D position, int width, int height,
 			int currentRow, int currentFrame, double angle, int alpha, 
 			SDL_Renderer* pRenderer, SDL_RendererFlip flip)
 {
@@ -39,8 +39,8 @@ void FUR_textureDrawFrame(int id, int x, int y, int width, int height,
 	srcRect.y = height * currentRow;
 	srcRect.w = destRect.w = width;
 	srcRect.h = destRect.h = height;
-	destRect.x = x;
-	destRect.y = y;
+	destRect.x = (int)position.x;
+	destRect.y = (int)position.y;
 
 	SDL_SetTextureAlphaMod(a_TextureList[id], alpha);
 	SDL_RenderCopyEx(pRenderer, a_TextureList[id], &srcRect, &destRect, angle, 0, flip);

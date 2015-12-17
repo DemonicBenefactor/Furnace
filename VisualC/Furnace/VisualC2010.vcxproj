@@ -62,9 +62,8 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\Debug\SDL2_image.dll $(SolutionDir)..
-copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x86\*.dll $(SolutionDir)..
-copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug\SDL2.dll $(SolutionDir)..</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -93,6 +92,7 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release\SDL2.dll $(SolutionDir)..</Co
     <ClCompile Include="..\..\src\handleEvents.c" />
     <ClCompile Include="..\..\src\main.c" />
     <ClCompile Include="..\..\src\textureManager.c" />
+    <ClCompile Include="..\..\src\vector2D.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\game.h" />
@@ -100,6 +100,7 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release\SDL2.dll $(SolutionDir)..</Co
     <ClInclude Include="..\..\include\handleEvents.h" />
     <ClInclude Include="..\..\include\stdbool.h" />
     <ClInclude Include="..\..\include\textureManager.h" />
+    <ClInclude Include="..\..\include\vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

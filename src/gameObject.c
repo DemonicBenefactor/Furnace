@@ -1,10 +1,11 @@
 
 #include "gameObject.h"
 
-int FUR_createObject( const char* fileName, int id, int x, int y, int width,
+int FUR_createObject( const char* fileName, int id, float x, float y, int width,
 		int height, int currentRow, int currentFrame, double angle,
-		int alpha, SDL_Renderer* pRenderer, SDL_RendererFlip flip, gameObject* object)
+		int alpha, SDL_Renderer* pRenderer, SDL_RendererFlip flip )
 {
+	gameObject* object;
 	int success;
 	success = FUR_textureLoad( fileName, id, pRenderer );
 	if ( success == 0 )
@@ -14,8 +15,8 @@ int FUR_createObject( const char* fileName, int id, int x, int y, int width,
 	}
 	object = malloc(sizeof(gameObject));
 	object->textureID = id;
-	object->x = x;
-	object->y = y;
+	object->position.x = x;
+	object->position.y = y;
 	object->width = width;
 	object->height = height;
 	object->currentRow = currentRow;
@@ -31,7 +32,7 @@ int FUR_createObject( const char* fileName, int id, int x, int y, int width,
 
 void FUR_drawObject( SDL_Renderer *pRenderer, gameObject *pGameObject )
 {
-   FUR_textureDrawFrame( pGameObject->textureID, pGameObject->x, pGameObject->y,
+   FUR_textureDrawFrame( pGameObject->textureID, pGameObject->position,
 		 pGameObject->width, pGameObject->height, pGameObject->currentRow,
 		 pGameObject->currentFrame, pGameObject->angle, pGameObject->alpha,
 		 pRenderer, pGameObject->flip);
@@ -43,16 +44,16 @@ void FUR_updateObject( gameObject *pGameObject )
 {
 	if (goingRight == 1)
 	{
-		pGameObject->x += 1;
-		if (pGameObject->x > 320)
+		pGameObject->position.x += 1;
+		if (pGameObject->position.x > 320)
 		{
 			goingRight = 0;
 		}
 	}
 	else if (goingRight == 0)
 	{
-		pGameObject->x -= 1;
-		if (pGameObject->x < -45)
+		pGameObject->position.x -= 1;
+		if (pGameObject->position.x < -45)
 		{
 			goingRight = 1;
 		}

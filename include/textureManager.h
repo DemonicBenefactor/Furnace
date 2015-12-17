@@ -4,9 +4,11 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
+#include "vector2D.h"
+
 int FUR_textureLoad( const char* fileName, int id, SDL_Renderer* pRenderer );
 
-void FUR_textureDrawFrame(int id, int x, int y, int width, int height,
+void FUR_textureDrawFrame(int id, vector2D position, int width, int height,
 	int currentRow, int currentFrame, double angle, int alpha, 
 	SDL_Renderer* pRenderer, SDL_RendererFlip flip /*= SDL_FLIP_NONE*/);
 
