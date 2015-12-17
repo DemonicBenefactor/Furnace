@@ -1,0 +1,27 @@
+﻿Build started 12/17/2015 2:24:20 PM.
+     1>Project "C:\Documents and Settings\loaded\Mes documents\src\Furnace\VisualC\Furnace\VisualC2010.vcxproj" on node 2 (build target(s)).
+     1>C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(299,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>InitializeBuildStatus:
+         Touching "Win32\Debug\VisualC2010.unsuccessfulbuild".
+       ClCompile:
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Win32\Debug\\" /Fd"Win32\Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt ..\..\src\gameObject.c
+         gameObject.c
+       Link:
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Documents and Settings\loaded\Mes documents\src\Furnace\VisualC\..\Furnace32dbg.exe" /NOLOGO SDL2main.lib SDL2.lib SDL2_image.lib OpenGL32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\Debug\Furnace32dbg.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Documents and Settings\loaded\Mes documents\src\Furnace\Furnace32dbg.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Documents and Settings\loaded\Mes documents\src\Furnace\VisualC\..\Furnace32dbg.lib" /MACHINE:X86 Win32\Debug\game.obj
+         Win32\Debug\gameObject.obj
+         Win32\Debug\handleEvents.obj
+         Win32\Debug\main.obj
+         Win32\Debug\textureManager.obj
+         Win32\Debug\vector2D.obj
+         LINK : C:\Documents and Settings\loaded\Mes documents\src\Furnace\VisualC\..\Furnace32dbg.exe not found or not built by the last incremental link; performing full link
+         VisualC2010.vcxproj -> C:\Documents and Settings\loaded\Mes documents\src\Furnace\VisualC\..\Furnace32dbg.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Documents and Settings\loaded\Mes documents\src\Furnace\VisualC\..\Furnace32dbg.exe;#1" /manifest Win32\Debug\Furnace32dbg.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Win32\Debug\VisualC2010.unsuccessfulbuild".
+         Touching "Win32\Debug\VisualC2010.lastbuildstate".
+     1>Done Building Project "C:\Documents and Settings\loaded\Mes documents\src\Furnace\VisualC\Furnace\VisualC2010.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.40
