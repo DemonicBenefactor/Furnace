@@ -12,7 +12,7 @@ TESTSOURCES=test.c
 
 OBJECTS=$(patsubst %.c, src/obj/%.o, $(SOURCES))
 TESTOBJECTS=$(patsubst %.c, test/obj/%.o, $(TESTSOURCES))
-CFLAGS=-Wall -g `sdl2-config --cflags --libs` -lSDL2 -lSDL2_image -lm -Wno-write-strings -Iinclude
+CFLAGS=-Wall -g -Bstatic `sdl2-config --cflags --static-libs` -lSDL2 -lSDL2_image -lm -Bdynamic -Wno-write-strings -Iinclude
 CXX=g++
 CC=gcc
 

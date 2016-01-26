@@ -10,18 +10,19 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
     {
 	printf( "SDL init success\n" );
 	// init the window
-	m_pWindow = SDL_CreateWindow( title, xpos, ypos, width, height, flags );
-	if ( m_pWindow != 0 ) // window init success
+	pWindow = SDL_CreateWindow( title, xpos, ypos, width, height, flags );
+	if ( pWindow != 0 ) // window init success
 	{
 	    printf( "window creation success\n" );
-	    m_pRenderer = SDL_CreateRenderer( m_pWindow, -1, 0 );
-	    if ( m_pRenderer != 0 ) // renderer init success
+	    pRenderer = SDL_CreateRenderer( pWindow, -1, 0 );
+	    if ( pRenderer != 0 ) // renderer init success
 	    {
 		printf( "renderer init success\n" );
-		SDL_SetRenderDrawColor( m_pRenderer, 200, 200, 200, 255 );
-		FUR_createObject( "images/biped.png",0, -50.0f, 150.0f, 250,250,0,0,0.0,255,m_pRenderer,SDL_FLIP_NONE );
-		FUR_createObject( "images/biped.png",1, 420.0f, 150.0f, 250,250,0,0,0.0,255,m_pRenderer,SDL_FLIP_HORIZONTAL );
-		//FUR_textureLoad("images/biped.png", 0, m_pRenderer);
+		SDL_RenderSetLogicalSize(pRenderer, 640, 480);
+		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
+		FUR_createObject( "images/biped.png",0, -50.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_NONE );
+		FUR_createObject( "images/biped.png",1, 420.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_HORIZONTAL );
+		//FUR_textureLoad("images/biped.png", 0, pRenderer);
 	    }
 	    else
 	    {
@@ -43,7 +44,7 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
     }
 
     printf( "SDL init success\n" );
-    m_bRunning = true; // init successful, start main loop
+    gameRunning = true; // init successful, start main loop
 
     return true;
 }
@@ -51,13 +52,13 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 // RENDER FUNCTION ============================================================
 void FUR_render()
 {
-    SDL_RenderClear( m_pRenderer  ); // clear the renderer to draw the color
+    SDL_RenderClear( pRenderer  ); // clear the renderer to draw the color
 
-    FUR_drawObject( m_pRenderer, a_gameObjects[0] );
-    FUR_drawObject( m_pRenderer, a_gameObjects[1] );
+    FUR_drawObject( pRenderer, a_gameObjects[0] );
+    FUR_drawObject( pRenderer, a_gameObjects[1] );
     //FUR_textureDrawFrame(0, -50, 150, 250, 250, 0, 0, 0, 255, m_pRenderer, SDL_FLIP_NONE);
 
-    SDL_RenderPresent( m_pRenderer ); // draw to the screen
+    SDL_RenderPresent( pRenderer ); // draw to the screen
 }
 
 // UPDATE FUNCTION ============================================================
@@ -70,8 +71,9 @@ void FUR_update()
 void FUR_clean()
 {
     printf( "cleaning up the game\n" );
-    SDL_DestroyWindow( m_pWindow );
-    SDL_DestroyRenderer( m_pRenderer );
+    FUR_cleanEvents();
+    SDL_DestroyWindow( pWindow );
+    SDL_DestroyRenderer( pRenderer );
     SDL_Quit();
 }
 	

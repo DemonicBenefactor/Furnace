@@ -1,5 +1,53 @@
 #include "handleEvents.h"
 
+/*****************************************************
+ * GAMEPAD SETUP
+ * **************************************************/
+
+void FUR_initialiseJoysticks()
+{
+    int i;
+
+    if ( SDL_WasInit( SDL_INIT_JOYSTICK ) == 0 )
+    {
+	SDL_InitSubSystem( SDL_INIT_JOYSTICK );
+    }
+
+    if ( SDL_NumJoysticks() > 0 )
+    {
+	for ( i = 0; i < SDL_NumJoysticks(); i++ )
+	{
+	    if ( i < 10 )
+	    {		
+		SDL_Joystick* joy;
+	    	joy = SDL_JoystickOpen(i);
+		a_joysticks[i] = joy;
+	    }	
+	}
+	
+	SDL_JoystickEventState( SDL_ENABLE );
+	bJoysticksInitialized = true;
+	printf( " initialized %d joysitcks", (int)(SDL_NumJoysticks() ) );
+
+    }
+    else
+    {
+	bJoysticksInitialized = false;
+    }
+}
+
+bool FUR_joysticksInitialized()
+{
+	return bJoysticksInitialized = true;
+}
+
+
+
+/******************************************************
+ * THE MAIN EVENT HANDLER
+ * ****************************************************/
+
+
 void FUR_handleEvents()
 {
     SDL_Event event;
@@ -9,7 +57,7 @@ void FUR_handleEvents()
 	    switch ( event.type )
 		{
 		    case SDL_QUIT:
-			m_bRunning = false;
+			gameRunning = false;
 		    break;
 
 		    case SDL_KEYDOWN:
@@ -17,7 +65,7 @@ void FUR_handleEvents()
 		    	switch ( event.key.keysym.sym )
 			    {
 				case SDLK_ESCAPE:
-				    m_bRunning = false;
+				    gameRunning = false;
 				    break;
 
 				default:
@@ -26,7 +74,7 @@ void FUR_handleEvents()
 		    	break;
 		    
 		    case SDL_MOUSEBUTTONDOWN:
-		    	m_bRunning = false;
+		    	gameRunning = false;
 		    	break;
 
 
@@ -34,4 +82,22 @@ void FUR_handleEvents()
 		    	break;	
 		}
 	}
+}
+
+/******************************************************
+ * CLEAN UP TIME
+ * ***************************************************/
+
+void FUR_cleanEvents()
+{
+    unsigned int i;
+    if ( bJoysticksInitialized == true )
+    {
+	for ( i = 0; i < SDL_NumJoysticks(); i++ )
+	{
+	    SDL_JoystickClose( a_joysticks[i] );
+	}
+
+    }
+
 }

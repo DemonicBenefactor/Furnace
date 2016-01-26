@@ -12,9 +12,10 @@ int main( int argc, char* argv[])
 {
     Uint32 frameStart, frameTime;
 	
-	FUR_init( "Furnace", 100, 100, 640, 480, 0);
+	FUR_init( "Furnace", 100, 100, 1920, 1080, 1);
+	FUR_initialiseJoysticks();
 
-    while( m_bRunning )
+    while( gameRunning )
     {
 	frameStart = SDL_GetTicks();
 
@@ -23,10 +24,12 @@ int main( int argc, char* argv[])
 	FUR_render();
 
 	frameTime = SDL_GetTicks() - frameStart;
+	//printf( "would be at %u frames per second.\n ", (Uint32)( frameTime * FPS ) );
 	if ( frameTime < DELAY_TIME )
 	{
 		SDL_Delay( (int)( DELAY_TIME - frameTime ));
-		printf( "%d", (int)( DELAY_TIME - frameTime ));
+		//printf("it was too fast\n");
+		//printf( "%u \n", (Uint32)( DELAY_TIME - frameTime ));
 	}
 
     }
