@@ -27,7 +27,7 @@ void FUR_initialiseJoysticks()
 	
 	SDL_JoystickEventState( SDL_ENABLE );
 	bJoysticksInitialized = true;
-	printf( " initialized %d joysitcks", (int)(SDL_NumJoysticks() ) );
+	printf( "initialized %d joysitck(s)\n", (int)(SDL_NumJoysticks() ) );
 
     }
     else
@@ -61,7 +61,7 @@ void FUR_handleEvents()
 		    break;
 
 		    case SDL_KEYDOWN:
-		        printf( " %s\n", SDL_GetKeyName( event.key.keysym.sym ) );
+		        //printf( " %s\n", SDL_GetKeyName( event.key.keysym.sym ) );
 		    	switch ( event.key.keysym.sym )
 			    {
 				case SDLK_ESCAPE:

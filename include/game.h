@@ -6,6 +6,7 @@
 
 #include "textureManager.h"
 #include "gameObject.h"
+#include "handleEvents.h"
 
 int currentFrame;
 bool gameRunning;
