@@ -210,3 +210,62 @@ int main (int argc, char* argv[])
 
 ***************************************************************/
 
+
+/***************************************************************
+* STRING REVERSE
+* *************************************************************
+#include <stdio.h>
+
+size_t strlen(const char *str)
+{
+	const char *s;
+	for (s = str; *s; ++s);
+	return(s - str);
+}
+
+void inplace_reverse(char *str)
+{
+	if (str) // check that it's actaully a string
+	{
+
+		printf("The string is ");
+		printf("%d", strlen(str));
+		printf(" characters long.\n");
+		if (strlen(str) > 1) //make sure there's more than one character
+		{
+			char *end = str + strlen(str) - 1;
+
+#define XOR_SWAP(a,b) do\
+			      {\
+        a ^= b; \
+        b ^= a; \
+        a ^= b; \
+			      } while (0)
+
+			while (str < end)
+			{
+				XOR_SWAP(*str, *end);
+				str++;
+				end--;
+			}
+#undef XOR_SWAP
+		}
+	}
+}
+
+int main(int argc, char *argv[])
+{
+	char str[255];
+	printf("\nEnter a string: ");
+	gets(str);
+
+	printf("\n\nNow we're going to reverse the string.\n");
+
+	inplace_reverse(str);
+	printf(str);
+	printf("\n\n");
+
+	return(0);
+
+}
+***************************************************************/
