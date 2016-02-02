@@ -19,9 +19,12 @@ void FUR_initialiseJoysticks()
 	{
 	    if ( i < 10 )
 	    {		
-		SDL_Joystick* joy;
+			SDL_Joystick* joy;
 	    	joy = SDL_JoystickOpen(i);
-		a_joysticks[i] = joy;
+			a_joysticks[i] = joy;
+			vector4D* joyDirection;
+			joyDirection = malloc(sizeof(vector4D));
+			a_joystickStates[i] = joyDirection;
 	    }	
 	}
 	

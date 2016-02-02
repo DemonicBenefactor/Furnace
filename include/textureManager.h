@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
-#include "vector2D.h"
+#include "vectors.h"
 
 int FUR_textureLoad( const char* fileName, int id, SDL_Renderer* pRenderer );
 

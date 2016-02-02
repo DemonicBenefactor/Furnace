@@ -12,7 +12,7 @@ int main( int argc, char* argv[])
 {
     Uint32 frameStart, frameTime;
 	
-	FUR_init( "Furnace", 100, 100, 1920, 1080, 1);
+	FUR_init( "Furnace", 100, 100, 1280, 720, false );
 	FUR_initialiseJoysticks();
 
     while( gameRunning )

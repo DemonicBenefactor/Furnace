@@ -164,19 +164,21 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\x64\Release\SDL2.dll $(SolutionDir)..</Comm
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\configuration.c" />
     <ClCompile Include="..\..\src\game.c" />
     <ClCompile Include="..\..\src\gameObject.c" />
     <ClCompile Include="..\..\src\handleEvents.c" />
     <ClCompile Include="..\..\src\main.c" />
     <ClCompile Include="..\..\src\textureManager.c" />
-    <ClCompile Include="..\..\src\vector2D.c" />
+    <ClCompile Include="..\..\src\vectors.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\configuration.h" />
     <ClInclude Include="..\..\include\game.h" />
     <ClInclude Include="..\..\include\gameObject.h" />
     <ClInclude Include="..\..\include\handleEvents.h" />
     <ClInclude Include="..\..\include\textureManager.h" />
-    <ClInclude Include="..\..\include\vector2D.h" />
+    <ClInclude Include="..\..\include\vectors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

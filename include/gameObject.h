@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 #include "textureManager.h"
-#include "vector2D.h"
+#include "vectors.h"
 
 typedef struct {
 	int textureID;
