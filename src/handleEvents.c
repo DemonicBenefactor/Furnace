@@ -1,5 +1,5 @@
 #include "handleEvents.h"
-
+#include "configuration.h"
 /*****************************************************
  * GAMEPAD SETUP
  * **************************************************/
@@ -51,7 +51,7 @@ bool FUR_joysticksInitialized()
 void FUR_handleEvents()
 {
     SDL_Event event;
-    
+
     if ( SDL_PollEvent( &event ) )
 	{
 	    switch ( event.type )
@@ -62,16 +62,19 @@ void FUR_handleEvents()
 
 		    case SDL_KEYDOWN:
 		        //printf( " %s\n", SDL_GetKeyName( event.key.keysym.sym ) );
-		    	switch ( event.key.keysym.sym )
-			    {
-				case SDLK_ESCAPE:
-				    gameRunning = false;
-				    break;
-
-				default:
-				    break;
-			    }
-		    	break;
+		    	if ( event.key.keysym.sym == SDLK_ESCAPE )
+				{
+					gameRunning = false;
+				}
+				else if ( event.key.keysym.sym == playerInput.P1K_UP )
+				{
+					gameRunning = false;
+				}
+				else if ( event.key.keysym.sym == playerInput.P1K_DOWN )
+				{
+				
+				}
+				break;
 		    
 		    case SDL_MOUSEBUTTONDOWN:
 		    	gameRunning = false;
@@ -93,7 +96,7 @@ void FUR_cleanEvents()
     unsigned int i;
     if ( bJoysticksInitialized == true )
     {
-	for ( i = 0; i < SDL_NumJoysticks(); i++ )
+	for ( i = 0; i < (unsigned int)SDL_NumJoysticks(); i++ )
 	{
 	    SDL_JoystickClose( a_joysticks[i] );
 	}

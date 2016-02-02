@@ -10,7 +10,7 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
     {
 	printf( "SDL init success\n" );
 	// init the window
-	pWindow = SDL_CreateWindow( title, xpos, ypos, width, height, flags );
+	pWindow = SDL_CreateWindow( title, xpos, ypos, width, height, fullscreen );
 	if ( pWindow != 0 ) // window init success
 	{
 	    printf( "window creation success\n" );
@@ -22,6 +22,7 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
 		FUR_createObject( "images/biped.png",0, -50.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_NONE );
 		FUR_createObject( "images/biped.png",1, 420.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_HORIZONTAL );
+		FUR_initPlayerInput();
 		//FUR_textureLoad("images/biped.png", 0, pRenderer);
 	    }
 	    else
