@@ -15,9 +15,10 @@ enum mouse_buttons
     RIGHT = 2
 };
 
+int deadZone;
 bool bJoysticksInitialized;
-SDL_Joystick* a_joysticks[10];
-vector4D* a_joystickStates[10];
+SDL_Joystick* a_joysticks[9];
+vector4D* a_joystickStates[11];
 
 
 void FUR_initialiseJoysticks();

@@ -20,7 +20,7 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
 		FUR_createObject( "images/biped.png",0, -50.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_NONE );
 		FUR_createObject( "images/biped.png",1, 420.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_HORIZONTAL );
-		FUR_initPlayerInput();
+		//FUR_initPlayerInput();
 		//FUR_textureLoad("images/biped.png", 0, pRenderer);
 	    }
 	    else
@@ -52,11 +52,8 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 void FUR_render()
 {
     SDL_RenderClear( pRenderer  ); // clear the renderer to draw the color
-
     FUR_drawObject( pRenderer, a_gameObjects[0] );
     FUR_drawObject( pRenderer, a_gameObjects[1] );
-    //FUR_textureDrawFrame(0, -50, 150, 250, 250, 0, 0, 0, 255, m_pRenderer, SDL_FLIP_NONE);
-
     SDL_RenderPresent( pRenderer ); // draw to the screen
 }
 
@@ -64,6 +61,15 @@ void FUR_render()
 void FUR_update()
 {
 	FUR_updateObject(a_gameObjects[0]);
+	if (a_joystickStates[1]->x > 0 && a_joystickStates[1]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 200, 50, 255); }
+	else if (a_joystickStates[1]->x > 0 && a_joystickStates[1]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 50, 0, 255); }
+	else if (a_joystickStates[1]->y > 0 && a_joystickStates[1]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 50, 200, 255); }
+	else if (a_joystickStates[1]->y > 0 && a_joystickStates[1]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 100, 0, 200, 255); }
+	else if (a_joystickStates[1]->x > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 200, 100, 255); }
+	else if (a_joystickStates[1]->y > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 100, 200, 255); }
+	else if (a_joystickStates[1]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 100, 200, 200, 255); }
+	else if (a_joystickStates[1]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 50, 200, 200, 255); }
+	else { SDL_SetRenderDrawColor(pRenderer, 200, 200, 200, 255); }
 }
 
 // CLEAN FUNCTION===============================================================
@@ -76,3 +82,8 @@ void FUR_clean()
     SDL_Quit();
 }
 	
+void FUR_testMessage(const char* text)
+{
+	SDL_ShowSimpleMessageBox( SDL_MESSAGEBOX_INFORMATION,
+		"message", text, NULL );
+}
