@@ -4,7 +4,7 @@ SOURCES=main.c\
 	handleEvents.c\
 	textureManager.c\
 	gameObject.c\
-	vector2D.c
+	vectors.c
 
 
 TESTSOURCES=test.c

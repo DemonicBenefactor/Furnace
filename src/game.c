@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "game.h"
 
 // INIT FUNCTION ============================================================
@@ -60,16 +61,24 @@ void FUR_render()
 // UPDATE FUNCTION ============================================================
 void FUR_update()
 {
+	int i;
+	
 	FUR_updateObject(a_gameObjects[0]);
-	if (a_joystickStates[1]->x > 0 && a_joystickStates[1]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 200, 50, 255); }
-	else if (a_joystickStates[1]->x > 0 && a_joystickStates[1]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 50, 0, 255); }
-	else if (a_joystickStates[1]->y > 0 && a_joystickStates[1]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 50, 200, 255); }
-	else if (a_joystickStates[1]->y > 0 && a_joystickStates[1]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 100, 0, 200, 255); }
-	else if (a_joystickStates[1]->x > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 200, 100, 255); }
-	else if (a_joystickStates[1]->y > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 100, 200, 255); }
-	else if (a_joystickStates[1]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 100, 200, 200, 255); }
-	else if (a_joystickStates[1]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 50, 200, 200, 255); }
-	else { SDL_SetRenderDrawColor(pRenderer, 200, 200, 200, 255); }
+	for (i = 0; i < 9; i++)
+	{
+	    if ( a_joystickStates[i] != NULL )
+	    {
+		if (a_joystickStates[i]->x > 0 && a_joystickStates[i]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 200, 50, 255); }
+		else if (a_joystickStates[i]->x > 0 && a_joystickStates[i]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 50, 0, 255); }
+		else if (a_joystickStates[i]->y > 0 && a_joystickStates[i]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 50, 200, 255); }
+		else if (a_joystickStates[i]->y > 0 && a_joystickStates[i]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 100, 0, 200, 255); }
+		else if (a_joystickStates[i]->x > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 200, 100, 255); }
+		else if (a_joystickStates[i]->y > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 100, 200, 255); }
+		else if (a_joystickStates[i]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 100, 200, 200, 255); }
+		else if (a_joystickStates[i]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 50, 200, 200, 255); }
+		else { SDL_SetRenderDrawColor(pRenderer, 200, 200, 200, 255); }
+	    }
+	}
 }
 
 // CLEAN FUNCTION===============================================================
