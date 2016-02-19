@@ -19,12 +19,11 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 	    if ( pRenderer != 0 ) // renderer init success
 	    {
 		printf( "renderer init success\n" );
-		SDL_RenderSetLogicalSize(pRenderer, 640, 480);
+		SDL_RenderSetLogicalSize(pRenderer, 800, 480);
 		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
 		FUR_createObject( "images/biped.png",0, -50.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_NONE );
 		FUR_createObject( "images/biped.png",1, 420.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_HORIZONTAL );
-		FUR_initPlayer();
-		//FUR_textureLoad("images/biped.png", 0, pRenderer);
+		FUR_initPlayers();
 	    }
 	    else
 	    {
@@ -63,24 +62,7 @@ void FUR_render()
 // UPDATE FUNCTION ============================================================
 void FUR_update()
 {
-	int i;
-	
-	FUR_updateObject(a_gameObjects[0]);
-	for (i = 0; i < 4; i++)
-	{
-		if ( a_joysticks[i] != NULL )
-		{
-		if (playerInput.P1_UPDOWN > 0 && playerInput.P1_LEFTRIGHT > 0) { SDL_SetRenderDrawColor(pRenderer, 0, 50, 0, 255); } //upLeft
-		else if (playerInput.P1_UPDOWN > 0 && playerInput.P1_LEFTRIGHT < 0) { SDL_SetRenderDrawColor(pRenderer, 50, 0, 0, 255); } //upRight
-		else if (playerInput.P1_UPDOWN < 0 && playerInput.P1_LEFTRIGHT > 0) { SDL_SetRenderDrawColor(pRenderer, 0, 50, 50, 255); } //downLeft
-		else if (playerInput.P1_UPDOWN < 0 && playerInput.P1_LEFTRIGHT < 0) { SDL_SetRenderDrawColor(pRenderer, 50, 0, 50, 255); } //downRight
-		else if (playerInput.P1_UPDOWN > 0) { SDL_SetRenderDrawColor(pRenderer, 50, 50, 0, 255); } //up
-		else if (playerInput.P1_UPDOWN < 0) { SDL_SetRenderDrawColor(pRenderer, 0, 0, 100, 255); } //down
-		else if (playerInput.P1_LEFTRIGHT > 0) { SDL_SetRenderDrawColor(pRenderer, 0, 100, 0, 255); } //left
-		else if (playerInput.P1_LEFTRIGHT < 0) { SDL_SetRenderDrawColor(pRenderer, 100, 0, 0, 255); } //right
-		else { SDL_SetRenderDrawColor(pRenderer, 200, 200, 200, 255); }
-	    }
-	}
+	FUR_updatePlayers();
 }
 
 // CLEAN FUNCTION===============================================================

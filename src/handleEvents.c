@@ -182,47 +182,8 @@ void FUR_handleEvents()
 				}
 
 			case SDL_JOYBUTTONDOWN:
-				//if (event.jbutton.which == playerInput.P1_Controller)
-				//{
-				//	if (event.jbutton.button == playerInput.P1C_DPAD_UP)
-				//	{
-				//		playerInput.P1_UPDOWN = 1; //up
-				//	}
-				//	else if (event.jbutton.button == playerInput.P1C_DPAD_DOWN)
-				//	{
-				//		playerInput.P1_UPDOWN = -1; //down
-				//	}
-				//	else if (event.jbutton.button == playerInput.P1C_DPAD_LEFT)
-				//	{
-				//		playerInput.P1_LEFTRIGHT = 1; //left
-				//	}
-				//	else if (event.jbutton.button == playerInput.P1C_DPAD_RIGHT)
-				//	{
-				//		playerInput.P1_LEFTRIGHT = -1; //right
-				//	}
-				//}
 				break;
 			case SDL_JOYBUTTONUP:
-				//if (event.jbutton.which == playerInput.P1_Controller)
-				//{
-				//	if ( event.jbutton.button == playerInput.P1C_DPAD_UP )
-				//	{
-				//		playerInput.P1_UPDOWN = 0;
-				//	}
-				//	else if (event.jbutton.button == playerInput.P1C_DPAD_DOWN)
-				//	{
-				//		playerInput.P1_UPDOWN = 0;
-				//	}
-				//	else if ( event.jbutton.button == playerInput.P1C_DPAD_LEFT)
-				//	{
-				//		playerInput.P1_LEFTRIGHT = 0;
-				//	}
-				//	else if (event.jbutton.button == playerInput.P1C_DPAD_RIGHT)
-				//	{
-				//		playerInput.P1_LEFTRIGHT = 0;
-				//	}
-
-				//}
 				break;
 
 		    case SDL_MOUSEBUTTONDOWN:

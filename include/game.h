@@ -7,6 +7,7 @@
 #include "configuration.h"
 #include "textureManager.h"
 #include "gameObject.h"
+#include "player.h"
 #include "handleEvents.h"
 
 int currentFrame;

@@ -12,10 +12,6 @@ void FUR_initPlayerInput()
 	playerInput.P1K_DOWN = SDLK_DOWN;
 	playerInput.P1K_LEFT = SDLK_LEFT;
 	playerInput.P1K_RIGHT = SDLK_RIGHT;
-	playerInput.P1C_DPAD_UP = 0; //360 pad defaults
-	playerInput.P1C_DPAD_DOWN = 1; //360 pad defaults
-	playerInput.P1C_DPAD_LEFT = 2; //360 pad defaults
-	playerInput.P1C_DPAD_RIGHT = 3; //360 pad defaults
 	playerInput.P1K_LIGHTPUNCH = SDLK_u;
 	playerInput.P1K_MEDIUMPUNCH = SDLK_i;
 	playerInput.P1K_HARDPUNCH = SDLK_o;
@@ -28,10 +24,6 @@ void FUR_initPlayerInput()
 	playerInput.P2K_DOWN = SDLK_s;
 	playerInput.P2K_LEFT = SDLK_a;
 	playerInput.P2K_RIGHT = SDLK_d;
-	playerInput.P2C_DPAD_UP = 0; //360 pad defaults
-	playerInput.P2C_DPAD_DOWN = 1; //360 pad defaults
-	playerInput.P2C_DPAD_LEFT = 2; //360 pad defaults
-	playerInput.P2C_DPAD_RIGHT = 3; //360 pad defaults
 	playerInput.P2K_LIGHTPUNCH = SDLK_r;
 	playerInput.P2K_MEDIUMPUNCH = SDLK_t;
 	playerInput.P2K_HARDPUNCH = SDLK_y;

@@ -1,13 +1,16 @@
-#ifndef __gameObject__
-#define __gameObject__
+#ifndef __player__
+#define __player__
 
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include "configuration.h"
+#include "gameObject.h"
 #include "textureManager.h"
 
 
 typedef enum {
+	center,
 	up,
 	down,
 	left,
@@ -37,16 +40,22 @@ typedef struct {
 	int armor;
 	bool attack;
 	bool block;
+	bool lightPunch;
+	bool mediumPunch;
+	bool hardPunch;
+	bool lightKick;
+	bool mediumKick;
+	bool hardKick;
 	speed jumpSpeed;
 	speed walkSpeed;
 	distance jumpDistance;	
 	direction axis;
 } player;
 
-player* a_players[1];
+player* a_players[2];
 
 int FUR_initPlayers();
-void FUR_updatePlayer();
+void FUR_updatePlayers();
 void FUR_cleanPlayer();
 
 #endif //  __gameObject__

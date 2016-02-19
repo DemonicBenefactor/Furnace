@@ -40,25 +40,31 @@ void FUR_drawObject( SDL_Renderer *pRenderer, gameObject *pGameObject )
 
 
 int goingRight = 1;
-void FUR_updateObject( gameObject *pGameObject )
+//void FUR_updateObject( gameObject *pGameObject )
+//{
+//	if (goingRight == 1)
+//	{
+//		pGameObject->position.x += 1;
+//		if (pGameObject->position.x > 320)
+//		{
+//			goingRight = 0;
+//		}
+//	}
+//	else if (goingRight == 0)
+//	{
+//		pGameObject->position.x -= 1;
+//		if (pGameObject->position.x < -45)
+//		{
+//			goingRight = 1;
+//		}
+//	}
+//}
+
+void FUR_updateObject()
 {
-	if (goingRight == 1)
-	{
-		pGameObject->position.x += 1;
-		if (pGameObject->position.x > 320)
-		{
-			goingRight = 0;
-		}
-	}
-	else if (goingRight == 0)
-	{
-		pGameObject->position.x -= 1;
-		if (pGameObject->position.x < -45)
-		{
-			goingRight = 1;
-		}
-	}
+
 }
+
 
 void FUR_cleanObject()
 {

@@ -25,10 +25,6 @@ struct {
 	Sint32 P1K_HARDKICK;
 	//Player One Controller
 	SDL_JoystickID P1_Controller;	 
-	Uint8 P1C_DPAD_UP; //for some reason 360 pads are registered as buttons.
-	Uint8 P1C_DPAD_DOWN;
-	Uint8 P1C_DPAD_LEFT;
-	Uint8 P1C_DPAD_RIGHT;
 	Uint8 P1C_LIGHTPUNCH;
 	Uint8 P1C_MEDIUMPUNCH;
 	Uint8 P1C_HARDPUNCH;
@@ -50,10 +46,6 @@ struct {
 	Sint32 P2K_HARDKICK;
 	//Player Two Controller
 	SDL_JoystickID P2_Controller;
-	Uint8 P2C_DPAD_UP; //for some reason 360 pads are registered as buttons.
-	Uint8 P2C_DPAD_DOWN;
-	Uint8 P2C_DPAD_LEFT;
-	Uint8 P2C_DPAD_RIGHT;
 	Uint8 P2C_LIGHTPUNCH;
 	Uint8 P2C_MEDIUMPUNCH;
 	Uint8 P2C_HARDPUNCH;
