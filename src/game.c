@@ -12,7 +12,9 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 	pWindow = SDL_CreateWindow( title, xpos, ypos, width, height, fullscreen );
 	if ( pWindow != 0 ) // window init success
 	{
-	    printf( "window creation success\n" );
+		FUR_initialiseJoysticks();
+		FUR_initPlayerInput();
+		printf( "window creation success\n" );
 	    pRenderer = SDL_CreateRenderer( pWindow, -1, 0 );
 	    if ( pRenderer != 0 ) // renderer init success
 	    {
@@ -21,7 +23,7 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
 		FUR_createObject( "images/biped.png",0, -50.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_NONE );
 		FUR_createObject( "images/biped.png",1, 420.0f, 150.0f, 250,250,0,0,0.0,255,pRenderer,SDL_FLIP_HORIZONTAL );
-		//FUR_initPlayerInput();
+		FUR_initPlayer();
 		//FUR_textureLoad("images/biped.png", 0, pRenderer);
 	    }
 	    else
@@ -64,18 +66,18 @@ void FUR_update()
 	int i;
 	
 	FUR_updateObject(a_gameObjects[0]);
-	for (i = 0; i < 9; i++)
+	for (i = 0; i < 4; i++)
 	{
-	    if ( a_joystickStates[i] != NULL )
-	    {
-		if (a_joystickStates[i]->x > 0 && a_joystickStates[i]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 200, 50, 255); }
-		else if (a_joystickStates[i]->x > 0 && a_joystickStates[i]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 50, 0, 255); }
-		else if (a_joystickStates[i]->y > 0 && a_joystickStates[i]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 50, 200, 255); }
-		else if (a_joystickStates[i]->y > 0 && a_joystickStates[i]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 100, 0, 200, 255); }
-		else if (a_joystickStates[i]->x > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 200, 100, 255); }
-		else if (a_joystickStates[i]->y > 0) { SDL_SetRenderDrawColor(pRenderer, 200, 100, 200, 255); }
-		else if (a_joystickStates[i]->z > 0) { SDL_SetRenderDrawColor(pRenderer, 100, 200, 200, 255); }
-		else if (a_joystickStates[i]->w > 0) { SDL_SetRenderDrawColor(pRenderer, 50, 200, 200, 255); }
+		if ( a_joysticks[i] != NULL )
+		{
+		if (playerInput.P1_UPDOWN > 0 && playerInput.P1_LEFTRIGHT > 0) { SDL_SetRenderDrawColor(pRenderer, 0, 50, 0, 255); } //upLeft
+		else if (playerInput.P1_UPDOWN > 0 && playerInput.P1_LEFTRIGHT < 0) { SDL_SetRenderDrawColor(pRenderer, 50, 0, 0, 255); } //upRight
+		else if (playerInput.P1_UPDOWN < 0 && playerInput.P1_LEFTRIGHT > 0) { SDL_SetRenderDrawColor(pRenderer, 0, 50, 50, 255); } //downLeft
+		else if (playerInput.P1_UPDOWN < 0 && playerInput.P1_LEFTRIGHT < 0) { SDL_SetRenderDrawColor(pRenderer, 50, 0, 50, 255); } //downRight
+		else if (playerInput.P1_UPDOWN > 0) { SDL_SetRenderDrawColor(pRenderer, 50, 50, 0, 255); } //up
+		else if (playerInput.P1_UPDOWN < 0) { SDL_SetRenderDrawColor(pRenderer, 0, 0, 100, 255); } //down
+		else if (playerInput.P1_LEFTRIGHT > 0) { SDL_SetRenderDrawColor(pRenderer, 0, 100, 0, 255); } //left
+		else if (playerInput.P1_LEFTRIGHT < 0) { SDL_SetRenderDrawColor(pRenderer, 100, 0, 0, 255); } //right
 		else { SDL_SetRenderDrawColor(pRenderer, 200, 200, 200, 255); }
 	    }
 	}

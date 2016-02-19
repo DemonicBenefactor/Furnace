@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "configuration.h"
 #include "game.h"
 #include "vectors.h"
 
@@ -17,8 +18,7 @@ enum mouse_buttons
 
 int deadZone;
 bool bJoysticksInitialized;
-SDL_Joystick* a_joysticks[9];
-vector4D* a_joystickStates[11];
+SDL_Joystick* a_joysticks[8];
 
 
 void FUR_initialiseJoysticks();

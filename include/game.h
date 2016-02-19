@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 
+#include "configuration.h"
 #include "textureManager.h"
 #include "gameObject.h"
 #include "handleEvents.h"

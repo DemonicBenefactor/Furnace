@@ -7,33 +7,21 @@
 void FUR_initialiseJoysticks()
 {
     int i;
-	//The keyboard is treated as a joystick in this game,
-	//so we need to init it as such
-	vector4D* keyboard_1;
-	vector4D* keyboard_2;
-	keyboard_1 = malloc(sizeof(vector4D));
-	keyboard_2 = malloc(sizeof(vector4D));
-	a_joystickStates[10] = keyboard_1;
-	a_joystickStates[11] = keyboard_2;
-	//Finished initializing the keyboard;
 
     if ( SDL_WasInit( SDL_INIT_JOYSTICK ) == 0 )
     {
-	SDL_InitSubSystem( SDL_INIT_JOYSTICK );
+		SDL_InitSubSystem( SDL_INIT_JOYSTICK );
     }
 
     if ( SDL_NumJoysticks() > 0 )
     {
 	for ( i = 0; i < SDL_NumJoysticks(); i++ )
 	{
-	    if ( i < 9 )
+	    if ( i < 4 )
 	    {		
 			SDL_Joystick* joy;
 	    	joy = SDL_JoystickOpen(i);
 			a_joysticks[i] = joy;
-			vector4D* joyDirection;
-			joyDirection = malloc(sizeof(vector4D));
-			a_joystickStates[i] = joyDirection;
 	    }	
 	}
 	
@@ -83,19 +71,19 @@ void FUR_handleEvents()
 									}
 				else if ( event.key.keysym.sym == playerInput.P1K_UP )
 				{
-					a_joystickStates[10]->x = 1;
+					playerInput.P1_UPDOWN = 1;
 				}
 				else if ( event.key.keysym.sym == playerInput.P1K_DOWN )
 				{
-					a_joystickStates[10]->y = 1;
+					playerInput.P1_UPDOWN = -1;
 				}
 				else if (event.key.keysym.sym == playerInput.P1K_LEFT)
 				{
-					a_joystickStates[10]->z = 1;
+					playerInput.P1_LEFTRIGHT = 1;
 				}
 				else if (event.key.keysym.sym == playerInput.P1K_RIGHT)
 				{
-					a_joystickStates[10]->w = 1;
+					playerInput.P1_LEFTRIGHT = -1;
 				}
 				break;
 			case SDL_KEYUP:
@@ -106,46 +94,135 @@ void FUR_handleEvents()
 				}
 				else if (event.key.keysym.sym == playerInput.P1K_UP)
 				{
-					a_joystickStates[10]->x = 0;
+					playerInput.P1_UPDOWN = 0;
 				}
 				else if (event.key.keysym.sym == playerInput.P1K_DOWN)
 				{
-					a_joystickStates[10]->y = 0;
+					playerInput.P1_UPDOWN = 0;
 				}
 				else if (event.key.keysym.sym == playerInput.P1K_LEFT)
 				{
-					a_joystickStates[10]->z = 0;
+					playerInput.P1_LEFTRIGHT = 0;
 				}
 				else if (event.key.keysym.sym == playerInput.P1K_RIGHT)
 				{
-					a_joystickStates[10]->w = 0;
+					playerInput.P1_LEFTRIGHT = 0;
 				}
 				break;
 			/////////////////////////////////////////////////////////////////
 			//HANDLE FIGHT STICKS
 			/////////////////////////////////////////////////////////////////
 			case SDL_JOYAXISMOTION:
-				if ( event.jaxis.axis == 0 )
-					if (event.jaxis.value > deadZone)
-					{
-					a_joystickStates[event.jaxis.which]->w = 1;
-					}
-					else if (event.jaxis.value < -deadZone)
-					{
-						a_joystickStates[event.jaxis.which]->z = 1;
-					}
-					else { a_joystickStates[event.jaxis.which]->w = 0; a_joystickStates[event.jaxis.which]->z = 0; }
+				if (event.jaxis.which == playerInput.P1_Controller)
+				{
+					if (event.jaxis.axis == 0)
+						if (event.jaxis.value > deadZone)
+						{
+						playerInput.P1_LEFTRIGHT = -1; //right
+						}
+						else if (event.jaxis.value < -deadZone)
+						{
+							playerInput.P1_LEFTRIGHT = 1; //left
+						}
+						else { playerInput.P1_LEFTRIGHT = 0; }
 
-				else if (event.jaxis.axis == 1)
-					if (event.jaxis.value > deadZone)
-					{
-					a_joystickStates[event.jaxis.which]->y = 1;
-					}
-					else if (event.jaxis.value < -deadZone)
-					{
-						a_joystickStates[event.jaxis.which]->x = 1;
-					}
-					else { a_joystickStates[event.jaxis.which]->x = 0; a_joystickStates[event.jaxis.which]->y = 0; }
+					else if (event.jaxis.axis == 1)
+						if (event.jaxis.value > deadZone)
+						{
+						playerInput.P1_UPDOWN = -1; //down
+						}
+						else if (event.jaxis.value < -deadZone)
+						{
+							playerInput.P1_UPDOWN = 1;//up
+						}
+						else { playerInput.P1_UPDOWN = 0; }
+				}
+				break;
+
+			case SDL_JOYHATMOTION:
+				switch (event.jhat.value)
+				{
+				case SDL_HAT_UP:
+					playerInput.P1_UPDOWN = 1;
+					playerInput.P1_LEFTRIGHT = 0;
+					break;
+				case SDL_HAT_RIGHTUP:
+					playerInput.P1_UPDOWN = 1;
+					playerInput.P1_LEFTRIGHT = -1;
+					break;
+				case SDL_HAT_RIGHT:
+					playerInput.P1_LEFTRIGHT = -1;
+					playerInput.P1_UPDOWN = 0;
+					break;
+				case SDL_HAT_RIGHTDOWN:
+					playerInput.P1_LEFTRIGHT = -1;
+					playerInput.P1_UPDOWN = -1;
+					break;
+				case SDL_HAT_DOWN:
+					playerInput.P1_UPDOWN = -1;
+					playerInput.P1_LEFTRIGHT = 0;
+					break;
+				case SDL_HAT_LEFTDOWN:
+					playerInput.P1_LEFTRIGHT = 1;
+					playerInput.P1_UPDOWN = -1;
+					break;
+				case SDL_HAT_LEFT:
+					playerInput.P1_LEFTRIGHT = 1;
+					playerInput.P1_UPDOWN = 0;
+					break;
+				case SDL_HAT_LEFTUP:
+					playerInput.P1_LEFTRIGHT = 1;
+					playerInput.P1_UPDOWN = 1;
+					break;
+				case 0:
+					playerInput.P1_UPDOWN = 0;
+					playerInput.P1_LEFTRIGHT = 0;
+				default:
+					break;
+				}
+
+			case SDL_JOYBUTTONDOWN:
+				//if (event.jbutton.which == playerInput.P1_Controller)
+				//{
+				//	if (event.jbutton.button == playerInput.P1C_DPAD_UP)
+				//	{
+				//		playerInput.P1_UPDOWN = 1; //up
+				//	}
+				//	else if (event.jbutton.button == playerInput.P1C_DPAD_DOWN)
+				//	{
+				//		playerInput.P1_UPDOWN = -1; //down
+				//	}
+				//	else if (event.jbutton.button == playerInput.P1C_DPAD_LEFT)
+				//	{
+				//		playerInput.P1_LEFTRIGHT = 1; //left
+				//	}
+				//	else if (event.jbutton.button == playerInput.P1C_DPAD_RIGHT)
+				//	{
+				//		playerInput.P1_LEFTRIGHT = -1; //right
+				//	}
+				//}
+				break;
+			case SDL_JOYBUTTONUP:
+				//if (event.jbutton.which == playerInput.P1_Controller)
+				//{
+				//	if ( event.jbutton.button == playerInput.P1C_DPAD_UP )
+				//	{
+				//		playerInput.P1_UPDOWN = 0;
+				//	}
+				//	else if (event.jbutton.button == playerInput.P1C_DPAD_DOWN)
+				//	{
+				//		playerInput.P1_UPDOWN = 0;
+				//	}
+				//	else if ( event.jbutton.button == playerInput.P1C_DPAD_LEFT)
+				//	{
+				//		playerInput.P1_LEFTRIGHT = 0;
+				//	}
+				//	else if (event.jbutton.button == playerInput.P1C_DPAD_RIGHT)
+				//	{
+				//		playerInput.P1_LEFTRIGHT = 0;
+				//	}
+
+				//}
 				break;
 
 		    case SDL_MOUSEBUTTONDOWN:
@@ -154,7 +231,7 @@ void FUR_handleEvents()
 
 
 		    default:
-		    	break;	
+		    	break;
 		}
 	}
 }
