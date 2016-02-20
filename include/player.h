@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include "vectors.h"
 #include "configuration.h"
 #include "gameObject.h"
 #include "textureManager.h"
@@ -38,6 +39,8 @@ typedef struct {
 	int meter;
 	int guardBreak;
 	int armor;
+	bool jumping;
+	bool crouching;
 	bool attack;
 	bool block;
 	bool lightPunch;

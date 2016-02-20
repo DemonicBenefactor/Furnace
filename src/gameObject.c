@@ -60,7 +60,7 @@ int goingRight = 1;
 //	}
 //}
 
-void FUR_updateObject()
+void FUR_updateObject( gameObject *pGameObject )
 {
 
 }

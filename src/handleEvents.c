@@ -116,6 +116,7 @@ void FUR_handleEvents()
 				if (event.jaxis.which == playerInput.P1_Controller)
 				{
 					if (event.jaxis.axis == 0)
+					{
 						if (event.jaxis.value > deadZone)
 						{
 						playerInput.P1_LEFTRIGHT = -1; //right
@@ -125,8 +126,9 @@ void FUR_handleEvents()
 							playerInput.P1_LEFTRIGHT = 1; //left
 						}
 						else { playerInput.P1_LEFTRIGHT = 0; }
-
+					}
 					else if (event.jaxis.axis == 1)
+					{
 						if (event.jaxis.value > deadZone)
 						{
 						playerInput.P1_UPDOWN = -1; //down
@@ -136,6 +138,7 @@ void FUR_handleEvents()
 							playerInput.P1_UPDOWN = 1;//up
 						}
 						else { playerInput.P1_UPDOWN = 0; }
+					}
 				}
 				break;
 

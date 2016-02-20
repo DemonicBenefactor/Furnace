@@ -1,10 +1,12 @@
 vpath %.c src test
 SOURCES=main.c\
+	player.c\
 	game.c\
 	handleEvents.c\
 	textureManager.c\
 	gameObject.c\
-	vectors.c
+	vectors.c\
+	configuration.c
 
 
 TESTSOURCES=test.c
