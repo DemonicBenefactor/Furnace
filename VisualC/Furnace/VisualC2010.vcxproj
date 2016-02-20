@@ -38,15 +38,15 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\..\include;..\..\..\SDL2-2.0.3\include;..\..\..\SDL2_image-2.0.0;$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
-    <LibraryPath>..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug;..\..\..\SDL2-2.0.3\VisualC\SDLmain\Win32\Debug;..\..\..\SDL2_image-2.0.0\VisualC\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\include;..\..\..\SDL\include;..\..\..\SDL2_image-2.0.1;$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
+    <LibraryPath>..\..\..\SDL\VisualC\Win32\Debug;..\..\..\SDL\VisualC\SDLmain\Win32\Debug;..\..\..\SDL2_image-2.0.1\VisualC\Win32\Debug;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <TargetName>Furnace32dbg</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\..\include;..\..\..\SDL2-2.0.3\include;..\..\..\SDL2_image-2.0.0;$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
-    <LibraryPath>..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release;..\..\..\SDL2-2.0.3\VisualC\SDLmain\Win32\Release;..\..\..\SDL2_image-2.0.0\VisualC\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\include;..\..\..\SDL\include;..\..\..\SDL2_image-2.0.1;$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
+    <LibraryPath>..\..\..\SDL\VisualC\Win32\Release;..\..\..\SDL\VisualC\SDLmain\Win32\Release;..\..\..\SDL2_image-2.0.1\VisualC\Win32\Release;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <TargetName>Furnace32</TargetName>
@@ -62,9 +62,9 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\Debug\SDL2_image.dll $(SolutionDir)..
-copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x86\*.dll $(SolutionDir)..
-copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug\SDL2.dll $(SolutionDir)..</Command>
+      <Command>copy ..\..\..\SDL2_image-2.0.1\VisualC\Win32\Debug\SDL2_image.dll $(SolutionDir)..
+copy ..\..\..\SDL2_image-2.0.1\VisualC\external\lib\x86\*.dll $(SolutionDir)..
+copy ..\..\..\SDL\VisualC\Win32\Debug\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,26 +82,30 @@ copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Debug\SDL2.dll $(SolutionDir)..</Comm
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\..\SDL2_image-2.0.0\VisualC\Release\SDL2_image.dll $(SolutionDir)..
-copy ..\..\..\SDL2_image-2.0.0\VisualC\external\lib\x86\*.dll $(SolutionDir)..
-copy ..\..\..\SDL2-2.0.3\VisualC\SDL\Win32\Release\SDL2.dll $(SolutionDir)..</Command>
+      <Command>copy ..\..\..\SDL2_image-2.0.1\VisualC\Win32\Release\SDL2_image.dll $(SolutionDir)..
+copy ..\..\..\SDL2_image-2.0.1\VisualC\external\lib\x86\*.dll $(SolutionDir)..
+copy ..\..\..\SDL\VisualC\Win32\Release\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\configuration.c" />
     <ClCompile Include="..\..\src\game.c" />
     <ClCompile Include="..\..\src\gameObject.c" />
     <ClCompile Include="..\..\src\handleEvents.c" />
     <ClCompile Include="..\..\src\main.c" />
+    <ClCompile Include="..\..\src\player.c" />
     <ClCompile Include="..\..\src\textureManager.c" />
-    <ClCompile Include="..\..\src\vector2D.c" />
+    <ClCompile Include="..\..\src\vectors.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\configuration.h" />
     <ClInclude Include="..\..\include\game.h" />
     <ClInclude Include="..\..\include\gameObject.h" />
     <ClInclude Include="..\..\include\handleEvents.h" />
+    <ClInclude Include="..\..\include\player.h" />
     <ClInclude Include="..\..\include\stdbool.h" />
     <ClInclude Include="..\..\include\textureManager.h" />
-    <ClInclude Include="..\..\include\vector2D.h" />
+    <ClInclude Include="..\..\include\vectors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
