@@ -39,8 +39,8 @@ void FUR_textureDrawFrame(int id, vector2D position, int width, int height,
 	srcRect.y = height * currentRow;
 	srcRect.w = destRect.w = width;
 	srcRect.h = destRect.h = height;
-	destRect.x = (int)position.x;
-	destRect.y = (int)position.y;
+	destRect.x = position.x;
+	destRect.y = position.y;
 
 	SDL_SetTextureAlphaMod(a_TextureList[id], alpha);
 	SDL_RenderCopyEx(pRenderer, a_TextureList[id], &srcRect, &destRect, angle, 0, flip);

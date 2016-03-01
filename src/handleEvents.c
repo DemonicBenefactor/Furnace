@@ -69,6 +69,7 @@ void FUR_handleEvents()
 				{
 					gameRunning = false;
 									}
+				//PLAYER ONE BUFFER
 				else if ( event.key.keysym.sym == playerInput.P1K_UP )
 				{
 					playerInput.P1_UPDOWN = 1;
@@ -85,14 +86,27 @@ void FUR_handleEvents()
 				{
 					playerInput.P1_LEFTRIGHT = -1;
 				}
+				//PLAYER TWO BUFFER
+				else if ( event.key.keysym.sym == playerInput.P2K_UP )
+				{
+					playerInput.P2_UPDOWN = 1;
+				}
+				else if ( event.key.keysym.sym == playerInput.P2K_DOWN )
+				{
+					playerInput.P2_UPDOWN = -1;
+				}
+				else if (event.key.keysym.sym == playerInput.P2K_LEFT)
+				{
+					playerInput.P2_LEFTRIGHT = 1;
+				}
+				else if (event.key.keysym.sym == playerInput.P2K_RIGHT)
+				{
+					playerInput.P2_LEFTRIGHT = -1;
+				}
 				break;
 			case SDL_KEYUP:
-				//printf( " %s\n", SDL_GetKeyName( event.key.keysym.sym ) );
-				if (event.key.keysym.sym == SDLK_ESCAPE)
-				{
-					gameRunning = false;
-				}
-				else if (event.key.keysym.sym == playerInput.P1K_UP)
+				//PLAYER ONE BUFFER
+				if (event.key.keysym.sym == playerInput.P1K_UP)
 				{
 					playerInput.P1_UPDOWN = 0;
 				}
@@ -107,6 +121,23 @@ void FUR_handleEvents()
 				else if (event.key.keysym.sym == playerInput.P1K_RIGHT)
 				{
 					playerInput.P1_LEFTRIGHT = 0;
+				}
+				//PLAYER TWO BUFFER
+				if (event.key.keysym.sym == playerInput.P2K_UP)
+				{
+					playerInput.P2_UPDOWN = 0;
+				}
+				else if (event.key.keysym.sym == playerInput.P2K_DOWN)
+				{
+					playerInput.P2_UPDOWN = 0;
+				}
+				else if (event.key.keysym.sym == playerInput.P2K_LEFT)
+				{
+					playerInput.P2_LEFTRIGHT = 0;
+				}
+				else if (event.key.keysym.sym == playerInput.P2K_RIGHT)
+				{
+					playerInput.P2_LEFTRIGHT = 0;
 				}
 				break;
 			/////////////////////////////////////////////////////////////////
@@ -140,8 +171,37 @@ void FUR_handleEvents()
 						else { playerInput.P1_UPDOWN = 0; }
 					}
 				}
+				else if (event.jaxis.which == playerInput.P2_Controller)
+				{
+					if (event.jaxis.axis == 0)
+					{
+						if (event.jaxis.value > deadZone)
+						{
+						playerInput.P2_LEFTRIGHT = -1; //right
+						}
+						else if (event.jaxis.value < -deadZone)
+						{
+							playerInput.P2_LEFTRIGHT = 1; //left
+						}
+						else { playerInput.P2_LEFTRIGHT = 0; }
+					}
+					else if (event.jaxis.axis == 1)
+					{
+						if (event.jaxis.value > deadZone)
+						{
+						playerInput.P2_UPDOWN = -1; //down
+						}
+						else if (event.jaxis.value < -deadZone)
+						{
+							playerInput.P2_UPDOWN = 1;//up
+						}
+						else { playerInput.P2_UPDOWN = 0; }
+					}
+				}				
 				break;
-
+			///////////////////////////////////////////
+			//  D PAD
+			//////////////////////////////////////////
 			case SDL_JOYHATMOTION:
 				switch (event.jhat.value)
 				{

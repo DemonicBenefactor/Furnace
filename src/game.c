@@ -15,15 +15,16 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 		FUR_initialiseJoysticks();
 		FUR_initPlayerInput();
 		printf( "window creation success\n" );
-	    pRenderer = SDL_CreateRenderer( pWindow, -1, 0 );
+	    pRenderer = SDL_CreateRenderer( pWindow, -1, SDL_RENDERER_PRESENTVSYNC );
 	    if ( pRenderer != 0 ) // renderer init success
 	    {
 		printf( "renderer init success\n" );
 		SDL_RenderSetLogicalSize(pRenderer, 800, 480);
 		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
-		FUR_createObject("images/biped.png", 0, -50.0f, 150.0f, 250, 250, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_NONE);
-		FUR_createObject("images/biped.png", 1, 420.0f, 150.0f, 250, 250, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_HORIZONTAL);		
-		FUR_initPlayers();
+		FUR_createObject("images/Sofia.png", 2, 0, 0, 800, 480, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_NONE);
+		FUR_createObject("images/biped.png", 0, -50, 230, 250, 250, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_NONE);
+		FUR_createObject("images/biped.png", 1, 420, 230, 250, 250, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_HORIZONTAL);		
+		FUR_initPlayers( pRenderer, Demonic, Zoe );
 	    }
 	    else
 	    {
@@ -54,8 +55,9 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 void FUR_render()
 {
     SDL_RenderClear( pRenderer  ); // clear the renderer to draw the color
-	FUR_drawObject(pRenderer, a_gameObjects[1]);
-    FUR_drawObject( pRenderer, a_gameObjects[0] );    
+	FUR_drawObject( pRenderer, a_gameObjects[2] );
+    FUR_drawObject( pRenderer, a_gameObjects[0] ); 
+	FUR_drawObject( pRenderer, a_gameObjects[1] );  
     SDL_RenderPresent( pRenderer ); // draw to the screen
 }
 
