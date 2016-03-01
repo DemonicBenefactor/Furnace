@@ -2,15 +2,9 @@
 #define __characters__
 
 #include <stdio.h>
-#include <stdbool.h>
+#include "furnaceTypes.h"
 
-#include "player.h"
-
-//Demonic
-struct {
-	const char* idle = "images/biped.png";
-} characterDemonic;
-
+void FUR_initCharacter( character playerSelection );
 
 
 #endif //characters

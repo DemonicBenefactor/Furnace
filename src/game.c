@@ -19,9 +19,9 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 	    if ( pRenderer != 0 ) // renderer init success
 	    {
 		printf( "renderer init success\n" );
-		SDL_RenderSetLogicalSize(pRenderer, 800, 480);
+		SDL_RenderSetLogicalSize(pRenderer, 855, 480);
 		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
-		FUR_createObject("images/Sofia.png", 2, 0, 0, 800, 480, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_NONE);
+		FUR_createObject("images/Sofia.png", 2, 0, 0, 855, 480, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_NONE);
 		FUR_createObject("images/biped.png", 0, -50, 230, 250, 250, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_NONE);
 		FUR_createObject("images/biped.png", 1, 420, 230, 250, 250, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_HORIZONTAL);		
 		FUR_initPlayers( pRenderer, Demonic, Zoe );

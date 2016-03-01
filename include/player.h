@@ -9,49 +9,8 @@
 #include "configuration.h"
 #include "gameObject.h"
 #include "textureManager.h"
-
-int i, duration, currentTime; 
-float startPos, endPos;
-
-typedef enum {
-	Demonic,
-	Zoe,
-	Angelic,
-	Character4,
-	Character5,
-	Character6,
-	Character7,
-	Character8,
-	Character9
-} character;
-
-typedef enum {
-	center,
-	up,
-	down,
-	left,
-	right,
-	upLeft,
-	upRight,
-	downLeft,
-	downRight
-} direction;
-
-typedef enum {
-	slowest = 120,
-	slow = 100,
-	normal = 80,
-	fast = 60,
-	fastest = 40
-} speed;
-
-typedef enum {
-	closest,
-	close,
-	mid,
-	far,
-	furthest
-} distance;
+#include "characters.h"
+#include "furnaceTypes.h"
 
 typedef struct {
 	SDL_Texture* idle[64]; //also contains standing block

@@ -12,12 +12,7 @@ int main( int argc, char* argv[])
 {
     Uint32 frameStart, frameTime;
 	
-<<<<<<< HEAD
 	FUR_init( "Furnace", 100, 100, 1920, 1080, true );
-=======
-	//FUR_init( "Furnace", 100, 100, 1024, 600, true );
-	FUR_init( "Furnace", 100, 100, 800, 480, false );
->>>>>>> 644472384eba75c99283e49ed244c873357b9581
 	
     while( gameRunning )
     {

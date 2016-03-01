@@ -4,6 +4,8 @@
 
 int FUR_initPlayers( SDL_Renderer* pRenderer, character P1, character P2 )
 {	
+	int i;
+	
 	for (i = 0; i < 2; i++)
 	{
 		character tmpCharacter;
@@ -53,7 +55,7 @@ int FUR_initPlayers( SDL_Renderer* pRenderer, character P1, character P2 )
 
 void FUR_updatePlayers()
 {
-	
+	int i;	
 	//////////////////////////////////////////////////////////////
 	//PLAYER 1 TRANSFER OF INPUTS
 	//////////////////////////////////////////////////////////////	
@@ -137,7 +139,7 @@ void FUR_updatePlayers()
 	{
 		if (a_players[i]->axis == right)
 		{
-			if (a_gameObjects[i]->position.x < 650)
+			if (a_gameObjects[i]->position.x < 705)
 			{
 				a_gameObjects[i]->position.x += 3;
 			}
@@ -187,6 +189,9 @@ void FUR_cleanPlayer()
 
 void FUR_playerJump( player* pPlayer )
 {	
+	static float startPos, endPos;
+	static int duration;
+
 	if ( pPlayer->jumpTimer == 0 )
 	{			
 		startPos = 230;
@@ -205,13 +210,6 @@ void FUR_playerJump( player* pPlayer )
 		pPlayer->currentTime /= duration;
 		a_gameObjects[0]->position.y = (int)(-endPos * pPlayer->currentTime * pPlayer->currentTime + 30);
 	}
-	/*
-	if (pPlayer->jumpTimer < (normal / 2))
-	{
-	a_gameObjects[0]->position.y -= 5;
-	}
-	else {a_gameObjects[0]->position.y += 5;}
-	*/
 	
 	pPlayer->jumpTimer += 1;
 	if ( pPlayer->jumpTimer >= normal )

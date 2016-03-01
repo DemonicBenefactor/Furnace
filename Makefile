@@ -1,5 +1,6 @@
 vpath %.c src test
 SOURCES=main.c\
+	characters.c\
 	player.c\
 	game.c\
 	handleEvents.c\
