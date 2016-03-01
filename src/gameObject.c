@@ -1,7 +1,7 @@
 
 #include "gameObject.h"
 
-int FUR_createObject( const char* fileName, int id, float x, float y, int width,
+int FUR_createObject( const char* fileName, int id, int x, int y, int width,
 		int height, int currentRow, int currentFrame, double angle,
 		int alpha, SDL_Renderer* pRenderer, SDL_RendererFlip flip )
 {

@@ -2,7 +2,7 @@
 #include "vectors.h"
 
 
-float FUR_lengthVector2D( vector2D v)
+int FUR_lengthVector2D( vector2D v)
 {
 	return sqrt( v.x * v.x + v.y * v.y );
 }
@@ -23,7 +23,7 @@ vector2D FUR_subVector2D( vector2D v1, vector2D v2 )
 	return vect;
 }
 
-vector2D FUR_mulVector2D( vector2D v1, float scalar )
+vector2D FUR_mulVector2D( vector2D v1, int scalar )
 {
 	vector2D vect;
 	vect.x = v1.x * scalar;
@@ -31,7 +31,7 @@ vector2D FUR_mulVector2D( vector2D v1, float scalar )
 	return vect;
 }
 
-vector2D FUR_divVector2D( vector2D v1, float scalar )
+vector2D FUR_divVector2D( vector2D v1, int scalar )
 {
 	vector2D vect;
 	vect.x = v1.x / scalar;
@@ -41,7 +41,7 @@ vector2D FUR_divVector2D( vector2D v1, float scalar )
 
 void FUR_norVector2D( vector2D *v )
 {
-	float len;
+	int len;
 	vector2D result;
 
 	len = FUR_lengthVector2D( *v );

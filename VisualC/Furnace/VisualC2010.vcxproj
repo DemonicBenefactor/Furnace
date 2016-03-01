@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>..\..\include;..\..\..\SDL\include;..\..\..\SDL2_image-2.0.1;$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
     <LibraryPath>..\..\..\SDL\VisualC\Win32\Debug;..\..\..\SDL\VisualC\SDLmain\Win32\Debug;..\..\..\SDL2_image-2.0.1\VisualC\Win32\Debug;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)..</OutDir>
+    <OutDir>$(SolutionDir)..\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <TargetName>Furnace32dbg</TargetName>
   </PropertyGroup>
@@ -62,9 +62,8 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\..\SDL2_image-2.0.1\VisualC\Win32\Debug\SDL2_image.dll $(SolutionDir)..
-copy ..\..\..\SDL2_image-2.0.1\VisualC\external\lib\x86\*.dll $(SolutionDir)..
-copy ..\..\..\SDL\VisualC\Win32\Debug\SDL2.dll $(SolutionDir)..</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,6 +97,7 @@ copy ..\..\..\SDL\VisualC\Win32\Release\SDL2.dll $(SolutionDir)..</Command>
     <ClCompile Include="..\..\src\vectors.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\characters.h" />
     <ClInclude Include="..\..\include\configuration.h" />
     <ClInclude Include="..\..\include\game.h" />
     <ClInclude Include="..\..\include\gameObject.h" />
