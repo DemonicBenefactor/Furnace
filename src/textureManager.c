@@ -1,3 +1,22 @@
+/*
+    Furnace
+    Copyright (C) 2015-2016 Demonic Benefactor <demonic@tutanota.de>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
+
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
@@ -6,7 +25,8 @@
 #include "SDL_image.h"
 
 
-int FUR_textureLoad( const char* fileName, int id, SDL_Renderer* pRenderer )
+int FUR_textureLoad( const char* fileName, int id, 
+		SDL_Texture* textureSet[], SDL_Renderer* pRenderer )
 {
 	SDL_Surface* pTempSurface = IMG_Load(fileName);
 	
@@ -22,15 +42,16 @@ int FUR_textureLoad( const char* fileName, int id, SDL_Renderer* pRenderer )
 
 	if (pTexture != 0)
 	{
-		a_TextureList[id] = pTexture;
+		textureSet[id] = pTexture;
 		return true;
 	}
 
 	return false;
 }
 
-void FUR_textureDrawFrame(int id, vector2D position, int width, int height,
-			int currentRow, int currentFrame, double angle, int alpha, 
+void FUR_textureDrawFrame(int id, SDL_Texture* textureSet[], vector2D position, 
+			int width, int height, int currentRow, int currentFrame,
+			double angle, int alpha, 
 			SDL_Renderer* pRenderer, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
@@ -42,6 +63,7 @@ void FUR_textureDrawFrame(int id, vector2D position, int width, int height,
 	destRect.x = position.x;
 	destRect.y = position.y;
 
-	SDL_SetTextureAlphaMod(a_TextureList[id], alpha);
-	SDL_RenderCopyEx(pRenderer, a_TextureList[id], &srcRect, &destRect, angle, 0, flip);
+	SDL_SetTextureAlphaMod(textureSet[id], alpha);
+	SDL_RenderCopyEx(pRenderer, textureSet[id], 
+			&srcRect, &destRect, angle, 0, flip);
 }

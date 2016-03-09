@@ -1,3 +1,22 @@
+/*
+    Furnace
+    Copyright (C) 2015-2016 Demonic Benefactor <demonic@tutanota.de>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
+
 #ifndef __player__
 #define __player__
 
@@ -7,9 +26,7 @@
 #include <SDL2/SDL.h>
 #include "vectors.h"
 #include "configuration.h"
-#include "gameObject.h"
 #include "textureManager.h"
-#include "characters.h"
 #include "furnaceTypes.h"
 
 typedef struct {
@@ -52,6 +69,7 @@ typedef struct {
 	direction axis;
 	vector2D position;
 	playerTextures textures;
+	SDL_RendererFlip flip;
 } player;
 
 
@@ -59,7 +77,7 @@ typedef struct {
 player* a_players[2];
 
 int FUR_initPlayers( SDL_Renderer* pRenderer, character P1, character P2 );
-void FUR_renderPlayers( SDL_Renderer *pRenderer, player *pPlayer1, player *pPlayer2 );
+void FUR_renderPlayers( SDL_Renderer *pRenderer, player *pP1, player *pP2 );
 void FUR_updatePlayers();
 void FUR_cleanPlayer();
 

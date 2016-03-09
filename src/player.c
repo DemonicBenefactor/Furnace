@@ -1,5 +1,24 @@
+/*
+    Furnace
+    Copyright (C) 2015-2016 Demonic Benefactor <demonic@tutanota.de>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
 
 #include "player.h"
+#include "characters.h"
 #include "game.h"
 
 int FUR_initPlayers( SDL_Renderer* pRenderer, character P1, character P2 )
@@ -8,49 +27,36 @@ int FUR_initPlayers( SDL_Renderer* pRenderer, character P1, character P2 )
 	
 	for (i = 0; i < 2; i++)
 	{
-		character tmpCharacter;
 		player* p;
 		p = malloc(sizeof(player));
 		if ( i == 0 )
 		{
-			tmpCharacter = P1;
-			p->position.x = -50;
+			p->who = P1;
+			p->position.x = 100;
+			p->flip = SDL_FLIP_NONE;
+			FUR_initCharacter( p );
 		}
 		else {
-			tmpCharacter = P2;
-			p->position.x = 420;
+			p->who = P2;
+			p->position.x = 505;
+			p->flip = SDL_FLIP_HORIZONTAL;
+			FUR_initCharacter( p );
 		}		
 		p->jumping = false;
 		p->jumpTimer = 0;
-		p->guardBreak = 100;
-		p->position.y = 230;
 		p->armor = 0;
-		 switch (tmpCharacter)
-		 {
-			case Demonic:
-				strcpy( p->name,"Demonic");
-				p->who = Demonic;
-				p->health = 100;
-				p->jumpSpeed = normal;
-				p->walkSpeed = normal;
-				p->jumpDistance = mid;
-				p->meter = 4;
-				break;
-			case Zoe:
-				strcpy( p->name, "Zoe" );
-				p->who = Zoe;
-				p->health = 80;
-				p->jumpSpeed = fast;
-				p->walkSpeed = fast;
-				p->jumpDistance = mid;
-				p->meter = 2;
-				break;
-		 }
-		
 		
 		a_players[i] = p;
 	}
 	return 1;
+}
+
+void FUR_renderPlayers( SDL_Renderer *pRenderer, player *pP1, player *pP2)
+{
+    FUR_textureDrawFrame( 0, pP1->textures.idle, pP1->position, 250, 250,
+		    	0, 0, 0.0, 255, pRenderer, pP1->flip);
+    FUR_textureDrawFrame( 0, pP2->textures.idle, pP2->position, 250, 250,
+		    	0, 0, 0.0, 255, pRenderer, pP2->flip);
 }
 
 void FUR_updatePlayers()
@@ -139,16 +145,16 @@ void FUR_updatePlayers()
 	{
 		if (a_players[i]->axis == right)
 		{
-			if (a_gameObjects[i]->position.x < 705)
+			if (a_players[i]->position.x < 705)
 			{
-				a_gameObjects[i]->position.x += 3;
+				a_players[i]->position.x += 3;
 			}
 		}
 		else if (a_players[i]->axis == left)
 		{
-			if (a_gameObjects[i]->position.x > -100)
+			if (a_players[i]->position.x > -100)
 			{
-				a_gameObjects[i]->position.x -= 3;
+				a_players[i]->position.x -= 3;
 			}
 		}
 		else if ( a_players[i]->axis == up )
@@ -169,16 +175,18 @@ void FUR_updatePlayers()
 	
 
 	// FIX PLAYER DIRECTION
-	if (a_gameObjects[0]->position.x > a_gameObjects[1]->position.x)
+	
+	if (a_players[0]->position.x > a_players[1]->position.x)
 	{
-		a_gameObjects[0]->flip = SDL_FLIP_HORIZONTAL;
-		a_gameObjects[1]->flip = SDL_FLIP_NONE;
+		a_players[0]->flip = SDL_FLIP_HORIZONTAL;
+		a_players[1]->flip = SDL_FLIP_NONE;
 	}
 	else
 	{
-		a_gameObjects[0]->flip = SDL_FLIP_NONE;
-		a_gameObjects[1]->flip = SDL_FLIP_HORIZONTAL;
+		a_players[0]->flip = SDL_FLIP_NONE;
+		a_players[1]->flip = SDL_FLIP_HORIZONTAL;
 	}
+	
 	
 }
 
@@ -202,13 +210,15 @@ void FUR_playerJump( player* pPlayer )
 	{
 		pPlayer->currentTime = pPlayer->jumpTimer;
 		pPlayer->currentTime /= duration;
-		a_gameObjects[0]->position.y = (int)(-endPos * pPlayer->currentTime * (pPlayer->currentTime - 2) + startPos);
+		pPlayer->position.y = (int)(-endPos * pPlayer->currentTime * 
+				(pPlayer->currentTime - 2) + startPos);
 	}
 	else
 	{
 		pPlayer->currentTime = pPlayer->jumpTimer - 39;
 		pPlayer->currentTime /= duration;
-		a_gameObjects[0]->position.y = (int)(-endPos * pPlayer->currentTime * pPlayer->currentTime + 30);
+		pPlayer->position.y = (int)(-endPos * pPlayer->currentTime * 
+				pPlayer->currentTime + 30);
 	}
 	
 	pPlayer->jumpTimer += 1;

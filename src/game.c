@@ -1,29 +1,48 @@
+/*
+    Furnace
+    Copyright (C) 2015-2016 Demonic Benefactor <demonic@tutanota.de>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "game.h"
 
 // INIT FUNCTION ============================================================
-bool FUR_init( const char* title, int xpos, int ypos, int width, int height, bool fullscreen )
+bool FUR_init( const char* title, int xpos, int ypos, 
+		int width, int height, bool fullscreen )
 {
     if ( SDL_Init( SDL_INIT_EVERYTHING ) == 0 )
     {
 	printf( "SDL init success\n" );
 	// init the window
-	pWindow = SDL_CreateWindow( title, xpos, ypos, width, height, fullscreen );
+	pWindow = SDL_CreateWindow( title, xpos, ypos, width, 
+					height, fullscreen );
 	if ( pWindow != 0 ) // window init success
 	{
-		FUR_initialiseJoysticks();
-		FUR_initPlayerInput();
-		printf( "window creation success\n" );
-	    pRenderer = SDL_CreateRenderer( pWindow, -1, SDL_RENDERER_PRESENTVSYNC );
+	    FUR_initialiseJoysticks();
+	    FUR_initPlayerInput();
+	    printf( "window creation success\n" );
+	    pRenderer = SDL_CreateRenderer( pWindow, -1, 
+			    			SDL_RENDERER_PRESENTVSYNC );
 	    if ( pRenderer != 0 ) // renderer init success
 	    {
 		printf( "renderer init success\n" );
 		SDL_RenderSetLogicalSize(pRenderer, 855, 480);
 		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
-		FUR_createObject("images/Sofia.png", 2, 0, 0, 855, 480, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_NONE);
-		FUR_createObject("images/biped.png", 0, -50, 230, 250, 250, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_NONE);
-		FUR_createObject("images/biped.png", 1, 420, 230, 250, 250, 0, 0, 0.0, 255, pRenderer, SDL_FLIP_HORIZONTAL);		
 		FUR_initPlayers( pRenderer, Demonic, Zoe );
 	    }
 	    else
@@ -55,9 +74,7 @@ bool FUR_init( const char* title, int xpos, int ypos, int width, int height, boo
 void FUR_render()
 {
     SDL_RenderClear( pRenderer  ); // clear the renderer to draw the color
-	FUR_drawObject( pRenderer, a_gameObjects[2] );
-    FUR_drawObject( pRenderer, a_gameObjects[0] ); 
-	FUR_drawObject( pRenderer, a_gameObjects[1] );  
+    FUR_renderPlayers( pRenderer, a_players[0], a_players[1] ); 
     SDL_RenderPresent( pRenderer ); // draw to the screen
 }
 
