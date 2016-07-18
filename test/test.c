@@ -211,8 +211,7 @@ int main (int argc, char* argv[])2
     return 0;
 }
 
-***************************************************************/
-
+*/
 
 /***************************************************************
 * STRING REVERSE
@@ -270,5 +269,50 @@ int main(int argc, char *argv[])
     return(0);
 
 }
+*/
 
-***************************************************************/
+
+/***************************************************************
+* COUNT FOUR BITS IN DEC, HEX, AND BINARY
+* **************************************************************
+#include <stdio.h>
+
+int intToFourBits(int value, char *fourBits)
+{
+    if (fourBits[4] != '\0')
+    {
+        printf("%s is a bad format \n", fourBits);
+        return 0;
+    }
+    int i, mask;
+    for (i=3; i>=0; i--)
+    {
+        mask = 8 >> i;
+        if (value & mask)
+        {
+            fourBits[i] = '1';
+        }
+        else
+        {
+            fourBits[i] = '0';
+        }
+    }
+    return 1;
+}
+
+int main( int argc, char* argv[])
+{
+    int i;
+    char myBits[5];
+    myBits[4] = '\0';
+
+    for ( i = 0; i < 16; i++ )
+    {
+        if ( intToFourBits(i, myBits) == 0 )
+            return 0;
+        printf("%u %X %s \n", i, i, myBits);
+    }
+
+    return 0;
+}
+*/
