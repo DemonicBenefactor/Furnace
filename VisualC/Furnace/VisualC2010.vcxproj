@@ -87,6 +87,7 @@ copy ..\..\..\SDL\VisualC\Win32\Release\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\characters.c" />
     <ClCompile Include="..\..\src\configuration.c" />
     <ClCompile Include="..\..\src\game.c" />
     <ClCompile Include="..\..\src\gameObject.c" />
