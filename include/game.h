@@ -22,6 +22,7 @@
 
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
 
 #include "configuration.h"
 #include "textureManager.h"
@@ -42,5 +43,6 @@ void FUR_testMessage(const char* text);
 
 SDL_Window* pWindow;
 SDL_Renderer* pRenderer;
+SDL_GLContext MainContext;
 
 #endif

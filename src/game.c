@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include "game.h"
 
+
 // INIT FUNCTION ============================================================
 bool FUR_init( const char* title, int xpos, int ypos, 
 		int width, int height, bool fullscreen )
@@ -33,7 +34,17 @@ bool FUR_init( const char* title, int xpos, int ypos,
 					height, fullscreen );
 	if ( pWindow != 0 ) // window init success
 	{
-	    FUR_initialiseJoysticks();
+	    // startup our OpenGL
+		MainContext = SDL_GL_CreateContext(pWindow);
+		GLubyte* openGL_version = glGetString(GL_VERSION);
+		if (openGL_version < '2') {
+			printf("openGL version %s not high enough", openGL_version);
+			return false; // openGL version fail
+		}
+		//Finished with our OpenGL init,  make whatever calls -
+		//you want to our MainContext,  have fun.
+
+		FUR_initialiseJoysticks();
 	    FUR_initPlayerInput();
 	    printf( "window creation success\n" );
 	    pRenderer = SDL_CreateRenderer( pWindow, -1, 
@@ -91,6 +102,7 @@ void FUR_clean()
     FUR_cleanEvents();
     SDL_DestroyWindow( pWindow );
     SDL_DestroyRenderer( pRenderer );
+	SDL_GL_DeleteContext(MainContext);
     SDL_Quit();
 }
 	

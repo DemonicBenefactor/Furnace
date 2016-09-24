@@ -31,7 +31,8 @@ int main( int argc, char* argv[])
 {
     Uint32 frameStart, frameTime;
 	
-	FUR_init( "Furnace", 100, 100, 1920, 1080, true );
+	FUR_init("Furnace", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
+			512, 300, SDL_WINDOW_OPENGL /*| SDL_WINDOW_FULLSCREEN_DESKTOP*/);
 	
     while( gameRunning )
     {

@@ -49,7 +49,7 @@ int FUR_createObject( const char* fileName, int id, SDL_Texture* textureList[],
 	return 1;
 }
 
-void FUR_drawObject( SDL_Renderer *pRenderer, gameObject *pGameObject )
+void FUR_renderObject( SDL_Renderer *pRenderer, gameObject *pGameObject )
 {
 
 }

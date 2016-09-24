@@ -43,7 +43,7 @@ int FUR_createObject( const char* fileName, int id, SDL_Texture* textureList[],
 		int height, int currentRow, int currentFrame, double angle,
 		int alpha, SDL_Renderer* pRenderer, SDL_RendererFlip flip );
 
-void FUR_drawObject( SDL_Renderer *pRenderer, gameObject *pGameObject );
+void FUR_renderObject( SDL_Renderer *pRenderer, gameObject *pGameObject );
 void FUR_updateObject( gameObject *pGameObject );
 void FUR_cleanObject();
 

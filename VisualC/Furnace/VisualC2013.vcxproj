@@ -164,6 +164,7 @@ copy ..\..\..\SDL\VisualC\SDL\x64\Release\SDL2.dll $(SolutionDir)..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\characters.c" />
     <ClCompile Include="..\..\src\configuration.c" />
     <ClCompile Include="..\..\src\game.c" />
     <ClCompile Include="..\..\src\gameObject.c" />
@@ -174,6 +175,7 @@ copy ..\..\..\SDL\VisualC\SDL\x64\Release\SDL2.dll $(SolutionDir)..</Command>
     <ClCompile Include="..\..\src\vectors.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\characters.h" />
     <ClInclude Include="..\..\include\configuration.h" />
     <ClInclude Include="..\..\include\game.h" />
     <ClInclude Include="..\..\include\gameObject.h" />

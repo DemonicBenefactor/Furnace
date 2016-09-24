@@ -56,7 +56,7 @@ typedef enum {
 	closest,
 	close,
 	mid,
-	far,
+	FAR_DIS,
 	furthest
 } distance;
 
