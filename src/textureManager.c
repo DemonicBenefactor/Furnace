@@ -67,3 +67,4 @@ void FUR_textureDrawFrame(int id, SDL_Texture* textureSet[], vector2D position,
 	SDL_RenderCopyEx(pRenderer, textureSet[id], 
 			&srcRect, &destRect, angle, 0, flip);
 }
+// This needs to be translated to no SDL library

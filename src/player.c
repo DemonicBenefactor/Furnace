@@ -28,7 +28,7 @@ int FUR_initPlayers( SDL_Renderer* pRenderer, character P1, character P2 )
 	for (i = 0; i < 2; i++)
 	{
 		player* p;
-		p = malloc(sizeof(player));
+		p = (player*)malloc(sizeof(player));
 		if ( i == 0 )
 		{
 			p->who = P1;
