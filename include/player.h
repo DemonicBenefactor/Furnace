@@ -44,9 +44,18 @@ typedef struct {
 	SDL_Texture* damage[64];
 } playerTextures;
 
+
+// You could use a define:
+//#define Name_Length 16
+
+// #defines are OK, but fairly old school since it's just substitution by the preprocessor, and not an actual explicit type, which can be checked by the compiler.
+
+// In more modern code, we'd probably make a constant definition somewhere, or define an enum value that we include, something like this:
+enum {Name_Length = 16};
+
 typedef struct {
 	character who;
-	char name[16];
+	char name[Name_Length];
 	float jumpTimer;
 	float currentTime;
 	int health;
