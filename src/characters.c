@@ -38,7 +38,22 @@ int FUR_initCharacter( player *pPlayer )
     switch ( pPlayer->who )
     {
 	case Demonic:
-	    strcpy( pPlayer->name, "Demonic" );
+		// Instead of using strcpy, use strncpy, where you specify the size of the destination character array.
+		// The reason for doing this - if the source string ("Demonic" in this case) is longer than the destination array,
+		// strncpy will only copy NAME_LENGTH characters, instead of illegally overwriting memory with more characters than can
+		// be stored in the available memory. strcpy does not check the size so can (and often does) cause memory overwrites.
+		// I defined NAME_LENGTH for this purpose, which is used to declare the array, and when copying.
+		// Also note that strncpy will not automatically append a '\0' to the destination array if the source array is too long,
+		// so it's good practice to automatically append this yourself when copying. Worst case scenario - the last character is chopped
+		// off, but then the string will be properly terminated.
+
+		// The Microsoft compiler will still complain that strncpy is unsafe because they made their own versions where you specify the length of the source *and* destination array to allow proper termination.
+		// strncpy, however, is a standard C function...
+
+		// You can make the same change to the other player names below...
+
+	    strncpy( pPlayer->name, "Demonic", Name_Length);
+		pPlayer->name[Name_Length - 1] = 0; // Note that 0 is the same as '\0'
 	    pPlayer->position.y = 230;
 	    pPlayer->health = 100;
 	    pPlayer->guardBreak = 100;
