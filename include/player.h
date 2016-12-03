@@ -25,7 +25,7 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 #include "vectors.h"
-#include "configuration.h"
+#include "input.h"
 #include "textureManager.h"
 #include "furnaceTypes.h"
 

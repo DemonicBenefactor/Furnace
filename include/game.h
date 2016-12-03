@@ -23,12 +23,10 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-
-#include "configuration.h"
 #include "textureManager.h"
 #include "gameObject.h"
 #include "player.h"
-#include "handleEvents.h"
+#include "input.h"
 
 int currentFrame;
 bool gameRunning;

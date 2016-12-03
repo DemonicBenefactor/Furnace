@@ -17,12 +17,21 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#ifndef __configuration__
-#define __configuration__
+#ifndef __handleEvents__
+#define __handleEvents__
 
+#include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <SDL2/SDL.h>
+#include "game.h"
+#include "vectors.h"
+
+enum mouse_buttons
+{
+    LEFT = 0,
+    MIDDLE = 1,
+    RIGHT = 2
+};
 
 struct {
 	//Transition storage to pass to the player state
@@ -43,7 +52,7 @@ struct {
 	Sint32 P1K_MEDIUMKICK;
 	Sint32 P1K_HARDKICK;
 	//Player One Controller
-	SDL_JoystickID P1_Controller;	 
+	SDL_JoystickID P1_Controller;
 	Uint8 P1C_LIGHTPUNCH;
 	Uint8 P1C_MEDIUMPUNCH;
 	Uint8 P1C_HARDPUNCH;
@@ -77,4 +86,14 @@ struct {
 
 void FUR_initPlayerInput();
 
-#endif //  __configuration__
+int deadZone;
+bool bJoysticksInitialized;
+SDL_Joystick* a_joysticks[8];
+
+
+void FUR_initialiseJoysticks();
+bool FUR_joysticksInitialised();
+void FUR_handleEvents();
+void FUR_cleanEvents();
+
+#endif //  __handleEvents__

@@ -21,7 +21,7 @@
 #include <stdio.h>
 
 #include "game.h"
-#include "handleEvents.h"
+#include "input.h"
 
 #define FPS 60
 #define DELAY_TIME 1000/FPS

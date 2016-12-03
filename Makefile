@@ -3,11 +3,11 @@ SOURCES=main.c\
 	characters.c\
 	player.c\
 	game.c\
-	handleEvents.c\
+	input.c\
 	textureManager.c\
 	gameObject.c\
-	vectors.c\
-	configuration.c
+	vectors.c
+
 
 
 TESTSOURCES=test.c
