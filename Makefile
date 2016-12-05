@@ -15,17 +15,24 @@ TESTSOURCES=test.c
 
 OBJECTS=$(patsubst %.c, src/obj/%.o, $(SOURCES))
 TESTOBJECTS=$(patsubst %.c, test/obj/%.o, $(TESTSOURCES))
-CFLAGS=-Wall -g -Bstatic `sdl2-config --cflags --static-libs` -lSDL2 -lSDL2_image -lm -Bdynamic -Wno-write-strings -Iinclude
+CFLAGS=-Wall -g -Bstatic `sdl2-config --cflags --static-libs` -lSDL2_image -Bdynamic -Wno-write-strings -Iinclude
+RPI=-lGLESv2
 CXX=g++
 CC=gcc
 
-All: Furnace.bin Test.bin
+All:
+	@echo please type:
+	@echo make rpi
+	@echo make cygwin
 
-Furnace.bin: $(OBJECTS) 
-	$(CC) -o $@ $(OBJECTS) $(CFLAGS) 
+rpi: Furnace_rpi Test_rpi
+cygwin: Furnace Test
 
-Test.bin: $(TESTOBJECTS)
-	$(CC) -o $@ $(TESTOBJECTS) $(CFLAGS)
+Furnace_rpi: $(OBJECTS) 
+	$(CC) -o $@ $(OBJECTS) $(RPI) $(CFLAGS) 
+
+Test_rpi: $(TESTOBJECTS)
+	$(CC) -o $@ $(TESTOBJECTS) $(RPI) $(CFLAGS)
 
 $(OBJECTS): | src/obj
 
@@ -38,10 +45,10 @@ test/obj:
 	@mkdir -p $@
 
 src/obj/%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(RPI) $(CFLAGS) -c $< -o $@ 
 
 test/obj/%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(RPI) $(CFLAGS) -c $< -o $@
 
 # cleanup
 clean:
