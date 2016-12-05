@@ -38,7 +38,7 @@ int FUR_initPlayers( SDL_Renderer* pRenderer, character P1, character P2 )
 		}
 		else {
 			p->who = P2;
-			p->position.x = 505;
+			p->position.x = 604;
 			p->flip = SDL_FLIP_HORIZONTAL;
 			FUR_initCharacter( p );
 		}		
@@ -145,7 +145,7 @@ void FUR_updatePlayers()
 	{
 		if (a_players[i]->axis == right)
 		{
-			if (a_players[i]->position.x < 705)
+			if (a_players[i]->position.x < 804)
 			{
 				a_players[i]->position.x += 3;
 			}

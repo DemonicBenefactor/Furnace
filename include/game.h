@@ -30,6 +30,7 @@
 
 int currentFrame;
 bool gameRunning;
+const GLubyte* glversion;
 
 bool FUR_init(const char* title, int xpos, int ypos, 
 		int width, int height, bool fullscreen);

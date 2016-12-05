@@ -36,9 +36,9 @@ bool FUR_init( const char* title, int xpos, int ypos,
 	{
 	    // startup our OpenGL
 		MainContext = SDL_GL_CreateContext(pWindow);
-		GLubyte* openGL_version = glGetString(GL_VERSION);
-		if (openGL_version < '2') {
-			printf("openGL version %s not high enough", openGL_version);
+		glversion = glGetString(GL_VERSION);
+		if (glversion < (GLubyte*)'2') {
+			printf("openGL version %s not high enough\n", glversion);
 			return false; // openGL version fail
 		}
 		//Finished with our OpenGL init,  make whatever calls -
@@ -52,7 +52,7 @@ bool FUR_init( const char* title, int xpos, int ypos,
 	    if ( pRenderer != 0 ) // renderer init success
 	    {
 		printf( "renderer init success\n" );
-		SDL_RenderSetLogicalSize(pRenderer, 855, 480);
+		SDL_RenderSetLogicalSize(pRenderer, 960, 540);
 		SDL_SetRenderDrawColor( pRenderer, 200, 200, 200, 255 );
 		FUR_initPlayers( pRenderer, Demonic, Zoe );
 	    }

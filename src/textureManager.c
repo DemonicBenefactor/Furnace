@@ -19,10 +19,10 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-
+#include <SDL2/SDL_image.h>
 #include "stdbool.h"
 #include "textureManager.h"
-#include "SDL_image.h"
+
 
 
 int FUR_textureLoad( const char* fileName, int id, 

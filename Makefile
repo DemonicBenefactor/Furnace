@@ -18,7 +18,7 @@ TESTOBJECTS=$(patsubst %.c, test/obj/%.o, $(TESTSOURCES))
 TESTOBJECTSRPI=$(patsubst %.c, test/obj_rpi/%.o, $(TESTSOURCES))
 CFLAGS=-Wall -g -Bstatic `sdl2-config --cflags --static-libs` -lSDL2_image -Bdynamic -Wno-write-strings -Iinclude
 RPI=-lGLESv2 -Drpi
-CYGWIN=-lglew32 -lopengl32 -Dcygwin -DSDL_MAIN_HANDLED
+CYGWIN=-Wall -g -lm -lSDL2 -lSDL2_image -lglew32 -lopengl32 -DSDL_MAIN_HANDLED -Iinclude -Llibs
 CXX=g++
 CC=gcc
 MINGCXX=i686-w64-mingw32-g++
@@ -41,10 +41,10 @@ Test_rpi: $(TESTOBJECTSRPI)
 	$(CC) -o $@ $(TESTOBJECTSRPI) $(RPI) $(CFLAGS)
 
 Furnace: $(OBJECTS)
-	$(MINGCC) -o $@ $(OBJECTS) $(CYGWIN) $(CFLAGS)
+	$(MINGCC) -o $@ $(OBJECTS) $(CYGWIN)
 
 Test: $(TESTOBJECTS)
-	$(MINGCC) -o $@ $(TESTOBJECTS) $(CYGWIN) $(CFLAGS)
+	$(MINGCC) -o $@ $(TESTOBJECTS) $(CYGWIN) 
 #===========================================================================
 
 $(OBJECTSRPI): | src/obj_rpi
@@ -66,9 +66,9 @@ src/obj_rpi/%.o: %.c
 test/obj_rpi/%.o: %.c
 	$(CC) $(RPI) $(CFLAGS) -c $< -o $@
 src/obj/%.o: %.c
-	$(MINGCC) $(CYGWIN) $(CFLAGS) -c $< -o $@ 
+	$(MINGCC) $(CYGWIN) -c $< -o $@ 
 test/obj/%.o: %.c
-	$(MINGCC) $(CYGWIN) $(CFLAGS) -c $< -o $@
+	$(MINGCC) $(CYGWIN) -c $< -o $@
 
 
 # cleanup ==================================================================
@@ -79,8 +79,8 @@ clean:
 	rm -rf $(TESTOBJECTS)
 	rm -rf Furnace_rpi
 	rm -rf Test_rpi
-	rm -rf Furnace
-	rm -rf Test
+	rm -rf Furnace.exe
+	rm -rf Test.exe
 	rmdir src/obj
 	rmdir test/obj
 	rmdir src/obj_rpi

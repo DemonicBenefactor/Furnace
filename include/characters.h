@@ -28,3 +28,13 @@ int FUR_initCharacter( player *pPlayer );
 
 
 #endif //characters
+
+/*The character has to fall under the three character classes listed;
+-theme is steampunk-
+
+*Victorian Humans (Technitions and tinkerers)
+*Machines (Victorian gearwork machines.  not future gundam)
+*Mystic Humans (Magic casters)
+
+glhf
+*/
