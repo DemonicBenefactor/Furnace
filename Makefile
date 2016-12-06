@@ -73,17 +73,24 @@ test/obj/%.o: %.c
 
 # cleanup ==================================================================
 clean:
-	rm -rf $(OBJECTSRPI)
-	rm -rf $(TESTOBJECTSRPI)
+	@echo please use the following for your platform:
+	@echo make clean_rpi
+	@echo make clean_cygwin
+
+clean_cygwin:
+	
 	rm -rf $(OBJECTS)
 	rm -rf $(TESTOBJECTS)
-	rm -rf Furnace_rpi
-	rm -rf Test_rpi
 	rm -rf Furnace.exe
 	rm -rf Test.exe
 	rmdir src/obj
 	rmdir test/obj
+	
+clean_rpi:
+	rm -rf $(OBJECTSRPI)
+	rm -rf $(TESTOBJECTSRPI)
+	rm -rf Furnace_rpi
+	rm -rf Test_rpi
 	rmdir src/obj_rpi
 	rmdir test/obj_rpi
-
 # EOF
