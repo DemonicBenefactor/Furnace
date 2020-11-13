@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
                 100, 100, 640, 480, false))
     {
         std::cout << "Initialization success." << std::endl;
-        Uint32 frameStart, frameTime;
+        Uint32 frameStart, frameTime = 0;
         
         while (TheGame::getInstance()->running())
         {

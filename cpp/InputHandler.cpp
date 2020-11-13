@@ -128,19 +128,19 @@ glm::vec2   InputHandler::getPadAxis(int player, controller_axis axis)
         switch (axis)
         {
             case LEFT_STICK:
-                return (glm::vec2){SDL_GameControllerGetAxis(m_gamepads[player], 
+                return {SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_LEFTX), 
                        SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_LEFTY)};
 
             case RIGHT_STICK:
-                return (glm::vec2){SDL_GameControllerGetAxis(m_gamepads[player], 
+                return {SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_RIGHTX), 
                        SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_RIGHTY)};
 
             case TRIGGERS:
-                return (glm::vec2){SDL_GameControllerGetAxis(m_gamepads[player], 
+                return {SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_TRIGGERLEFT),
                        SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_TRIGGERRIGHT)};
