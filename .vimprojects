@@ -1,0 +1,36 @@
+Furnace=~/Source/Furnace CD=. {
+ c/CMakeList.txt
+ .vimrc
+ include=./include filter="*.h" {
+   game.h
+ }
+ src=./c filter="*.c" {
+   game.c
+ }
+}
+
+FurnaceXX=~/Source/Furnace/ CD=. {
+ cpp/CMakeLists.txt
+ include=./include filter="*.h" {
+   Enemy.hpp
+   Game.hpp
+   GameObject.hpp
+   GameStateMachine.hpp
+   InputHandler.hpp
+   Player.hpp
+   TextureManager.hpp
+  }
+ src=./cpp filter"*.cpp"{
+  Enemy.cpp
+  Game.cpp
+  GameObject.cpp
+  GameStateMachine.cpp
+  InputHandler.cpp
+  Player.cpp
+  TextureManager.cpp
+ }
+}
+
+FurnaceCurses=/Source/ncurses CD=. {
+
+}
