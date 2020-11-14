@@ -17,20 +17,20 @@ Game *Game::getInstance()
 }
 /////////////////////////Singleton Setup End
 
-bool Game::init(const char *title, int xpos, int ypos,
-                int width, int height, bool fullscreen)
+Game::Game() : m_bRunning(true), m_pGameStateMachine(nullptr), m_pRenderer(nullptr),
+m_pWindow(nullptr)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
         int flags = 0;
-        if (fullscreen)
+        if (FULLSCREEN)
         {
             flags = SDL_WINDOW_FULLSCREEN;
         }
         
         std::cout << "SDL init success" << std::endl;
-        m_pWindow = SDL_CreateWindow(title, xpos, ypos,
-                width, height, flags);
+        m_pWindow = SDL_CreateWindow("FurnaceXX", WIN_POSX, WIN_POSY,
+            WIN_W, WIN_H, flags);
         if (m_pWindow != 0)
         {
             std::cout << "Window creation success" << std::endl;
@@ -42,38 +42,33 @@ bool Game::init(const char *title, int xpos, int ypos,
             }
             else
             {
-                std::cout << "Renderer creation failed" << std::endl;
-                return false;
+                throw std::runtime_error( "Renderer creation failed");
             }
         }
         else
         {
-            std::cout << "Window init failed" << std::endl;
-            return false;
+            throw std::runtime_error("Window init failed");
         }
     }
     else
     {
-        std::cout << "SDL init failed" << std::endl;
-        return false;
+        throw std::runtime_error("SDL init failed");
     }
 
     std::cout << "Init success!" << std::endl;
-    m_bRunning = true;
-    //start the stateMachine and load a state
-    m_pGameStateMachine = new GameStateMachine();
-    m_pGameStateMachine->changeState(new MenuState());
-    
-	//Load images
+
     if (!TheTextureManager::getInstance()->load("resources/images/digit15.png", "5", m_pRenderer))
     {
         throw std::runtime_error("image not found");
     }
 
 	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 75, 75, "5")));
-	m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 75, 75, "5")));
+	m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 75, 75, "5")));    
+    
+    m_pGameStateMachine = new GameStateMachine();
+    m_pGameStateMachine->changeState(new MenuState());
 
-    return true;
+    m_bRunning = true;
 }
 
 
@@ -126,8 +121,7 @@ void Game::clean()
 int main(int argc, char *argv[])
 {
     std::cout << "Initializing Furnace..." << std::endl;
-    if (TheGame::getInstance()->init("FurnaceXX", 
-                100, 100, 640, 480, false))
+    if (TheGame::getInstance()->running())
     {
         std::cout << "Initialization success." << std::endl;
         Uint32 frameStart, frameTime = 0;

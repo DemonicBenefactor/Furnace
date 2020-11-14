@@ -16,7 +16,7 @@ SDLGameObject::SDLGameObject(const LoaderParams *pParams) :
 
 void SDLGameObject::draw()
 {
-    TextureManager::getInstance()->draw(m_id, 
+    TheTextureManager::getInstance()->draw(m_id, 
 		    static_cast<int>(m_position.x), 
 		    static_cast<int>(m_position.y),
 		    m_w, m_h, 

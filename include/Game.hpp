@@ -12,22 +12,18 @@ const int WIN_POSX = 100;
 const int WIN_POSY = 100;
 const int WIN_W = 640;
 const int WIN_H = 480;
+const bool FULLSCREEN = false;
 
 class Game
 {
 private:
     //singleton
-    Game() : m_bRunning(true), m_pGameStateMachine(nullptr), m_pRenderer(nullptr),
-        m_pWindow(nullptr)
-    {}
+    Game();
     ~Game() {}
     static Game *instance;
 
 public:
     static Game *getInstance();
-    
-    bool init(const char *title, int xpos, int ypos,
-                int width, int height, bool fullscreen);
     void handleEvents();
     void update();
     void render();
