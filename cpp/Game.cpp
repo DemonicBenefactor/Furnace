@@ -84,6 +84,10 @@ void Game::handleEvents()
     {
         m_pGameStateMachine->changeState(new PlayState());
     }
+    if (TheInputHandler::getInstance()->getKey(SDL_SCANCODE_ESCAPE))
+    {
+        quit();
+    }
 }
 
 
