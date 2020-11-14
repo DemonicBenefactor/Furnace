@@ -117,9 +117,7 @@ void Game::clean()
     SDL_Quit();
 }
 
-const int FPS = 60;
-const int DELAY_TIME = 1000.0f / FPS;
-
+//===============MAIN======================================
 
 int main(int argc, char *argv[])
 {

@@ -7,34 +7,21 @@
 #include "glm/glm.hpp"
 #include "SDL2/SDL.h"
 
-enum mouse_buttons
+const int DEADZONE = 8000;
+
+enum class mouse_buttons
 {
     LEFT = 0,
     MIDDLE = 1,
     RIGHT = 2
 };
 
-enum controller_axis
+enum class controller_axis
 {
     LEFT_STICK,
     RIGHT_STICK,
     TRIGGERS
 };
-
-enum pad_direction
-{
-    PAD_NONE = 0,
-    PAD_UP = 1,
-    PAD_UP_RIGHT = 2,
-    PAD_RIGHT = 3,
-    PAD_DOWN_RIGHT = 4,
-    PAD_DOWN = 5,
-    PAD_DOWN_LEFT = 6,
-    PAD_LEFT = 7,
-    PAD_UP_LEFT = 8,
-    DEADZONE = 8000 
-};
-
 
 class InputHandler
 {

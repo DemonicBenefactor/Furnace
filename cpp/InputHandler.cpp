@@ -15,7 +15,7 @@ InputHandler *InputHandler::getInstance()
 }
 //===========================================
 
-InputHandler::InputHandler() : m_gamepads(0), m_keystates(nullptr)
+InputHandler::InputHandler() : m_gamepads(0), m_keystates(nullptr), m_mousePosition{0,0}
 {
     for (int i = 0; i < 3; i++)
     {
@@ -58,7 +58,7 @@ InputHandler::InputHandler() : m_gamepads(0), m_keystates(nullptr)
 
 InputHandler::~InputHandler()
 {
-    for (int i=0; i < m_gamepads.size(); i++)
+    for (unsigned int i=0; i < m_gamepads.size(); i++)
     {
         SDL_GameControllerClose(m_gamepads[i]);
     }
@@ -127,19 +127,19 @@ glm::vec2   InputHandler::getPadAxis(int player, controller_axis axis)
     if (m_gamepads.size() > 0)
         switch (axis)
         {
-            case LEFT_STICK:
+            case controller_axis::LEFT_STICK:
                 return {SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_LEFTX), 
                        SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_LEFTY)};
 
-            case RIGHT_STICK:
+            case controller_axis::RIGHT_STICK:
                 return {SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_RIGHTX), 
                        SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_RIGHTY)};
 
-            case TRIGGERS:
+            case controller_axis::TRIGGERS:
                 return {SDL_GameControllerGetAxis(m_gamepads[player], 
                                 SDL_CONTROLLER_AXIS_TRIGGERLEFT),
                        SDL_GameControllerGetAxis(m_gamepads[player], 
@@ -161,15 +161,15 @@ void InputHandler::onMouseButtonDown(SDL_Event &event)
 {
     if (event.button.button == SDL_BUTTON_LEFT)
     {
-        m_mouseButtonStates[LEFT] = true;
+        m_mouseButtonStates[static_cast<int>(mouse_buttons::LEFT)] = true;
     }
     if (event.button.button == SDL_BUTTON_MIDDLE)
     {
-        m_mouseButtonStates[MIDDLE] = true;
+        m_mouseButtonStates[static_cast<int>(mouse_buttons::MIDDLE)] = true;
     }
     if (event.button.button == SDL_BUTTON_RIGHT)
     {
-        m_mouseButtonStates[RIGHT] = true;
+        m_mouseButtonStates[static_cast<int>(mouse_buttons::RIGHT)] = true;
     }
 }
 
@@ -177,20 +177,20 @@ void InputHandler::onMouseButtonUp(SDL_Event &event)
 {
     if (event.button.button == SDL_BUTTON_LEFT)
     {
-        m_mouseButtonStates[LEFT] = false;
+        m_mouseButtonStates[static_cast<int>(mouse_buttons::LEFT)] = false;
     }
     if (event.button.button == SDL_BUTTON_MIDDLE)
     {
-        m_mouseButtonStates[MIDDLE] = false;
+        m_mouseButtonStates[static_cast<int>(mouse_buttons::MIDDLE)] = false;
     }
     if (event.button.button == SDL_BUTTON_RIGHT)
     {
-        m_mouseButtonStates[RIGHT] = false;
+        m_mouseButtonStates[static_cast<int>(mouse_buttons::RIGHT)] = false;
     }
 }
 
 void InputHandler::onMouseMove(SDL_Event &event)
 {
-    m_mousePosition.x = event.motion.x;
-    m_mousePosition.y = event.motion.y;
+    m_mousePosition.x = static_cast<float>(event.motion.x);
+    m_mousePosition.y = static_cast<float>(event.motion.y);
 }

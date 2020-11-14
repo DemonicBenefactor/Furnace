@@ -14,7 +14,7 @@ void Enemy::draw()
 
 void Enemy::update()
 {
-    glm::vec2 vec = TheInputHandler::getInstance()->getPadAxis(0,RIGHT_STICK) ;
+    glm::vec2 vec = TheInputHandler::getInstance()->getPadAxis(0,controller_axis::RIGHT_STICK) ;
     if (vec.x > DEADZONE || vec.x < -DEADZONE || vec.y > DEADZONE || vec.y < -DEADZONE)
     {
         

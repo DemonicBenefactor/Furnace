@@ -6,11 +6,20 @@
 #include "GameStateMachine.hpp"
 #include "SDL2/SDL.h"
 
+const int FPS = 60;
+const int DELAY_TIME = 1000 / FPS;
+const int WIN_POSX = 100;
+const int WIN_POSY = 100;
+const int WIN_W = 640;
+const int WIN_H = 480;
+
 class Game
 {
 private:
     //singleton
-    Game() {}
+    Game() : m_bRunning(true), m_pGameStateMachine(nullptr), m_pRenderer(nullptr),
+        m_pWindow(nullptr)
+    {}
     ~Game() {}
     static Game *instance;
 
