@@ -1,29 +1,29 @@
-#ifndef __TextureManager__
-#define __TextureManager__
+#ifndef __ResourceManager__
+#define __ResourceManager__
 
 #include <iostream>
 #include <map>
 #include "SDL2/SDL.h"
 
-class TextureManager
+class ResourceManager
 {
 private:
     //singleton
-    TextureManager() {}
-    ~TextureManager() {}
-    static TextureManager *instance;
+    ResourceManager() {}
+    ~ResourceManager() {}
+    static ResourceManager *instance;
 
 public:
-    static TextureManager *getInstance();
+    static ResourceManager *getInstance();
     
-    bool load(std::string fileName, std::string id, 
+    bool loadTexture(std::string fileName, std::string id, 
             SDL_Renderer *pRenderer);
     
-    void draw(std::string id, int x, int y, 
+    void drawTexture(std::string id, int x, int y, 
             int width, int height, SDL_Renderer *pRenderer,
             SDL_RendererFlip flip = SDL_FLIP_NONE);
     
-    void drawFrame(std::string id, int x, int y, 
+    void drawTextureFrame(std::string id, int x, int y, 
             int width, int height, int currentRow,
             int currentFrame, SDL_Renderer *pRenderer,
             SDL_RendererFlip flip = SDL_FLIP_NONE);
@@ -34,6 +34,6 @@ private:
    
 };
 
-typedef TextureManager TheTextureManager;
+typedef ResourceManager TheResourceManager;
 
-#endif // __TextureManager__
+#endif // __ResourceManager__

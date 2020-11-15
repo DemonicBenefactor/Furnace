@@ -2,7 +2,7 @@
 #include "Game.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
-#include "TextureManager.hpp"
+#include "ResourceManager.hpp"
 #include "InputHandler.hpp"
 
 ///////////////////////Singleton Setup Start
@@ -57,13 +57,15 @@ m_pWindow(nullptr)
 
     std::cout << "Init success!" << std::endl;
 
-    if (!TheTextureManager::getInstance()->load("resources/images/digit15.png", "5", m_pRenderer))
+    if (!TheResourceManager::getInstance()->loadTexture("resources/images/digit15.png", "5", m_pRenderer))
     {
         throw std::runtime_error("image not found");
     }
 
-	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 75, 75, "5")));
-	m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 75, 75, "5")));    
+    std::unique_ptr<Player> p(new Player(new LoaderParams(100, 100, 75, 75, "5")));
+    mSceneNodes.push_back(std::move(p));
+   	//mSceneNodes.push_back(new Player(new LoaderParams(100, 100, 75, 75, "5")));
+	//mSceneNodes.push_back(new Enemy(new LoaderParams(300, 300, 75, 75, "5")));    
     
     m_pGameStateMachine = new GameStateMachine();
     m_pGameStateMachine->changeState(new MenuState());
@@ -89,10 +91,10 @@ void Game::handleEvents()
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
-	for (std::vector<GameObject*>::size_type i = 0;
-			i != m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
+			i != mSceneNodes.size(); i++)
 	{
-		m_gameObjects[i]->draw();
+		mSceneNodes[i]->draw();
 	}
 
     SDL_RenderPresent(m_pRenderer);
@@ -101,10 +103,10 @@ void Game::render()
 
 void Game::update()
 {
-	for (std::vector<GameObject*>::size_type i = 0;
-			i != m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
+			i != mSceneNodes.size(); i++)
 	{
-		m_gameObjects[i]->update();
+		mSceneNodes[i]->update();
 	}
 }
 

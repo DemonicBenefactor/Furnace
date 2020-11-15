@@ -2,14 +2,14 @@
 #include "InputHandler.hpp"
 
 Player::Player(const LoaderParams *pParams) : 
-	SDLGameObject(pParams)
+	SDLSceneNode(pParams)
 {
 
 }
 
 void Player::draw()
 {
-	SDLGameObject::draw();
+	SDLSceneNode::draw();
 }
 
 void Player::update()
@@ -33,7 +33,7 @@ void Player::update()
 
     glm::vec2 vec = TheInputHandler::getInstance()->getMousePosition();
     m_velocity = (vec - m_position) / (float)100;
-    SDLGameObject::update();
+    SDLSceneNode::update();
 }
 
 void Player::clean()

@@ -1,21 +1,21 @@
-#include "TextureManager.hpp"
+#include "ResourceManager.hpp"
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 
 
 ///////////////////////Singleton Setup Start
-TextureManager *TextureManager::instance = 0;
-TextureManager *TextureManager::getInstance()
+ResourceManager *ResourceManager::instance = 0;
+ResourceManager *ResourceManager::getInstance()
 {
     if (instance == 0)
     {
-        instance = new TextureManager();
+        instance = new ResourceManager();
     }
     return instance;
 }
 /////////////////////////Singleton Setup End
 
-bool TextureManager::load(std::string fileName, std::string id, 
+bool ResourceManager::loadTexture(std::string fileName, std::string id, 
             SDL_Renderer *pRenderer)
 {
     SDL_Texture *pTexture = IMG_LoadTexture(pRenderer, fileName.c_str());
@@ -27,7 +27,7 @@ bool TextureManager::load(std::string fileName, std::string id,
     return false;
 }
 
-void TextureManager::draw(std::string id, int x, int y, 
+void ResourceManager::drawTexture(std::string id, int x, int y, 
             int width, int height, SDL_Renderer *pRenderer,
             SDL_RendererFlip flip)
 {
@@ -45,7 +45,7 @@ void TextureManager::draw(std::string id, int x, int y,
             &destRect, 0, 0, flip);
 }
 
-void TextureManager::drawFrame(std::string id, int x, int y, 
+void ResourceManager::drawTextureFrame(std::string id, int x, int y, 
             int width, int height, int currentRow,
             int currentFrame, SDL_Renderer *pRenderer,
             SDL_RendererFlip flip)

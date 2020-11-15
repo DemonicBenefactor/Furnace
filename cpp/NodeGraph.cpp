@@ -1,9 +1,9 @@
 #include "Game.hpp"
-#include "GameObject.hpp"
-#include "TextureManager.hpp"
+#include "NodeGraph.hpp"
+#include "ResourceManager.hpp"
 
-SDLGameObject::SDLGameObject(const LoaderParams *pParams) : 
-	GameObject(pParams), m_position(pParams->getX(), pParams->getY())
+SDLSceneNode::SDLSceneNode(const LoaderParams *pParams) : 
+	SceneNode(pParams), m_position(pParams->getX(), pParams->getY())
 
 {
     m_w = pParams->getWidth();
@@ -14,16 +14,16 @@ SDLGameObject::SDLGameObject(const LoaderParams *pParams) :
     m_currentFrame = 1;
 }
 
-void SDLGameObject::draw()
+void SDLSceneNode::draw()
 {
-    TheTextureManager::getInstance()->draw(m_id, 
+    TheResourceManager::getInstance()->drawTexture(m_id, 
 		    static_cast<int>(m_position.x), 
 		    static_cast<int>(m_position.y),
 		    m_w, m_h, 
 		    TheGame::getInstance()->getRenderer());
 }
 
-void SDLGameObject::update()
+void SDLSceneNode::update()
 {
     m_velocity += m_acceleration;
     m_position += m_velocity;

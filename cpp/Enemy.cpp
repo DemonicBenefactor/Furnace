@@ -2,14 +2,14 @@
 #include "Enemy.hpp"
 
 Enemy::Enemy(const LoaderParams *pParams) : 
-	SDLGameObject(pParams)
+	SDLSceneNode(pParams)
 {
 
 }
 
 void Enemy::draw()
 {
-	SDLGameObject::draw();
+	SDLSceneNode::draw();
 }
 
 void Enemy::update()
@@ -35,7 +35,7 @@ void Enemy::update()
         
     if (m_position.y > 400.0)
             {m_position.y = 400.0;}
-    SDLGameObject::update();
+    SDLSceneNode::update();
 }
 
 void Enemy::clean()

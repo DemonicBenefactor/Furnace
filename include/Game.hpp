@@ -2,7 +2,8 @@
 #define __Game__
 
 #include <vector>
-#include "GameObject.hpp"
+#include <memory>
+#include "NodeGraph.hpp"
 #include "GameStateMachine.hpp"
 #include "SDL2/SDL.h"
 
@@ -40,7 +41,7 @@ private:
     SDL_Renderer *m_pRenderer;
     bool m_bRunning;
     GameStateMachine *m_pGameStateMachine;
-	std::vector<GameObject*> m_gameObjects;
+	std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
 
 typedef Game TheGame;

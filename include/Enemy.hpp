@@ -1,9 +1,9 @@
 #ifndef __Enemy__
 #define __Enemy__
 
-#include "GameObject.hpp"
+#include "NodeGraph.hpp"
 
-class Enemy : public SDLGameObject
+class Enemy : public SDLSceneNode
 {
 public:
 
