@@ -49,7 +49,7 @@ class InputHandler
                     {return m_bGamepadsInited;}
         
         glm::vec2   getPadAxis(int player, controller_axis axis);
-        bool        getPadButton(int player, int which);
+        bool        getPadButton(int player, SDL_GameControllerButton button);
     
             
     private:
@@ -61,7 +61,6 @@ class InputHandler
         void onMouseButtonDown(SDL_Event &event);
         void onMouseButtonUp(SDL_Event &event);
         //joystick events
-        void onAxisMove(SDL_Event &event);
         void onJoystickButtonDown(SDL_Event &event) {}
         void onJoystickButtonUp(SDL_Event &event) {}
 
