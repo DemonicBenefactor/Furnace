@@ -18,7 +18,7 @@ FurnaceXX=~/Source/Furnace/ CD=. {
    GameStateMachine.hpp
    InputHandler.hpp
    Player.hpp
-   TextureManager.hpp
+   ResourceManager.hpp
   }
  src=./cpp filter"*.cpp"{
   Enemy.cpp
@@ -27,7 +27,7 @@ FurnaceXX=~/Source/Furnace/ CD=. {
   GameStateMachine.cpp
   InputHandler.cpp
   Player.cpp
-  TextureManager.cpp
+  ResourceManager.cpp
  }
 }
 

@@ -118,10 +118,6 @@ bool InputHandler::getKey(SDL_Scancode key)
 }
 
 //==========JOYSTICK STUFF===================   
-void InputHandler::onAxisMove(SDL_Event &event)
-{
-}
-
 glm::vec2   InputHandler::getPadAxis(int player, controller_axis axis)
 {
     if (m_gamepads.size() > 0)
@@ -151,10 +147,17 @@ glm::vec2   InputHandler::getPadAxis(int player, controller_axis axis)
         return glm::vec2{0,0};
 }
 
-bool        InputHandler::getPadButton(int player, int which)
+bool        InputHandler::getPadButton(int player, SDL_GameControllerButton button)
 {
-    bool v = false;
-    return v;
+    if (m_gamepads.size() > 0)
+    {
+        if (SDL_GameControllerGetButton(m_gamepads[player], button) == 1)
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
 }
 //==============MOUSE STUFF=====================
 void InputHandler::onMouseButtonDown(SDL_Event &event)
