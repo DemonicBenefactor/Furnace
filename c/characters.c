@@ -25,14 +25,14 @@ int FUR_initCharacter( player *pPlayer )
     int i, success;
     const char* a_texturesDemonic[] =
     {   
-	"images/biped.png",
-	"images/biped.png"
+	"resources/images/biped.png",
+	"resources/images/biped.png"
     };
 	
     const char* a_texturesZoe[] = 
     {
-	"images/zoe.png",
-	"images/zoe.png"
+	"resources/images/zoe.png",
+	"resources/images/zoe.png"
     };
 
     switch ( pPlayer->who )
