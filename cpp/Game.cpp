@@ -17,8 +17,8 @@ Game *Game::getInstance()
 }
 /////////////////////////Singleton Setup End
 
-Game::Game() : m_bRunning(true), m_pGameStateMachine(nullptr), m_pRenderer(nullptr),
-m_pWindow(nullptr)
+Game::Game() : mRunning(true), mGameStateMachine(nullptr), mRenderer(nullptr),
+mWindow(nullptr)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
@@ -29,16 +29,33 @@ m_pWindow(nullptr)
         }
         
         std::cout << "SDL init success" << std::endl;
-        m_pWindow = SDL_CreateWindow("FurnaceXX", WIN_POSX, WIN_POSY,
-            WIN_W, WIN_H, flags);
-        if (m_pWindow != 0)
+        mWindow = SDL_CreateWindow("FurnaceXX", WIN_POSX, WIN_POSY,
+            WIN_W, WIN_H, flags | SDL_WINDOW_OPENGL);
+        if (mWindow != 0)
         {
             std::cout << "Window creation success" << std::endl;
-            m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
-            if (m_pRenderer != 0)
+            // startup our OpenGL
+            GLContext = SDL_GL_CreateContext(mWindow);
+            if (GLContext == NULL)
+            {
+                printf("OpenGL context could not be created! SDL Error: %s\n", SDL_GetError());
+                throw std::runtime_error("OpenGL Fail"); // openGL version fail
+            }
+            mGLversion = glGetString(GL_VERSION);
+            printf("openGL version %s\n", mGLversion);
+            if (mGLversion < (GLubyte*)'2') 
+            {
+                printf("openGL version %s not high enough\n", mGLversion);
+                throw std::runtime_error("OpenGL Fail"); // openGL version fail
+            }
+            //Finished with our OpenGL init,  make whatever calls -
+            //you want to our MainContext,  have fun.
+            mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
+            if (mRenderer != 0)
             {
                 std::cout << "Renderer creation success" << std::endl;
-                SDL_SetRenderDrawColor(m_pRenderer, 128, 128, 128, 255);
+                SDL_RenderSetLogicalSize(mRenderer, 384, 224);
+                SDL_SetRenderDrawColor(mRenderer, 128, 128, 128, 255);
             }
             else
             {
@@ -57,7 +74,7 @@ m_pWindow(nullptr)
 
     std::cout << "Init success!" << std::endl;
 
-    if (!TheResourceManager::getInstance()->loadTexture("resources/images/digit15.png", "5", m_pRenderer))
+    if (!TheResourceManager::getInstance()->loadTexture("resources/images/ZeldaWS.gif", "5", mRenderer))
     {
         throw std::runtime_error("image not found");
     }
@@ -67,10 +84,10 @@ m_pWindow(nullptr)
    	//mSceneNodes.push_back(new Player(new LoaderParams(100, 100, 75, 75, "5")));
 	//mSceneNodes.push_back(new Enemy(new LoaderParams(300, 300, 75, 75, "5")));    
     
-    m_pGameStateMachine = new GameStateMachine();
-    m_pGameStateMachine->changeState(new MenuState());
+    mGameStateMachine = new GameStateMachine();
+    mGameStateMachine->changeState(new MenuState());
 
-    m_bRunning = true;
+    mRunning = true;
 }
 
 
@@ -79,7 +96,7 @@ void Game::handleEvents()
     TheInputHandler::getInstance()->update();
     if (TheInputHandler::getInstance()->getKey(SDL_SCANCODE_RETURN))
     {
-        m_pGameStateMachine->changeState(new PlayState());
+        mGameStateMachine->changeState(new PlayState());
     }
     if (TheInputHandler::getInstance()->getKey(SDL_SCANCODE_ESCAPE))
     {
@@ -90,14 +107,14 @@ void Game::handleEvents()
 
 void Game::render()
 {
-    SDL_RenderClear(m_pRenderer);
+    SDL_RenderClear(mRenderer);
 	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
 			i != mSceneNodes.size(); i++)
 	{
 		mSceneNodes[i]->draw();
 	}
 
-    SDL_RenderPresent(m_pRenderer);
+    SDL_RenderPresent(mRenderer);
 }
 
 
@@ -113,8 +130,8 @@ void Game::update()
 void Game::clean()
 {
     std::cout << "Cleaning Up" << std::endl;
-    SDL_DestroyWindow(m_pWindow);
-    SDL_DestroyRenderer(m_pRenderer);
+    SDL_DestroyWindow(mWindow);
+    SDL_DestroyRenderer(mRenderer);
     SDL_Quit();
 }
 

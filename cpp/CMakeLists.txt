@@ -6,6 +6,7 @@ file(GLOB SOURCES
     ${PROJECT_SOURCE_DIR}/*.cpp 
     ${PROJECT_SOURCE_DIR}/../include/*.hpp
     )
+find_package(OpenGL REQUIRED)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     message(STATUS "${CMAKE_SYSTEM}")
@@ -59,4 +60,5 @@ target_link_libraries(
     ${SDL2_LIBRARIES} 
     ${SDL2_IMAGE_LIBRARIES} 
     ${SDL2_MIXER_LIBRARIES}
+    ${OPENGL_LIBRARIES}
     )

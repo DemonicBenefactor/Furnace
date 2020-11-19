@@ -158,6 +158,7 @@ bool        InputHandler::getPadButton(int player, SDL_GameControllerButton butt
     {
         return false;
     }
+    return false;
 }
 //==============MOUSE STUFF=====================
 void InputHandler::onMouseButtonDown(SDL_Event &event)
