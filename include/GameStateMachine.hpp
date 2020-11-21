@@ -22,7 +22,7 @@ class GameStateMachine
         void popState();
 
     private:
-        std::vector<GameState*> m_gameStates;
+        std::vector<GameState*> mGameStates;
 };
 
 class MenuState : public GameState
@@ -32,9 +32,9 @@ class MenuState : public GameState
 		virtual void render();
 		virtual bool onEnter();
 		virtual bool onExit();
-		virtual std::string getStateID() const {return s_menuID;}
+		virtual std::string getStateID() const {return sMenuID;}
 	private:
-		static const std::string s_menuID;
+		static const std::string sMenuID;
 };
 
 class PlayState : public GameState
@@ -44,9 +44,9 @@ class PlayState : public GameState
 		virtual void render();
 		virtual bool onEnter();
 		virtual bool onExit();
-		virtual std::string getStateID() const {return s_playID;}
+		virtual std::string getStateID() const {return sPlayID;}
 	private:
-		static const std::string s_playID;
+		static const std::string sPlayID;
 };
 
 #endif //__GameStateMachine__

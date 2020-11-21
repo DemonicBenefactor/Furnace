@@ -3,28 +3,28 @@
 #include "ResourceManager.hpp"
 
 SDLSceneNode::SDLSceneNode(const LoaderParams *pParams) : 
-	SceneNode(pParams), m_position(pParams->getX(), pParams->getY())
+	SceneNode(pParams), mPosition(pParams->getX(), pParams->getY())
 
 {
-    m_w = pParams->getWidth();
-    m_h = pParams->getHeight();
-    m_id = pParams->getTextureID();
+    mW = pParams->getWidth();
+    mH = pParams->getHeight();
+    mID = pParams->getTextureID();
 
-    m_currentRow = 1;
-    m_currentFrame = 1;
+    mCurrentRow = 1;
+    mCurrentFrame = 1;
 }
 
 void SDLSceneNode::draw()
 {
-    TheResourceManager::getInstance()->drawTexture(m_id, 
-		    static_cast<int>(m_position.x), 
-		    static_cast<int>(m_position.y),
-		    m_w, m_h, 
+    TheResourceManager::getInstance()->drawTexture(mID, 
+		    static_cast<int>(mPosition.x), 
+		    static_cast<int>(mPosition.y),
+		    mW, mH, 
 		    TheGame::getInstance()->getRenderer());
 }
 
 void SDLSceneNode::update()
 {
-    m_velocity += m_acceleration;
-    m_position += m_velocity;
+    mVelocity += mAcceleration;
+    mPosition += mVelocity;
 }

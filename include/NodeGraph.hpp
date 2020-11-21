@@ -12,20 +12,20 @@ class LoaderParams
 public:
     LoaderParams(int x, int y, 
             int w, int h, std::string id) :
-       m_x(x), m_y(y), m_w(w), m_h(h), m_id(id) {}
+       mX(x), mY(y), mW(w), mH(h), mID(id) {}
     
     //accessor functions
-    int getX() const { return m_x; }
-    int getY() const { return m_y; }
-    int getWidth() const { return m_w; }
-    int getHeight() const { return m_h; }
-    std::string getTextureID() const { return m_id; }
+    int getX() const { return mX; }
+    int getY() const { return mY; }
+    int getWidth() const { return mW; }
+    int getHeight() const { return mH; }
+    std::string getTextureID() const { return mID; }
 private:
-    int m_x;
-    int m_y;
-    int m_w;
-    int m_h;
-    std::string m_id;
+    int mX;
+    int mY;
+    int mW;
+    int mH;
+    std::string mID;
 };
 
 class SceneNode
@@ -48,14 +48,14 @@ public:
     virtual void update();
     virtual void clean() {}
 protected:
-    glm::vec2 m_position;
-    glm::vec2 m_velocity;
-    glm::vec2 m_acceleration;
-    int m_w;
-    int m_h;
-    int m_currentRow;
-    int m_currentFrame;
-    std::string m_id;
+    glm::vec2 mPosition;
+    glm::vec2 mVelocity;
+    glm::vec2 mAcceleration;
+    int mW;
+    int mH;
+    int mCurrentRow;
+    int mCurrentFrame;
+    std::string mID;
 private:
     std::vector<Ptr> mChildren;
     SDLSceneNode* mParent;

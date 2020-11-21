@@ -21,7 +21,7 @@ bool ResourceManager::loadTexture(std::string fileName, std::string id,
     SDL_Texture *pTexture = IMG_LoadTexture(pRenderer, fileName.c_str());
     if (pTexture != 0)
     {
-        m_textureMap[id] = pTexture;
+        mTextureMap[id] = pTexture;
         return true;
     }
     return false;
@@ -41,7 +41,7 @@ void ResourceManager::drawTexture(std::string id, int x, int y,
     destRect.x = x;
     destRect.y = y;
 
-    SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
+    SDL_RenderCopyEx(pRenderer, mTextureMap[id], &srcRect,
             &destRect, 0, 0, flip);
 }
 
@@ -60,6 +60,6 @@ void ResourceManager::drawTextureFrame(std::string id, int x, int y,
     destRect.x = x;
     destRect.y = y;
 
-    SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
+    SDL_RenderCopyEx(pRenderer, mTextureMap[id], &srcRect,
             &destRect, 0, 0, flip);
 }

@@ -19,22 +19,22 @@ void Enemy::update()
     {
         
         
-        m_velocity = vec / static_cast<float>(5000);
+        mVelocity = vec / static_cast<float>(5000);
             
     }
-    else {m_velocity = {0,0};}
+    else {mVelocity = {0,0};}
     
-    if (m_position.x < 0.0)
-            {m_position.x = 0.0;}
+    if (mPosition.x < 0.0)
+            {mPosition.x = 0.0;}
         
-    if (m_position.x > 580.0)
-            {m_position.x = 580.0;}
+    if (mPosition.x > 580.0)
+            {mPosition.x = 580.0;}
         
-    if (m_position.y < 0.0)
-            {m_position.y = 0.0;}
+    if (mPosition.y < 0.0)
+            {mPosition.y = 0.0;}
         
-    if (m_position.y > 400.0)
-            {m_position.y = 400.0;}
+    if (mPosition.y > 400.0)
+            {mPosition.y = 400.0;}
     SDLSceneNode::update();
 }
 

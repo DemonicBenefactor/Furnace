@@ -30,7 +30,7 @@ public:
     
 private:
     
-    std::map<std::string, SDL_Texture*> m_textureMap;
+    std::map<std::string, SDL_Texture*> mTextureMap;
    
 };
 

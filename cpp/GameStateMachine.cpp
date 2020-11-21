@@ -3,40 +3,40 @@
 
 void GameStateMachine::pushState(GameState *pState)
 {
-    m_gameStates.push_back(pState);
-    m_gameStates.back()->onEnter();
+    mGameStates.push_back(pState);
+    mGameStates.back()->onEnter();
 }
 
 void GameStateMachine::changeState(GameState *pState)
 {
-    if (!m_gameStates.empty())
+    if (!mGameStates.empty())
     {
-        if (m_gameStates.back()->getStateID() == pState->getStateID())
+        if (mGameStates.back()->getStateID() == pState->getStateID())
         {
             return; //do nothing
         }
-        if (m_gameStates.back()->onExit())
+        if (mGameStates.back()->onExit())
         {
-            delete m_gameStates.back();
-            m_gameStates.pop_back();
+            delete mGameStates.back();
+            mGameStates.pop_back();
         }
     }
-    m_gameStates.push_back(pState);
-    m_gameStates.back()->onEnter();
+    mGameStates.push_back(pState);
+    mGameStates.back()->onEnter();
 }
 
 void GameStateMachine::popState()
 {
-    if (!m_gameStates.empty() && m_gameStates.back()->onExit())
+    if (!mGameStates.empty() && mGameStates.back()->onExit())
     {
-        delete m_gameStates.back();
-        m_gameStates.pop_back();
+        delete mGameStates.back();
+        mGameStates.pop_back();
     }
 }
 
 //============= MENU STATE ====================
 
-const std::string MenuState::s_menuID = "MENU";
+const std::string MenuState::sMenuID = "MENU";
 
 void MenuState::update()
 {
@@ -62,7 +62,7 @@ bool MenuState::onExit()
 
 //============= PLAY STATE ====================
 
-const std::string PlayState::s_playID = "PLAY";
+const std::string PlayState::sPlayID = "PLAY";
 
 void PlayState::update()
 {

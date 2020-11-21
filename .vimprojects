@@ -2,10 +2,24 @@ Furnace=~/Source/Furnace CD=. {
  c/CMakeLists.txt
  .vimrc
  include=./include filter="*.h" {
+   furnaceTypes.h
    game.h
+   input.h
+   gameObject.h
+   textureManager.h
+   vectors.h
+   player.h
+   stdbool.h
  }
  src=./c filter="*.c" {
+   main.c
    game.c
+   input.c
+   gameObject.c
+   textureManager.c
+   vectors.c
+   player.c
+   characters.c
  }
 }
 
@@ -14,6 +28,7 @@ FurnaceXX=~/Source/Furnace/ CD=. {
  include=./include filter="*.h" {
    Enemy.hpp
    Game.hpp
+   Gui.hpp
    NodeGraph.hpp
    GameStateMachine.hpp
    InputHandler.hpp
@@ -23,6 +38,7 @@ FurnaceXX=~/Source/Furnace/ CD=. {
  src=./cpp filter"*.cpp"{
   Enemy.cpp
   Game.cpp
+  Gui.cpp
   NodeGraph.cpp
   GameStateMachine.cpp
   InputHandler.cpp
