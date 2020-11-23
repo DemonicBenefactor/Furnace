@@ -29,7 +29,7 @@ void GameStateMachine::popState()
 {
     if (!mGameStates.empty() && mGameStates.back()->onExit())
     {
-        delete mGameStates.back();
+        //delete mGameStates.back();
         mGameStates.pop_back();
     }
 }

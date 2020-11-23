@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 class GameState //abstract class with pure virtual functions
 {
