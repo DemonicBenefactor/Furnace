@@ -15,7 +15,7 @@
 *.lo
 
 # Shared objects (inc. Windows DLLs)
-*.dll
+#*.dll
 *.so
 *.so.*
 *.dylib
@@ -30,3 +30,11 @@
 
 # Debug files
 *.dSYM/
+/.vs
+/CMakeFiles
+/Debug
+/FurnaceXX.dir
+/Release
+/Win32
+/VisualC/.vs/VisualC2013/v16
+/RelWithDebInfo
