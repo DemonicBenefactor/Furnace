@@ -47,6 +47,8 @@ public:
     virtual void draw();
     virtual void update();
     virtual void clean() {}
+
+    virtual void setRow(const int row) { mCurrentRow = row; }
 protected:
     glm::vec2 mPosition;
     glm::vec2 mVelocity;

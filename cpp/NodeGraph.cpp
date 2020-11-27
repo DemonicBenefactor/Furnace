@@ -16,10 +16,10 @@ SDLSceneNode::SDLSceneNode(const LoaderParams *pParams) :
 
 void SDLSceneNode::draw()
 {
-    TheResourceManager::getInstance()->drawTexture(mID, 
+    TheResourceManager::getInstance()->drawTextureFrame(mID, 
 		    static_cast<int>(mPosition.x), 
-		    static_cast<int>(mPosition.y),
-		    mW, mH, 
+		    static_cast<int>(mPosition.y),            
+		    mW, mH, mCurrentRow, mCurrentFrame,
 		    TheGame::getInstance()->getRenderer());
 }
 
