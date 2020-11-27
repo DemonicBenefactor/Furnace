@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "NodeGraph.hpp"
 
 class GameState //abstract class with pure virtual functions
 {
@@ -22,6 +23,9 @@ class GameStateMachine
         void changeState(GameState *pState);
         void popState();
 
+		void update();
+		void render();
+
     private:
         std::vector<GameState*> mGameStates;
 };
@@ -36,6 +40,7 @@ class MenuState : public GameState
 		virtual std::string getStateID() const {return sMenuID;}
 	private:
 		static const std::string sMenuID;
+		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
 
 class PlayState : public GameState
@@ -48,6 +53,7 @@ class PlayState : public GameState
 		virtual std::string getStateID() const {return sPlayID;}
 	private:
 		static const std::string sPlayID;
+		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
 
 #endif //__GameStateMachine__

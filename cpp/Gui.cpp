@@ -32,6 +32,7 @@ void Button::update()
 	{
 		mCurrentFrame = MOUSE_OUT;
 	}
+	SDLSceneNode::update();
 }
 
 void Button::clean()

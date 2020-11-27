@@ -17,9 +17,8 @@ Game *Game::getInstance()
 }
 /////////////////////////Singleton Setup End
 
-Game::Game() : mRunning(true), mGameStateMachine(nullptr), mRenderer(nullptr),
-mWindow(nullptr)
-{
+bool Game::init()
+{    
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
         int flags = 0;
@@ -54,7 +53,7 @@ mWindow(nullptr)
             if (mRenderer != 0)
             {
                 std::cout << "Renderer creation success" << std::endl;
-                SDL_RenderSetLogicalSize(mRenderer, 384, 224);
+                SDL_RenderSetLogicalSize(mRenderer, 320, 240);
                 SDL_SetRenderDrawColor(mRenderer, 128, 128, 128, 255);
             }
             else
@@ -73,21 +72,11 @@ mWindow(nullptr)
     }
 
     std::cout << "Init success!" << std::endl;
-
-    if (!TheResourceManager::getInstance()->loadTexture("resources/images/ZeldaWS.gif", "5", mRenderer))
-    {
-        throw std::runtime_error("image not found");
-    }
-
-    std::unique_ptr<Player> p(new Player(new LoaderParams(100, 100, 75, 75, "5")));
-    mSceneNodes.push_back(std::move(p));
-   	//mSceneNodes.push_back(new Player(new LoaderParams(100, 100, 75, 75, "5")));
-	//mSceneNodes.push_back(new Enemy(new LoaderParams(300, 300, 75, 75, "5")));    
     
     mGameStateMachine = new GameStateMachine();
     mGameStateMachine->changeState(new MenuState());
-
     mRunning = true;
+    return mRunning;
 }
 
 
@@ -108,23 +97,14 @@ void Game::handleEvents()
 void Game::render()
 {
     SDL_RenderClear(mRenderer);
-	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-			i != mSceneNodes.size(); i++)
-	{
-		mSceneNodes[i]->draw();
-	}
-
+    mGameStateMachine->render();
     SDL_RenderPresent(mRenderer);
 }
 
 
 void Game::update()
 {
-	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-			i != mSceneNodes.size(); i++)
-	{
-		mSceneNodes[i]->update();
-	}
+    mGameStateMachine->update();
 }
 
 void Game::clean()
@@ -140,7 +120,7 @@ void Game::clean()
 int main(int argc, char *argv[])
 {
     std::cout << "Initializing Furnace..." << std::endl;
-    if (TheGame::getInstance()->running())
+    if (TheGame::getInstance()->init())
     {
         std::cout << "Initialization success." << std::endl;
         Uint32 frameStart, frameTime = 0;

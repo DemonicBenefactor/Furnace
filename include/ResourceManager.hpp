@@ -27,6 +27,8 @@ public:
             int width, int height, int currentRow,
             int currentFrame, SDL_Renderer *pRenderer,
             SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+    void clearTexture(std::string id);
     
 private:
     

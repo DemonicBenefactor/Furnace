@@ -21,12 +21,13 @@ class Game
 {
 private:
     //singleton
-    Game();
+    Game() {}
     ~Game() {}
     static Game *instance;
 
 public:
     static Game *getInstance();
+    bool init();
     void handleEvents();
     void update();
     void render();
@@ -47,7 +48,6 @@ private:
 
     bool mRunning;
     GameStateMachine *mGameStateMachine;
-	std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
 
 typedef Game TheGame;

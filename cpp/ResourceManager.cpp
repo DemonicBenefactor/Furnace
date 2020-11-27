@@ -20,10 +20,11 @@ bool ResourceManager::loadTexture(std::string fileName, std::string id,
 {
     SDL_Texture *pTexture = IMG_LoadTexture(pRenderer, fileName.c_str());
     if (pTexture != 0)
-    {
+    {        
         mTextureMap[id] = pTexture;
         return true;
     }
+    throw std::runtime_error("failed to load " + fileName);
     return false;
 }
 
@@ -62,4 +63,9 @@ void ResourceManager::drawTextureFrame(std::string id, int x, int y,
 
     SDL_RenderCopyEx(pRenderer, mTextureMap[id], &srcRect,
             &destRect, 0, 0, flip);
+}
+
+void ResourceManager::clearTexture(std::string id)
+{
+    mTextureMap.erase(id);
 }
