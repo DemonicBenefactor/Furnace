@@ -110,6 +110,8 @@ void Game::update()
 void Game::clean()
 {
     std::cout << "Cleaning Up" << std::endl;
+    mGameStateMachine->clean();
+    TheResourceManager::getInstance()->clean();
     SDL_DestroyWindow(mWindow);
     SDL_DestroyRenderer(mRenderer);
     SDL_Quit();

@@ -2,16 +2,13 @@
 #include "NodeGraph.hpp"
 #include "ResourceManager.hpp"
 
-SDLSceneNode::SDLSceneNode(const LoaderParams *pParams) : 
-	SceneNode(pParams), mPosition(pParams->getX(), pParams->getY())
-
+SDLSceneNode::SDLSceneNode(const LoaderParams* pParams) :
+    SceneNode(pParams), mPosition(pParams->getX(), pParams->getY()),
+    mVelocity(0), mAcceleration(0), mCurrentRow(1), mCurrentFrame(0)
 {
     mW = pParams->getWidth();
     mH = pParams->getHeight();
     mID = pParams->getTextureID();
-
-    mCurrentRow = 1;
-    mCurrentFrame = 1;
 }
 
 void SDLSceneNode::draw()

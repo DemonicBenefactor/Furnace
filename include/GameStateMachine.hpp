@@ -25,6 +25,7 @@ class GameStateMachine
 
 		void update();
 		void render();
+		void clean();
 
     private:
         std::vector<GameState*> mGameStates;

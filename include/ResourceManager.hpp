@@ -30,6 +30,7 @@ public:
 
     void clearTexture(std::string id);
     
+    void clean();
 private:
     
     std::map<std::string, SDL_Texture*> mTextureMap;

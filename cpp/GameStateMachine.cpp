@@ -52,6 +52,15 @@ void GameStateMachine::render()
     }
 }
 
+void GameStateMachine::clean()
+{
+    for (unsigned i = 0; i < mGameStates.size(); i++)
+    {
+        mGameStates[i]->onExit();
+    }
+    mGameStates.clear();
+}
+
 //============= MENU STATE ====================
 
 const std::string MenuState::sMenuID = "MENU";
@@ -90,16 +99,19 @@ bool MenuState::onEnter()
             TheGame::getInstance()->getRenderer());
     }
 
-    std::unique_ptr<Button> LocalButton(new Button(new LoaderParams(10, 10, 124, 38, "MenuButtons")));
-    std::unique_ptr<Button> OnlineButton(new Button(new LoaderParams(10, 50, 124, 38, "MenuButtons")));
-    std::unique_ptr<Button> OptionButton(new Button(new LoaderParams(10, 90, 124, 38, "MenuButtons")));
-    std::unique_ptr<SDLSceneNode> Background(new SDLSceneNode(new LoaderParams(0, 0, 320, 240, "BlueMoon")));
+    std::unique_ptr<SDLSceneNode> Background(new SDLSceneNode(new LoaderParams(-200, -240, 768, 480, "BlueMoon")));
+    std::unique_ptr<Button> LocalButton(new Button(new LoaderParams(10, 10, 125, 40, "MenuButtons")));
+    std::unique_ptr<Button> OnlineButton(new Button(new LoaderParams(10, 50, 125, 40, "MenuButtons")));
+    std::unique_ptr<Button> OptionButton(new Button(new LoaderParams(10, 90, 125, 40, "MenuButtons")));
+    std::unique_ptr<Button> ExitButton(new Button(new LoaderParams(10, 130, 125, 40, "MenuButtons")));
     OnlineButton->setRow(2); 
     OptionButton->setRow(3);
+    ExitButton->setRow(4);
     mSceneNodes.push_back(std::move(Background));
     mSceneNodes.push_back(std::move(LocalButton));
     mSceneNodes.push_back(std::move(OnlineButton));
     mSceneNodes.push_back(std::move(OptionButton));
+    mSceneNodes.push_back(std::move(ExitButton));
 
     
     //TheResourceManager::getInstance()->loadTexture("resources/images/ZeldaWS.gif", "5", mRenderer);

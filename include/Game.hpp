@@ -14,7 +14,7 @@ const int WIN_POSX = 100;
 const int WIN_POSY = 100;
 const int WIN_W = 640;
 const int WIN_H = 480;
-const bool FULLSCREEN = false;
+const bool FULLSCREEN = true;
 
 
 class Game

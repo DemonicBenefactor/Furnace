@@ -69,3 +69,8 @@ void ResourceManager::clearTexture(std::string id)
 {
     mTextureMap.erase(id);
 }
+
+void ResourceManager::clean()
+{
+    mTextureMap.clear();
+}
