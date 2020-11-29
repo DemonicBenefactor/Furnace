@@ -100,10 +100,10 @@ bool MenuState::onEnter()
     }
 
     std::unique_ptr<SDLSceneNode> Background(new SDLSceneNode(new LoaderParams(-200, -240, 768, 480, "BlueMoon")));
-    std::unique_ptr<Button> LocalButton(new Button(new LoaderParams(10, 10, 125, 40, "MenuButtons")));
-    std::unique_ptr<Button> OnlineButton(new Button(new LoaderParams(10, 50, 125, 40, "MenuButtons")));
-    std::unique_ptr<Button> OptionButton(new Button(new LoaderParams(10, 90, 125, 40, "MenuButtons")));
-    std::unique_ptr<Button> ExitButton(new Button(new LoaderParams(10, 130, 125, 40, "MenuButtons")));
+    std::unique_ptr<Button> LocalButton(new Button(new LoaderParams(10, 10, 125, 40, "MenuButtons"), sButtonLocal));
+    std::unique_ptr<Button> OnlineButton(new Button(new LoaderParams(10, 50, 125, 40, "MenuButtons"), sButtonOnline));
+    std::unique_ptr<Button> OptionButton(new Button(new LoaderParams(10, 90, 125, 40, "MenuButtons"), sButtonOptions));
+    std::unique_ptr<Button> ExitButton(new Button(new LoaderParams(10, 130, 125, 40, "MenuButtons"), sButtonExit));
     OnlineButton->setRow(2); 
     OptionButton->setRow(3);
     ExitButton->setRow(4);

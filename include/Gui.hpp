@@ -6,7 +6,7 @@
 class Button : public SDLSceneNode
 {
 public:
-	Button(const LoaderParams* pParams);
+	Button(const LoaderParams* pParams, void (*callback)());
 
 	virtual void draw();
 	virtual void update();
@@ -19,6 +19,9 @@ private:
 		MOUSE_OVER = 1,
 		CLICKED = 2
 	};
+
+    void (*mCallback)();
+    bool mReleased;
 };
 
 #endif //__Gui__

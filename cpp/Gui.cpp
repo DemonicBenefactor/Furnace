@@ -1,8 +1,8 @@
 #include "InputHandler.hpp"
 #include "Gui.hpp"
 
-Button::Button(const LoaderParams *pParams) :
-	SDLSceneNode(pParams)
+Button::Button(const LoaderParams *pParams, void (*callback)()) :
+	SDLSceneNode(pParams), mCallback(callback)
 {
 	mCurrentFrame = MOUSE_OUT; // start at frame 0
 }
@@ -22,11 +22,19 @@ void Button::update()
 		&& pos.y < mPosition.y + mH
 		&& pos.y > mPosition.y)
 	{
-		mCurrentFrame = MOUSE_OVER;
-		if (TheInputHandler::getInstance()->getMouseButton(mouse_buttons::LEFT))
+        mCurrentFrame = MOUSE_OVER;
+        if (TheInputHandler::getInstance()->getMouseButton(mouse_buttons::LEFT)
+                && mReleased)
 		{
 			mCurrentFrame = CLICKED;
+            mCallback();
+            mReleased = false;
 		}
+        else if (TheInputHandler::getInstance()->getMouseButton(mouse_buttons::LEFT))
+        {
+            mReleased = true;
+            mCurrentFrame = MOUSE_OVER;
+        }
 	}
 	else
 	{

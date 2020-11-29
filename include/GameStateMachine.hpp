@@ -39,6 +39,11 @@ class MenuState : public GameState
 		virtual bool onEnter();
 		virtual bool onExit();
 		virtual std::string getStateID() const {return sMenuID;}
+
+        static void sButtonLocal(){}
+        static void sButtonOnline(){}
+        static void sButtonOptions(){}
+        static void sButtonExit(){}
 	private:
 		static const std::string sMenuID;
 		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
