@@ -74,7 +74,7 @@ bool Game::init()
     std::cout << "Init success!" << std::endl;
     
     mGameStateMachine = new GameStateMachine();
-    mGameStateMachine->changeState(new MenuState());
+    mGameStateMachine->setState(current_state::MENU);
     mRunning = true;
     return mRunning;
 }
@@ -83,10 +83,6 @@ bool Game::init()
 void Game::handleEvents()
 {
     TheInputHandler::getInstance()->update();
-    if (TheInputHandler::getInstance()->getKey(SDL_SCANCODE_RETURN))
-    {
-        mGameStateMachine->changeState(new PlayState());
-    }
     if (TheInputHandler::getInstance()->getKey(SDL_SCANCODE_ESCAPE))
     {
         quit();

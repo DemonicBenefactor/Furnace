@@ -14,7 +14,7 @@ const int WIN_POSX = 100;
 const int WIN_POSY = 100;
 const int WIN_W = 640;
 const int WIN_H = 480;
-const bool FULLSCREEN = true;
+const bool FULLSCREEN = false;
 
 
 class Game
@@ -37,6 +37,7 @@ public:
     //accessor functions
     bool running() const { return mRunning; }
     SDL_Renderer *getRenderer() const { return mRenderer; }    
+    GameStateMachine *getStateMachine() { return mGameStateMachine; }
     
 
 private:

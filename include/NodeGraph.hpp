@@ -46,7 +46,7 @@ public:
     SDLSceneNode(const LoaderParams *pParams);
     virtual void draw();
     virtual void update();
-    virtual void clean() {}
+    virtual void clean();
 
     virtual void setRow(const int row) { mCurrentRow = row; }
 protected:

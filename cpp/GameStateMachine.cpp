@@ -5,13 +5,13 @@
 #include "ResourceManager.hpp"
 #include "Gui.hpp"
 
-void GameStateMachine::pushState(GameState *pState)
+void GameStateMachine::push(GameState *pState)
 {
     mGameStates.push_back(pState);
     mGameStates.back()->onEnter();
 }
 
-void GameStateMachine::changeState(GameState *pState)
+void GameStateMachine::change(GameState *pState)
 {
     if (!mGameStates.empty())
     {
@@ -29,7 +29,7 @@ void GameStateMachine::changeState(GameState *pState)
     mGameStates.back()->onEnter();
 }
 
-void GameStateMachine::popState()
+void GameStateMachine::pop()
 {
     if (!mGameStates.empty() && mGameStates.back()->onExit())
     {
@@ -43,7 +43,23 @@ void GameStateMachine::update()
     {
         mGameStates.back()->update();
     }
+    if (mChangeState)
+    {
+        switch (mCurrentState)
+        {
+        case current_state::MENU:
+            TheGame::getInstance()->getStateMachine()->change(new MenuState());
+            mChangeState = false;
+            break;
+        case current_state::LOCAL:
+            TheGame::getInstance()->getStateMachine()->change(new PlayState());
+            mChangeState = false;
+            break;
+        default: break;
+        }
+    }
 }
+
 void GameStateMachine::render()
 {
     if (!mGameStates.empty())
@@ -131,8 +147,17 @@ bool MenuState::onExit()
         mSceneNodes[i]->clean();
     }
     mSceneNodes.clear();
-    TheResourceManager::getInstance()->clearTexture("MenuButtons");
     return true;
+}
+
+void MenuState::sButtonLocal()
+{
+    TheGame::getInstance()->getStateMachine()->setState(current_state::LOCAL);
+}
+
+void MenuState::sButtonExit()
+{
+    TheGame::getInstance()->quit();
 }
 
 //============= PLAY STATE ====================

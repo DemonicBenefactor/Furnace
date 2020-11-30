@@ -6,6 +6,16 @@
 #include <memory>
 #include "NodeGraph.hpp"
 
+enum class current_state
+{
+	MENU,
+	LOCAL,
+	ONLINE,
+	OPTIONS,
+	PAUSE,
+	GAMEOVER
+};
+
 class GameState //abstract class with pure virtual functions
 {
 	public:
@@ -17,17 +27,21 @@ class GameState //abstract class with pure virtual functions
 };
 
 class GameStateMachine
-{
-    public:
-        void pushState(GameState *pState);
-        void changeState(GameState *pState);
-        void popState();
-
+{    
+public:
 		void update();
 		void render();
 		void clean();
 
-    private:
+		void setState(current_state s) 
+				{ mChangeState = true; mCurrentState = s; }
+		void push(GameState* pState);
+		void change(GameState* pState);
+		void pop();
+    
+private:		
+		current_state mCurrentState;
+		bool mChangeState;
         std::vector<GameState*> mGameStates;
 };
 
@@ -40,11 +54,13 @@ class MenuState : public GameState
 		virtual bool onExit();
 		virtual std::string getStateID() const {return sMenuID;}
 
-        static void sButtonLocal(){}
-        static void sButtonOnline(){}
-        static void sButtonOptions(){}
-        static void sButtonExit(){}
+		
 	private:
+		static void sButtonLocal();
+		static void sButtonOnline() {}
+		static void sButtonOptions() {}
+		static void sButtonExit();
+
 		static const std::string sMenuID;
 		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };

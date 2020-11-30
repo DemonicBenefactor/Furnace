@@ -25,3 +25,8 @@ void SDLSceneNode::update()
     mVelocity += mAcceleration;
     mPosition += mVelocity;
 }
+
+void SDLSceneNode::clean()
+{
+    TheResourceManager::getInstance()->clearTexture(mID);
+}
