@@ -21,6 +21,14 @@ bool Game::init()
 {    
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
+        #ifdef __arm__
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+        #else
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+        #endif
+        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
         int flags = 0;
         if (FULLSCREEN)
         {
@@ -42,11 +50,18 @@ bool Game::init()
             }
             mGLversion = glGetString(GL_VERSION);
             printf("openGL version %s\n", mGLversion);
+#ifdef __arm__
+            std::cout << "Using OpenGL ES 2" << std::endl;
+            mHasOpenGL = true;
+#else
+            mHasOpenGL = true;
             if (mGLversion < (GLubyte*)'2') 
             {
                 printf("openGL version %s not high enough\n", mGLversion);
                 throw std::runtime_error("OpenGL Fail"); // openGL version fail
+                mHasOpenGL = false;
             }
+#endif
             //Finished with our OpenGL init,  make whatever calls -
             //you want to our MainContext,  have fun.
             mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
@@ -55,6 +70,13 @@ bool Game::init()
                 std::cout << "Renderer creation success" << std::endl;
                 SDL_RenderSetLogicalSize(mRenderer, 320, 240);
                 SDL_SetRenderDrawColor(mRenderer, 128, 128, 128, 255);
+                if (mHasOpenGL)
+                {
+                    SDL_GL_SetSwapInterval(1);
+                    glClearColor(0.2, 0.2, 0.2, 0.0);
+                    glClear(GL_COLOR_BUFFER_BIT);
+                    SDL_GL_SwapWindow(mWindow);
+                }
             }
             else
             {

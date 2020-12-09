@@ -25,7 +25,7 @@ class GameState //abstract class with pure virtual functions
 		virtual bool onExit() = 0;
 		virtual std::string getStateID() const = 0;
 };
-
+//========================================================================
 class GameStateMachine
 {    
 public:
@@ -44,7 +44,7 @@ private:
 		bool mChangeState;
         std::vector<GameState*> mGameStates;
 };
-
+//=========================================================================
 class MenuState : public GameState
 {
 	public:
@@ -64,17 +64,17 @@ class MenuState : public GameState
 		static const std::string sMenuID;
 		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
-
-class PlayState : public GameState
+//=========================================================================
+class LocalState : public GameState
 {
 	public:
 		virtual void update();
 		virtual void render();
 		virtual bool onEnter();
 		virtual bool onExit();
-		virtual std::string getStateID() const {return sPlayID;}
+		virtual std::string getStateID() const {return sLocalID;}
 	private:
-		static const std::string sPlayID;
+		static const std::string sLocalID;
 		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
 

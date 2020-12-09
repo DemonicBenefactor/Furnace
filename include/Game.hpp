@@ -5,8 +5,12 @@
 #include <memory>
 #include "NodeGraph.hpp"
 #include "GameStateMachine.hpp"
-#include "SDL2/SDL.h"
+#ifdef __arm__
+#include <SDL2/SDL_opengles2.h>
+#else
+#include "GL/glew.h"
 #include "SDL2/SDL_opengl.h"
+#endif
 
 const int FPS = 60;
 const int DELAY_TIME = 1000 / FPS;
@@ -45,8 +49,8 @@ private:
     const GLubyte* mGLversion;
     SDL_Window *mWindow;
     SDL_Renderer *mRenderer;
-    SDL_GLContext GLContext; //FIXME
-
+    SDL_GLContext GLContext;
+    bool mHasOpenGL;
     bool mRunning;
     GameStateMachine *mGameStateMachine;
 };
