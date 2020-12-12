@@ -50,10 +50,10 @@ bool Game::init()
             }
             mGLversion = glGetString(GL_VERSION);
             printf("openGL version %s\n", mGLversion);
-#ifdef __arm__
-            std::cout << "Using OpenGL ES 2" << std::endl;
-            mHasOpenGL = true;
-#else
+            #ifdef __arm__
+                std::cout << "Using OpenGL ES 2" << std::endl;
+                mHasOpenGL = true;
+            #else
             mHasOpenGL = true;
             if (mGLversion < (GLubyte*)'2') 
             {
@@ -61,6 +61,18 @@ bool Game::init()
                 throw std::runtime_error("OpenGL Fail"); // openGL version fail
                 mHasOpenGL = false;
             }
+            else
+            {
+                GLenum err;
+                glewExperimental = GL_TRUE;
+                err = glewInit();
+                if (GLEW_OK != err)
+                {
+                    std::cout << "Error: " << glewGetErrorString(err) << std::endl;
+                }
+                std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
+            }
+
 #endif
             //Finished with our OpenGL init,  make whatever calls -
             //you want to our MainContext,  have fun.
