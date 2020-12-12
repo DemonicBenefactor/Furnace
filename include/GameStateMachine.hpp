@@ -78,4 +78,18 @@ class LocalState : public GameState
 		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
 
+//=========================================================================
+class PauseState : public GameState
+{
+public:
+	virtual void update() {}
+	virtual void render() {}
+	virtual bool onEnter() {}
+	virtual bool onExit() {}
+	virtual std::string getStateID() const { return sPauseID; }
+private:
+	static const std::string sPauseID;
+	std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
+};
+
 #endif //__GameStateMachine__

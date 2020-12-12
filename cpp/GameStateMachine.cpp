@@ -211,3 +211,7 @@ bool LocalState::onExit()
     mSceneNodes.clear();
     return true;
 }
+
+//====================== Pause STATE =========================
+
+const std::string PauseState::sPauseID = "PAUSE";

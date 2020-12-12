@@ -93,16 +93,19 @@ bool Game::init()
             else
             {
                 throw std::runtime_error( "Renderer creation failed");
+                return false;
             }
         }
         else
         {
             throw std::runtime_error("Window init failed");
+            return false;
         }
     }
     else
     {
         throw std::runtime_error("SDL init failed");
+        return false;
     }
 
     std::cout << "Init success!" << std::endl;
