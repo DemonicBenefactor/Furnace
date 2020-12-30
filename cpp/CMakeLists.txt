@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7.2)
+﻿cmake_minimum_required(VERSION 3.7.2)
 
 project(FurnaceXX VERSION 1.0)
 
@@ -8,10 +8,13 @@ file(GLOB SOURCES
     )
 find_package(OpenGL REQUIRED)
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    message(STATUS "${CMAKE_SYSTEM}")
+message(STATUS "${CMAKE_SYSTEM}")
     set(COMPILE_DEFINITIONS "${COMPILE_DEFINITIONS};GLEW_STATIC")
     add_compile_definitions(${COMPILE_DEFINITIONS})
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows" AND NOT MINGW)
+    message(STATUS "${CMAKE_SYSTEM}")
+
     set(SDL2_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12;${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12/SDL2")
     set(SDL2_IMAGE_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/SDL2_image-2.0.5")
     set(SDL2_MIXER_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/SDL2_mixer-2.0.4")
@@ -22,20 +25,21 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 
     # Support both 32 and 64 bit builds
     if (${CMAKE_SIZEOF_VOID_P} MATCHES 8)
-        set(SDL2_LIBRARIES 
+
+            set(SDL2_LIBRARIES 
             "${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12/lib/x64/SDL2.lib;${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12/lib/x64/SDL2main.lib")
-        set(SDL2_IMAGE_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_image-2.0.5/lib/x64/SDL2_image.lib")
-        set(SDL2_MIXER_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_mixer-2.0.4/lib/x64/SDL2_mixer.lib") 
-        set(SDL2_TTF_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_ttf-2.0.15/lib/x64/SDL2_ttf.lib")
-        set(SDL2_NET_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_net-2.0.1/lib/x64/SDL2_net.lib")
-        set(GLEW_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/glew-2.1.0/lib/Release/x64/glew32s.lib")
+            set(SDL2_IMAGE_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_image-2.0.5/lib/x64/SDL2_image.lib")
+            set(SDL2_MIXER_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_mixer-2.0.4/lib/x64/SDL2_mixer.lib") 
+            set(SDL2_TTF_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_ttf-2.0.15/lib/x64/SDL2_ttf.lib")
+            set(SDL2_NET_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_net-2.0.1/lib/x64/SDL2_net.lib")
+            set(GLEW_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/glew-2.1.0/lib/Release/x64/glew32s.lib")
     else ()
-        set(SDL2_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12/lib/x86/SDL2.lib;${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12/lib/x86/SDL2main.lib")
-        set(SDL2_IMAGE_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_image-2.0.5/lib/x86/SDL2_image.lib")
-        set(SDL2_MIXER_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_mixer-2.0.4/lib/x86/SDL2_mixer.lib") 
-        set(SDL2_TTF_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_ttf-2.0.15/lib/x86/SDL2_ttf.lib")
-        set(SDL2_NET_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_net-2.0.1/lib/x86/SDL2_net.lib")
-        set(GLEW_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/glew-2.1.0/lib/Release/Win32/glew32s.lib")
+	        set(SDL2_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12/lib/x86/SDL2.lib;${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12/lib/x86/SDL2main.lib")
+            set(SDL2_IMAGE_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_image-2.0.5/lib/x86/SDL2_image.lib")
+            set(SDL2_MIXER_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_mixer-2.0.4/lib/x86/SDL2_mixer.lib") 
+            set(SDL2_TTF_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_ttf-2.0.15/lib/x86/SDL2_ttf.lib")
+            set(SDL2_NET_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/SDL2_net-2.0.1/lib/x86/SDL2_net.lib")
+            set(GLEW_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/glew-2.1.0/lib/Release/Win32/glew32s.lib")
     endif ()
 
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -48,10 +52,20 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     PKG_SEARCH_MODULE(SDL2_IMAGE REQUIRED SDL2_image>=2.0.0.0)
     PKG_SEARCH_MODULE(SDL2_MIXER REQUIRED SDL2_mixer)
     PKG_SEARCH_MODULE(GLEW REQUIRED glew)
-    #PKG_SEARCH_MODULE(GLM REQUIRED glm)
-endif()
+
+elseif (MINGW)
+    message(STATUS "Starting MinGW setup")
+	set(COMPILE_DEFINITIONS "${COMPILE_DEFINITIONS};SDL_MAIN_HANDLED;MINGW")
+    add_compile_definitions(${COMPILE_DEFINITIONS})
+	set(GLM_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/glm")
+	set(GLEW_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/glew-2.1.0/include")
+	set(GLEW_SOURCE "${PROJECT_SOURCE_DIR}/../external/glew-2.1.0/src/glew.c")
+	link_directories(D:/MinGW/lib)
+	
+endif ()
 
 add_executable(FurnaceXX ${SOURCES})
+
 
 include_directories(
     ${SDL2_INCLUDE_DIRS} 
@@ -61,12 +75,21 @@ include_directories(
     ${GLEW_INCLUDE_DIRS}
     ../include
     )
+	
+if (MINGW)
+	#This assumes you have installed all the sdl libs manually to the mingw lib folder
+	
+	add_library(GLEW32 STATIC "${GLEW_SOURCE}")
+	set(GLEW_LIBRARIES "${PROJECT_SOURCE_DIR}/../libGLEW32.a")
+	target_link_libraries(FurnaceXX "-Wl,--no-undefined -Wl,--dynamicbase -Wl,--nxcompat ${GLEW_LIBRARIES} -lSDL2main -lSDL2 -lSDL2_image -lopengl32 -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi -lversion -luuid -static-libgcc -static-libstdc++")
 
+else()
 target_link_libraries(
     FurnaceXX 
     ${SDL2_LIBRARIES} 
-    ${SDL2_IMAGE_LIBRARIES} 
+    ${SDL2_IMAGE_LIBRARIES}  
     ${SDL2_MIXER_LIBRARIES}
-    ${OPENGL_LIBRARIES}
     ${GLEW_LIBRARIES}
+    ${OPENGL_LIBRARIES}
     )
+endif()

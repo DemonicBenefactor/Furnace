@@ -84,8 +84,8 @@ class PauseState : public GameState
 public:
 	virtual void update() {}
 	virtual void render() {}
-	virtual bool onEnter() {}
-	virtual bool onExit() {}
+	virtual bool onEnter() {return true;}
+	virtual bool onExit() {return true;}
 	virtual std::string getStateID() const { return sPauseID; }
 private:
 	static const std::string sPauseID;

@@ -63,6 +63,8 @@ bool Game::init()
             }
             else
             {
+                //#ifndef MINGW
+				//std::cout << "testing" << std::endl;
                 GLenum err;
                 glewExperimental = GL_TRUE;
                 err = glewInit();
@@ -71,9 +73,10 @@ bool Game::init()
                     std::cout << "Error: " << glewGetErrorString(err) << std::endl;
                 }
                 std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
+				//#endif
             }
 
-#endif
+			#endif
             //Finished with our OpenGL init,  make whatever calls -
             //you want to our MainContext,  have fun.
             mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
