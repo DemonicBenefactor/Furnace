@@ -46,7 +46,7 @@ bool Game::init()
             if (GLContext == NULL)
             {
                 printf("OpenGL context could not be created! SDL Error: %s\n", SDL_GetError());
-                throw std::runtime_error("OpenGL Fail"); // openGL version fail
+                //throw std::runtime_error("OpenGL Fail"); // openGL version fail
             }
             mGLversion = glGetString(GL_VERSION);
             printf("openGL version %s\n", mGLversion);
@@ -63,8 +63,6 @@ bool Game::init()
             }
             else
             {
-                //#ifndef MINGW
-				//std::cout << "testing" << std::endl;
                 GLenum err;
                 glewExperimental = GL_TRUE;
                 err = glewInit();
@@ -73,7 +71,6 @@ bool Game::init()
                     std::cout << "Error: " << glewGetErrorString(err) << std::endl;
                 }
                 std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
-				//#endif
             }
 
 			#endif
