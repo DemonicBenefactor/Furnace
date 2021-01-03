@@ -85,7 +85,7 @@ bool Game::init()
                 if (mHasOpenGL)
                 {
                     SDL_GL_SetSwapInterval(1);
-                    glClearColor(0.2, 0.2, 0.2, 0.0);
+                    glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
                     glClear(GL_COLOR_BUFFER_BIT);
                     SDL_GL_SwapWindow(mWindow);
                 }

@@ -1,7 +1,7 @@
 #include "InputHandler.hpp"
 #include "Gui.hpp"
 
-Button::Button(const LoaderParams *pParams, void (*callback)()) :
+Button::Button(const std::shared_ptr<LoaderParams> pParams, void (*callback)()) :
 	SDLSceneNode(pParams), mCallback(callback), mReleased(false)
 {
 	mCurrentFrame = MOUSE_OUT; // start at frame 0

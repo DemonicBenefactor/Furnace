@@ -33,8 +33,8 @@ public:
 		void render();
 		void clean();
 
-		void setState(current_state s) 
-				{ mChangeState = true; mCurrentState = s; }
+		void setState(current_state state) 
+				{ mChangeState = true; mCurrentState = state; }
 		void push(GameState* pState);
 		void change(GameState* pState);
 		void pop();
@@ -44,7 +44,7 @@ private:
 		bool mChangeState;
         std::vector<GameState*> mGameStates;
 };
-//=========================================================================
+//MENU STATE============================================================
 class MenuState : public GameState
 {
 	public:
@@ -64,7 +64,7 @@ class MenuState : public GameState
 		static const std::string sMenuID;
 		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
-//=========================================================================
+//LOCAL STATE==============================================================
 class LocalState : public GameState
 {
 	public:
@@ -77,17 +77,32 @@ class LocalState : public GameState
 		static const std::string sLocalID;
 		std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
-
-//=========================================================================
-class PauseState : public GameState
+//ONLINE STATE==============================================================
+class OnlineState : public GameState
 {
 public:
 	virtual void update() {}
 	virtual void render() {}
-	virtual bool onEnter() {return true;}
-	virtual bool onExit() {return true;}
+	virtual bool onEnter() { return true; }
+	virtual bool onExit() { return true; }
+	virtual std::string getStateID() const { return sOnlineID; }
+private:
+	static const std::string sOnlineID;
+	std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
+};
+//PAUSE STATE================================================================
+class PauseState : public GameState
+{
+public:
+	virtual void update();
+	virtual void render();
+	virtual bool onEnter();
+	virtual bool onExit();
 	virtual std::string getStateID() const { return sPauseID; }
 private:
+	static void sButtonResume() {}
+	static void sButtonMenu() {}
+	
 	static const std::string sPauseID;
 	std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };

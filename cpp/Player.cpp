@@ -1,7 +1,7 @@
 #include "Player.hpp"
 #include "InputHandler.hpp"
 
-Player::Player(const LoaderParams *pParams) : 
+Player::Player(const std::shared_ptr<LoaderParams> pParams) :
 	SDLSceneNode(pParams)
 {
 

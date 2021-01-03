@@ -35,7 +35,7 @@ public:
     virtual void update() = 0;
     virtual void clean() = 0;
 protected:    
-    SceneNode(const LoaderParams *pParams) {}
+    SceneNode(const std::shared_ptr<LoaderParams> pParams) {}
     virtual ~SceneNode() {}
 };
 
@@ -43,7 +43,7 @@ class SDLSceneNode : public SceneNode
 {
 public:
     typedef std::unique_ptr<SDLSceneNode> Ptr;
-    SDLSceneNode(const LoaderParams *pParams);
+    SDLSceneNode(const std::shared_ptr<LoaderParams> pParams);
     virtual void draw();
     virtual void update();
     virtual void clean();

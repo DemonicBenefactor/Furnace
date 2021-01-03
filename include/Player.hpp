@@ -7,7 +7,7 @@ class Player : public SDLSceneNode
 {
 public:
 
-	Player(const LoaderParams *pParams);
+	Player(const std::shared_ptr<LoaderParams> pParams);
 
 	virtual void draw();
 	virtual void update();

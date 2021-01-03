@@ -2,7 +2,7 @@
 #include "NodeGraph.hpp"
 #include "ResourceManager.hpp"
 
-SDLSceneNode::SDLSceneNode(const LoaderParams* pParams) :
+SDLSceneNode::SDLSceneNode(const std::shared_ptr<LoaderParams> pParams) :
     SceneNode(pParams), mPosition(pParams->getX(), pParams->getY()),
     mVelocity(0), mAcceleration(0), mCurrentRow(1), mCurrentFrame(0)
 {

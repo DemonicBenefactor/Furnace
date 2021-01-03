@@ -1,7 +1,7 @@
 #include "InputHandler.hpp"
 #include "Enemy.hpp"
 
-Enemy::Enemy(const LoaderParams *pParams) : 
+Enemy::Enemy(const std::shared_ptr<LoaderParams> pParams) :
 	SDLSceneNode(pParams)
 {
 

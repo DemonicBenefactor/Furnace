@@ -97,11 +97,11 @@ bool MenuState::onEnter()
             TheGame::getInstance()->getRenderer());
     }
 
-    std::unique_ptr<SDLSceneNode> background(new SDLSceneNode(new LoaderParams(-200, -240, 768, 480, "BlueMoon")));
-    std::unique_ptr<Button> localButton(new Button(new LoaderParams(10, 10, 125, 40, "MenuButtons"), sButtonLocal));
-    std::unique_ptr<Button> onlineButton(new Button(new LoaderParams(10, 50, 125, 40, "MenuButtons"), sButtonOnline));
-    std::unique_ptr<Button> optionButton(new Button(new LoaderParams(10, 90, 125, 40, "MenuButtons"), sButtonOptions));
-    std::unique_ptr<Button> exitButton(new Button(new LoaderParams(10, 130, 125, 40, "MenuButtons"), sButtonExit));
+    std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(std::make_shared<LoaderParams>(-200, -240, 768, 480, "BlueMoon")));
+    std::unique_ptr<Button> localButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"), sButtonLocal));
+    std::unique_ptr<Button> onlineButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"), sButtonOnline));
+    std::unique_ptr<Button> optionButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 90, 125, 40, "MenuButtons"), sButtonOptions));
+    std::unique_ptr<Button> exitButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 130, 125, 40, "MenuButtons"), sButtonExit));
     onlineButton->setRow(2);
     optionButton->setRow(3);
     exitButton->setRow(4);
@@ -174,8 +174,8 @@ bool LocalState::onEnter()
             TheGame::getInstance()->getRenderer());
     }
 
-    std::unique_ptr<SDLSceneNode> background(new SDLSceneNode(new LoaderParams(-200, -240, 768, 480, "WillysLab")));
-    std::unique_ptr<Player> player(new Player(new LoaderParams(100, 100, 75, 75, "Zelda")));
+    std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(std::make_shared<LoaderParams>(-200, -240, 768, 480, "WillysLab")));
+    std::unique_ptr<Player> player(std::make_unique<Player>(std::make_shared<LoaderParams>(100, 100, 75, 75, "Zelda")));
     mSceneNodes.push_back(std::move(background));
     mSceneNodes.push_back(std::move(player));
 
@@ -211,7 +211,56 @@ bool LocalState::onExit()
     mSceneNodes.clear();
     return true;
 }
+//====================== Online STATE =========================
+
+const std::string OnlineState::sOnlineID = "ONLINE";
 
 //====================== Pause STATE =========================
 
 const std::string PauseState::sPauseID = "PAUSE";
+
+bool PauseState::onEnter()
+{
+    std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(std::make_shared<LoaderParams>(-200, -240, 768, 480, "BlueMoon")));
+    std::unique_ptr<Button> resumeButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"), sButtonResume));
+    std::unique_ptr<Button> menuButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"), sButtonMenu));
+
+    menuButton->setRow(2);
+    mSceneNodes.push_back(std::move(background));
+    mSceneNodes.push_back(std::move(resumeButton));
+    mSceneNodes.push_back(std::move(menuButton));
+
+    std::cout << "Entering Pause State." << std::endl;
+    return true;
+}
+
+void PauseState::update()
+{
+    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
+        i != mSceneNodes.size(); i++)
+    {
+        mSceneNodes[i]->update();
+    }
+}
+
+void PauseState::render()
+{
+    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
+        i != mSceneNodes.size(); i++)
+    {
+        mSceneNodes[i]->draw();
+    }
+}
+
+bool PauseState::onExit()
+{
+    std::cout << "exiting PauseState" << std::endl;
+
+    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
+        i != mSceneNodes.size(); i++)
+    {
+        mSceneNodes[i]->clean();
+    }
+    mSceneNodes.clear();
+    return true;
+}

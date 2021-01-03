@@ -6,7 +6,7 @@
 class Button : public SDLSceneNode
 {
 public:
-	Button(const LoaderParams* pParams, void (*callback)());
+	Button(const std::shared_ptr<LoaderParams> pParams, void (*callback)());
 
 	virtual void draw();
 	virtual void update();
