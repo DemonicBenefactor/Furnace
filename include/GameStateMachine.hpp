@@ -35,14 +35,14 @@ public:
 
 		void setState(current_state state) 
 				{ mChangeState = true; mCurrentState = state; }
-		void push(GameState* pState);
-		void change(GameState* pState);
+		void push(std::shared_ptr<GameState> pState);
+		void change(std::shared_ptr<GameState> pState);
 		void pop();
     
 private:		
 		current_state mCurrentState;
 		bool mChangeState;
-        std::vector<GameState*> mGameStates;
+        std::vector<std::shared_ptr<GameState>> mGameStates;
 };
 //MENU STATE============================================================
 class MenuState : public GameState
@@ -88,6 +88,19 @@ public:
 	virtual std::string getStateID() const { return sOnlineID; }
 private:
 	static const std::string sOnlineID;
+	std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
+};
+//OPTIONS STATE=============================================================
+class OptionsState : public GameState
+{
+public:
+	virtual void update() {}
+	virtual void render() {}
+	virtual bool onEnter() { return true; }
+	virtual bool onExit() { return true; }
+	virtual std::string getStateID() const { return sOptionsID; }
+private:
+	static const std::string sOptionsID;
 	std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
 };
 //PAUSE STATE================================================================

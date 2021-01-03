@@ -6,13 +6,13 @@
 #include "Gui.hpp"
 #include "Player.hpp"
 
-void GameStateMachine::push(GameState *pState)
+void GameStateMachine::push(std::shared_ptr<GameState> pState)
 {
     mGameStates.push_back(pState);
     mGameStates.back()->onEnter();
 }
 
-void GameStateMachine::change(GameState *pState)
+void GameStateMachine::change(std::shared_ptr<GameState> pState)
 {
     if (!mGameStates.empty())
     {
@@ -22,7 +22,7 @@ void GameStateMachine::change(GameState *pState)
         }
         if (mGameStates.back()->onExit())
         {
-            delete mGameStates.back();
+            //delete mGameStates.back();
             mGameStates.pop_back();
         }
     }
@@ -34,7 +34,7 @@ void GameStateMachine::pop()
 {
     if (!mGameStates.empty() && mGameStates.back()->onExit())
     {
-        delete mGameStates.back();
+        //delete mGameStates.back();
         mGameStates.pop_back();
     }
 }
@@ -49,13 +49,23 @@ void GameStateMachine::update()
         switch (mCurrentState)
         {
         case current_state::MENU:
-            TheGame::getInstance()->getStateMachine()->change(new MenuState());
+            TheGame::getInstance()->getStateMachine()->change(std::make_shared<MenuState>());
             mChangeState = false;
             break;
         case current_state::LOCAL:
-            TheGame::getInstance()->getStateMachine()->change(new LocalState());
+            TheGame::getInstance()->getStateMachine()->change(std::make_shared<LocalState>());
             mChangeState = false;
             break;
+        case current_state::ONLINE:
+            TheGame::getInstance()->getStateMachine()->change(std::make_shared<OnlineState>());
+            mChangeState = false;
+            break;
+        case current_state::OPTIONS:
+            TheGame::getInstance()->getStateMachine()->change(std::make_shared<OptionsState>());
+            mChangeState = false;
+        case current_state::PAUSE:
+            TheGame::getInstance()->getStateMachine()->change(std::make_shared<PauseState>());
+            mChangeState = false;
         default: break;
         }
     }
@@ -214,6 +224,10 @@ bool LocalState::onExit()
 //====================== Online STATE =========================
 
 const std::string OnlineState::sOnlineID = "ONLINE";
+
+//=====================Optiions STATE ========================
+
+const std::string OptionsState::sOptionsID = "OPTIONS";
 
 //====================== Pause STATE =========================
 
