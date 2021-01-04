@@ -21,13 +21,13 @@ bool Game::init()
 {    
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
-        #ifdef __arm__
+      #ifdef __arm__
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
-        #else
+      #else
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
-        #endif
+      #endif
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
         int flags = 0;
         if (FULLSCREEN)
@@ -50,10 +50,10 @@ bool Game::init()
             }
             mGLversion = glGetString(GL_VERSION);
             printf("openGL version %s\n", mGLversion);
-            #ifdef __arm__
+          #ifdef __arm__
                 std::cout << "Using OpenGL ES 2" << std::endl;
                 mHasOpenGL = true;
-            #else
+          #else
             mHasOpenGL = true;
             if (mGLversion < (GLubyte*)'2') 
             {
@@ -119,11 +119,7 @@ bool Game::init()
 
 void Game::handleEvents()
 {
-    TheInputHandler::getInstance()->update();
-    if (TheInputHandler::getInstance()->getKey(SDL_SCANCODE_ESCAPE))
-    {
-        quit();
-    }
+    TheInputHandler::getInstance()->update();    
 }
 
 

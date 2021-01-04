@@ -2,6 +2,7 @@
 #include <map>
 #include "Game.hpp"
 #include "GameStateMachine.hpp"
+#include "InputHandler.hpp"
 #include "ResourceManager.hpp"
 #include "Gui.hpp"
 #include "Player.hpp"
@@ -20,31 +21,27 @@ void GameStateMachine::change(std::shared_ptr<GameState> pState)
         {
             return; //do nothing
         }
-        if (mGameStates.back()->onExit())
-        {
-            //delete mGameStates.back();
-            mGameStates.pop_back();
-        }
+        clean();
     }
     mGameStates.push_back(pState);
     mGameStates.back()->onEnter();
 }
 
-void GameStateMachine::pop()
-{
-    if (!mGameStates.empty() && mGameStates.back()->onExit())
-    {
-        //delete mGameStates.back();
-        mGameStates.pop_back();
-    }
-}
 void GameStateMachine::update()
 {
     if (!mGameStates.empty())
     {
         mGameStates.back()->update();
     }
-    if (mChangeState)
+    if (mPopState)
+	{
+		if (!mGameStates.empty() && mGameStates.back()->onExit())
+		{
+			mGameStates.pop_back();
+			mPopState = false;
+		}
+	}
+	if (mChangeState)
     {
         switch (mCurrentState)
         {
@@ -63,9 +60,11 @@ void GameStateMachine::update()
         case current_state::OPTIONS:
             TheGame::getInstance()->getStateMachine()->change(std::make_shared<OptionsState>());
             mChangeState = false;
+			break;
         case current_state::PAUSE:
             TheGame::getInstance()->getStateMachine()->change(std::make_shared<PauseState>());
             mChangeState = false;
+			break;
         default: break;
         }
     }
@@ -165,7 +164,7 @@ void MenuState::sButtonExit()
     TheGame::getInstance()->quit();
 }
 
-//====================== Local STATE =========================
+//====================== LOCAL STATE =========================
 
 const std::string LocalState::sLocalID = "LOCAL";
 bool LocalState::onEnter()
@@ -194,11 +193,15 @@ bool LocalState::onEnter()
 
 void LocalState::update()
 {
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
+    if (TheInputHandler::getInstance()->getKey(SDL_SCANCODE_ESCAPE))
+    {
+        TheGame::getInstance()->getStateMachine()->push(std::make_shared<PauseState>());
+    }
+	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
         i != mSceneNodes.size(); i++)
     {
         mSceneNodes[i]->update();
-    }
+    }	
 }
 
 void LocalState::render()
@@ -221,21 +224,33 @@ bool LocalState::onExit()
     mSceneNodes.clear();
     return true;
 }
-//====================== Online STATE =========================
+//====================== ONLINE STATE =========================
 
 const std::string OnlineState::sOnlineID = "ONLINE";
 
-//=====================Optiions STATE ========================
+//=====================OPTIONS STATE ========================
 
 const std::string OptionsState::sOptionsID = "OPTIONS";
 
-//====================== Pause STATE =========================
+//====================== PAUSE STATE =========================
 
 const std::string PauseState::sPauseID = "PAUSE";
 
 bool PauseState::onEnter()
 {
-    std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(std::make_shared<LoaderParams>(-200, -240, 768, 480, "BlueMoon")));
+    std::map<std::string, std::string> lImages
+    {
+        {"resources/images/Buttons.gif", "MenuButtons"},
+        {"resources/images/Daily.gif","Daily"}
+    };
+    std::map<std::string, std::string>::iterator i;
+    for (i = lImages.begin(); i != lImages.end(); i++)
+    {
+        TheResourceManager::getInstance()->loadTexture(i->first, i->second,
+            TheGame::getInstance()->getRenderer());
+    }
+	
+	std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(std::make_shared<LoaderParams>(-200, -240, 768, 480, "Daily")));
     std::unique_ptr<Button> resumeButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"), sButtonResume));
     std::unique_ptr<Button> menuButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"), sButtonMenu));
 
@@ -250,7 +265,7 @@ bool PauseState::onEnter()
 
 void PauseState::update()
 {
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
+	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
         i != mSceneNodes.size(); i++)
     {
         mSceneNodes[i]->update();
@@ -277,4 +292,14 @@ bool PauseState::onExit()
     }
     mSceneNodes.clear();
     return true;
+}
+
+void PauseState::sButtonResume()
+{
+    TheGame::getInstance()->getStateMachine()->pop();
+}
+
+void PauseState::sButtonMenu()
+{
+	TheGame::getInstance()->getStateMachine()->setState(current_state::MENU);
 }

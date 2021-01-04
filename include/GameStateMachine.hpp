@@ -37,11 +37,12 @@ public:
 				{ mChangeState = true; mCurrentState = state; }
 		void push(std::shared_ptr<GameState> pState);
 		void change(std::shared_ptr<GameState> pState);
-		void pop();
+		void pop() { mPopState = true; }
     
 private:		
 		current_state mCurrentState;
 		bool mChangeState;
+		bool mPopState;
         std::vector<std::shared_ptr<GameState>> mGameStates;
 };
 //MENU STATE============================================================
@@ -113,8 +114,8 @@ public:
 	virtual bool onExit();
 	virtual std::string getStateID() const { return sPauseID; }
 private:
-	static void sButtonResume() {}
-	static void sButtonMenu() {}
+	static void sButtonResume();
+	static void sButtonMenu();
 	
 	static const std::string sPauseID;
 	std::vector<std::unique_ptr<SDLSceneNode>> mSceneNodes;
