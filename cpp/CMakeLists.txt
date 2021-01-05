@@ -7,9 +7,9 @@ file(GLOB SOURCES
     ${PROJECT_SOURCE_DIR}/../include/*.hpp
     )
 find_package(OpenGL REQUIRED)
-
-message(STATUS "${CMAKE_SYSTEM}")
-    set(COMPILE_DEFINITIONS "${COMPILE_DEFINITIONS};GLEW_STATIC")
+set(TINYXML2_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/tinyxml2")
+set(TINYGLTF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/tinygltf")
+set(COMPILE_DEFINITIONS "${COMPILE_DEFINITIONS};GLEW_STATIC")
     add_compile_definitions(${COMPILE_DEFINITIONS})
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows" AND NOT MINGW)
@@ -51,7 +51,7 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
     PKG_SEARCH_MODULE(SDL2_IMAGE REQUIRED SDL2_image>=2.0.0.0)
     PKG_SEARCH_MODULE(SDL2_MIXER REQUIRED SDL2_mixer)
-    PKG_SEARCH_MODULE(GLEW glew)
+    PKG_SEARCH_MODULE(GLEW glew) #not required for gles2 on arm
 
 elseif (MINGW)
     message(STATUS "Starting MinGW setup")
@@ -64,10 +64,12 @@ elseif (MINGW)
 	
 endif ()
 
-add_executable(FurnaceXX ${SOURCES})
+
 
 
 include_directories(
+    ${TINYXML2_INCLUDE_DIRS}
+    ${TINYGLTF_INCLUDE_DIRS}
     ${SDL2_INCLUDE_DIRS} 
     ${SDL2_IMAGE_INCLUDE_DIRS} 
     ${SDL2_MIXER_INCLUDE_DIRS}
@@ -75,21 +77,30 @@ include_directories(
     ${GLEW_INCLUDE_DIRS}
     ../include
     )
+
+add_library(TINYXML2_LIBRARIES STATIC "${TINYXML2_INCLUDE_DIRS}/tinyxml2.cpp")
+add_executable(FurnaceXX ${SOURCES})
 	
 if (MINGW)
 	#This assumes you have installed all the sdl libs manually to the mingw lib folder
 	
 	add_library(GLEW32 STATIC "${GLEW_SOURCE}")
 	set(GLEW_LIBRARIES "${PROJECT_SOURCE_DIR}/../libGLEW32.a")
-	target_link_libraries(FurnaceXX "-Wl,--no-undefined -Wl,--dynamicbase -Wl,--nxcompat ${GLEW_LIBRARIES} -lSDL2main -lSDL2 -lSDL2_image -lopengl32 -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi -lversion -luuid -static-libgcc -static-libstdc++")
+	target_link_libraries(FurnaceXX "-Wl,--no-undefined -Wl,--dynamicbase -Wl,--nxcompat \
+        ${GLEW_LIBRARIES} ${TINYXML2_LIBRARIES} \
+        -lSDL2main -lSDL2 -lSDL2_image -lopengl32 \
+        -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 \
+        -lole32 -loleaut32 -lshell32 -lsetupapi -lversion -luuid \
+        -static-libgcc -static-libstdc++")
 
 else()
 target_link_libraries(
     FurnaceXX 
-    ${SDL2_LIBRARIES} 
-    ${SDL2_IMAGE_LIBRARIES}  
-    ${SDL2_MIXER_LIBRARIES}
     ${GLEW_LIBRARIES}
     ${OPENGL_LIBRARIES}
+    ${TINYXML2_LIBRARIES}
+    ${SDL2_LIBRARIES} 
+    ${SDL2_IMAGE_LIBRARIES}  
+    ${SDL2_MIXER_LIBRARIES}    
     )
 endif()
