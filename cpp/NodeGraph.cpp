@@ -13,7 +13,7 @@ SDLSceneNode::SDLSceneNode(const std::shared_ptr<LoaderParams> pParams) :
 
 void SDLSceneNode::draw()
 {
-    TheResourceManager::getInstance()->drawTextureFrame(mID, 
+    TheResourceManager::getInstance()->drawTexture(mID, 
 		    static_cast<int>(mPosition.x), 
 		    static_cast<int>(mPosition.y),            
 		    mW, mH, mCurrentRow, mCurrentFrame,

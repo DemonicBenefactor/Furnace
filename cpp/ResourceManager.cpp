@@ -1,3 +1,5 @@
+
+
 #include "ResourceManager.hpp"
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
@@ -28,25 +30,8 @@ bool ResourceManager::loadTexture(std::string fileName, std::string id,
     return false;
 }
 
+
 void ResourceManager::drawTexture(std::string id, int x, int y, 
-            int width, int height, SDL_Renderer *pRenderer,
-            SDL_RendererFlip flip)
-{
-    SDL_Rect srcRect;
-    SDL_Rect destRect;
-
-    srcRect.x = 0;
-    srcRect.y = 0;
-    srcRect.w = destRect.w = width;
-    srcRect.h = destRect.h = height;
-    destRect.x = x;
-    destRect.y = y;
-
-    SDL_RenderCopyEx(pRenderer, mTextureMap[id], &srcRect,
-            &destRect, 0, 0, flip);
-}
-
-void ResourceManager::drawTextureFrame(std::string id, int x, int y, 
             int width, int height, int currentRow,
             int currentFrame, SDL_Renderer *pRenderer,
             SDL_RendererFlip flip)
@@ -68,6 +53,38 @@ void ResourceManager::drawTextureFrame(std::string id, int x, int y,
 void ResourceManager::clearTexture(std::string id)
 {
     mTextureMap.erase(id);
+}
+
+void ResourceManager::loadJson(const std::string fileName, const SDLSceneNode &node)
+{
+	
+}
+
+void ResourceManager::loadGLTF(const std::string fileName,const std::string id)
+{
+	tinygltf::Model model;
+	//tinygltf::TinyGLTF loader;
+	std::string err;
+	std::string warn;
+	bool ret = true;
+
+	//bool ret = loader.LoadASCIIFromFile(&model, &err, &warn, fileName.c_str());
+	//bool ret = loader.LoadBinaryFromFile(&model, &err, &warn, fileName.c_str()); // for binary glTF(.glb)
+
+	if (!warn.empty()) {
+	  std::cout << "Warn: " << warn << std::endl;
+	}
+
+	if (!err.empty()) {
+	  std::cout << "Err: " << err << std::endl;
+	}
+
+	if (!ret) {
+	  std::cout << "Failed to parse glTF" << std::endl;
+	  return;
+	}
+	
+	//mGLTF[id] = model;
 }
 
 void ResourceManager::clean()

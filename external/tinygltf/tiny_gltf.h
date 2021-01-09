@@ -2582,17 +2582,19 @@ bool FileExists(const std::string &abs_filename, void *) {
 #else
 #ifdef _WIN32
 #if defined(_MSC_VER) || defined(__GLIBCXX__)
-  FILE *fp = nullptr;
-  errno_t err = _wfopen_s(&fp, UTF8ToWchar(abs_filename).c_str(), L"rb");
-  if (err != 0) {
-    return false;
-  }
+  //FILE *fp = nullptr;
+  //errno_t err = _wfopen_s(&fp, UTF8ToWchar(abs_filename).c_str(), L"rb");
+  FILE *fp = fopen(abs_filename.c_str(), "rb");
+  //if (err != 0) {
+    //return false;
+  //}
 #else
-  FILE *fp = nullptr;
-  errno_t err = fopen_s(&fp, abs_filename.c_str(), "rb");
-  if (err != 0) {
-    return false;
-  }
+  //FILE *fp = nullptr;
+  //errno_t err = fopen_s(&fp, abs_filename.c_str(), "rb");
+  
+  //if (err != 0) {
+    //return false;
+  //}
 #endif
 
 #else
