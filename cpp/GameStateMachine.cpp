@@ -80,10 +80,7 @@ void GameStateMachine::render()
 
 void GameStateMachine::clean()
 {
-    for (unsigned i = 0; i < mGameStates.size(); i++)
-    {
-        mGameStates[i]->onExit();
-    }
+    for (auto &i : mGameStates) i->onExit();
     mGameStates.clear();
 }
 
@@ -99,10 +96,9 @@ bool MenuState::onEnter()
         {"resources/images/Buttons.gif", "MenuButtons"},
         {"resources/images/BlueMoon.gif","BlueMoon"}
     };
-    std::map<std::string, std::string>::iterator i;
-    for (i = lImages.begin(); i != lImages.end(); i++)
+    for (auto &i : lImages)    
     {
-        TheResourceManager::getInstance()->loadTexture(i->first, i->second,
+        TheResourceManager::getInstance()->loadTexture(i.first, i.second,
             TheGame::getInstance()->getRenderer());
     }
 
@@ -125,31 +121,24 @@ bool MenuState::onEnter()
 
 void MenuState::update()
 {
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0; 
+    /*for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0; 
         i != mSceneNodes.size(); i++)
     {
         mSceneNodes[i]->update();
-    }
+    }*/  //THE OLD WAY,  NOW WE DO IT LIKE THIS:
+    for (auto &i : mSceneNodes) i->update();
 }
 
 void MenuState::render()
 {
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0; 
-        i != mSceneNodes.size(); i++)
-    {
-        mSceneNodes[i]->draw();
-    }
+    for (auto &i : mSceneNodes) i->draw();
 }
 
 bool MenuState::onExit()
 {
     std::cout << "exiting MenuState" << std::endl;
 
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0; 
-        i != mSceneNodes.size(); i++)
-    {
-        mSceneNodes[i]->clean();
-    }
+    for (auto &i : mSceneNodes) i->clean();
     mSceneNodes.clear();
     return true;
 }
@@ -176,10 +165,9 @@ bool LocalState::onEnter()
         {"resources/images/ZeldaWS.gif", "Zelda"},
         {"resources/images/DrWillysLab.gif","WillysLab"}
     };
-    std::map<std::string, std::string>::iterator i;
-    for (i = lImages.begin(); i != lImages.end(); i++)
+    for (auto &i : lImages) 
     {
-        TheResourceManager::getInstance()->loadTexture(i->first, i->second,
+        TheResourceManager::getInstance()->loadTexture(i.first, i.second,
             TheGame::getInstance()->getRenderer());
     }
 
@@ -197,30 +185,18 @@ void LocalState::update()
     {
         TheGame::getInstance()->getStateMachine()->push(std::make_shared<PauseState>());
     }
-	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-        i != mSceneNodes.size(); i++)
-    {
-        mSceneNodes[i]->update();
-    }	
+	for (auto &i : mSceneNodes) i->update();
 }
 
 void LocalState::render()
 {
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-        i != mSceneNodes.size(); i++)
-    {
-        mSceneNodes[i]->draw();
-    }
+    for (auto &i : mSceneNodes) i->draw();
 }
 
 bool LocalState::onExit()
 {
     std::cout << "exiting LocalState" << std::endl;
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-        i != mSceneNodes.size(); i++)
-    {
-        mSceneNodes[i]->clean();
-    }
+    for (auto &i : mSceneNodes) i->clean();
     mSceneNodes.clear();
     return true;
 }
@@ -243,10 +219,9 @@ bool PauseState::onEnter()
         {"resources/images/Buttons.gif", "MenuButtons"},
         {"resources/images/Daily.gif","Daily"}
     };
-    std::map<std::string, std::string>::iterator i;
-    for (i = lImages.begin(); i != lImages.end(); i++)
+    for (auto &i : lImages)
     {
-        TheResourceManager::getInstance()->loadTexture(i->first, i->second,
+        TheResourceManager::getInstance()->loadTexture(i.first, i.second,
             TheGame::getInstance()->getRenderer());
     }
 	
@@ -265,31 +240,18 @@ bool PauseState::onEnter()
 
 void PauseState::update()
 {
-	for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-        i != mSceneNodes.size(); i++)
-    {
-        mSceneNodes[i]->update();
-    }
+	for (auto &i : mSceneNodes) i->update();
 }
 
 void PauseState::render()
 {
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-        i != mSceneNodes.size(); i++)
-    {
-        mSceneNodes[i]->draw();
-    }
+    for (auto &i : mSceneNodes) i->draw();
 }
 
 bool PauseState::onExit()
 {
     std::cout << "exiting PauseState" << std::endl;
-
-    for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-        i != mSceneNodes.size(); i++)
-    {
-        mSceneNodes[i]->clean();
-    }
+    for (auto &i : mSceneNodes) i->clean();
     mSceneNodes.clear();
     return true;
 }
