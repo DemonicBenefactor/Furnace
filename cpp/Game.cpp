@@ -54,7 +54,7 @@ bool Game::init()
                 std::cout << "Using OpenGL ES 2" << std::endl;
                 hasOpenGL = true;
           #else
-            mHasOpenGL = true;
+            hasOpenGL = true;
             if (GLversion < (GLubyte*)'2') 
             {
                 printf("openGL version %s not high enough\n", GLversion);
