@@ -36,30 +36,30 @@ bool Game::init()
         }
         
         std::cout << "SDL init success" << std::endl;
-        mWindow = SDL_CreateWindow("FurnaceXX", WIN_POSX, WIN_POSY,
+        window = SDL_CreateWindow("FurnaceXX", WIN_POSX, WIN_POSY,
             WIN_W, WIN_H, flags | SDL_WINDOW_OPENGL);
-        if (mWindow != 0)
+        if (window != 0)
         {
             std::cout << "Window creation success" << std::endl;
             // startup our OpenGL
-            GLContext = SDL_GL_CreateContext(mWindow);
+            GLContext = SDL_GL_CreateContext(window);
             if (GLContext == NULL)
             {
                 printf("OpenGL context could not be created! SDL Error: %s\n", SDL_GetError());
                 //throw std::runtime_error("OpenGL Fail"); // openGL version fail
             }
-            mGLversion = glGetString(GL_VERSION);
-            printf("openGL version %s\n", mGLversion);
+            GLversion = glGetString(GL_VERSION);
+            printf("openGL version %s\n", GLversion);
           #ifdef __arm__
                 std::cout << "Using OpenGL ES 2" << std::endl;
-                mHasOpenGL = true;
+                hasOpenGL = true;
           #else
             mHasOpenGL = true;
-            if (mGLversion < (GLubyte*)'2') 
+            if (GLversion < (GLubyte*)'2') 
             {
-                printf("openGL version %s not high enough\n", mGLversion);
+                printf("openGL version %s not high enough\n", GLversion);
                 throw std::runtime_error("OpenGL Fail"); // openGL version fail
-                mHasOpenGL = false;
+                hasOpenGL = false;
             }
             else
             {
@@ -76,18 +76,18 @@ bool Game::init()
 			#endif
             //Finished with our OpenGL init,  make whatever calls -
             //you want to our MainContext,  have fun.
-            mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
-            if (mRenderer != 0)
+            renderer = SDL_CreateRenderer(window, -1, 0);
+            if (renderer != 0)
             {
                 std::cout << "Renderer creation success" << std::endl;
-                SDL_RenderSetLogicalSize(mRenderer, 320, 240);
-                SDL_SetRenderDrawColor(mRenderer, 128, 128, 128, 255);
-                if (mHasOpenGL)
+                SDL_RenderSetLogicalSize(renderer, 320, 240);
+                SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
+                if (hasOpenGL)
                 {
                     SDL_GL_SetSwapInterval(1);
                     glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
                     glClear(GL_COLOR_BUFFER_BIT);
-                    SDL_GL_SwapWindow(mWindow);
+                    SDL_GL_SwapWindow(window);
                 }
             }
             else
@@ -110,10 +110,10 @@ bool Game::init()
 
     std::cout << "Init success!" << std::endl;
     
-    mGameStateMachine = new GameStateMachine();
-    mGameStateMachine->setState(current_state::MENU);
-    mRunning = true;
-    return mRunning;
+    gameStateMachine = new GameStateMachine();
+    gameStateMachine->setState(current_state::MENU);
+    running = true;
+    return running;
 }
 
 
@@ -125,24 +125,24 @@ void Game::handleEvents()
 
 void Game::render()
 {
-    SDL_RenderClear(mRenderer);
-    mGameStateMachine->render();
-    SDL_RenderPresent(mRenderer);
+    SDL_RenderClear(renderer);
+    gameStateMachine->render();
+    SDL_RenderPresent(renderer);
 }
 
 
 void Game::update()
 {
-    mGameStateMachine->update();
+    gameStateMachine->update();
 }
 
 void Game::clean()
 {
     std::cout << "Cleaning Up" << std::endl;
-    mGameStateMachine->clean();
+    gameStateMachine->clean();
     TheResourceManager::getInstance()->clean();
-    SDL_DestroyWindow(mWindow);
-    SDL_DestroyRenderer(mRenderer);
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
     SDL_Quit();
 }
 
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
         std::cout << "Initialization success." << std::endl;
         Uint32 frameStart, frameTime = 0;
         
-        while (TheGame::getInstance()->running())
+        while (TheGame::getInstance()->getRunning())
         {
             frameStart = SDL_GetTicks();
             TheGame::getInstance()->handleEvents();

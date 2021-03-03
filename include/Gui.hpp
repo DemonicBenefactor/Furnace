@@ -6,7 +6,7 @@
 class Button : public SDLSceneNode
 {
 public:
-	Button(const std::shared_ptr<LoaderParams> pParams, void (*callback)());
+	Button(const std::shared_ptr<LoaderParams> params, void (*Callback)());
 
 	virtual void draw();
 	virtual void update();
@@ -20,8 +20,8 @@ private:
 		CLICKED = 2
 	};
 
-    void (*mCallback)();
-    bool mReleased;
+    void (*callback)();
+    bool released;
 };
 
 #endif //__Gui__

@@ -2,31 +2,31 @@
 #include "NodeGraph.hpp"
 #include "ResourceManager.hpp"
 
-SDLSceneNode::SDLSceneNode(const std::shared_ptr<LoaderParams> pParams) :
-    SceneNode(pParams), mPosition(pParams->getX(), pParams->getY()),
-    mVelocity(0), mAcceleration(0), mCurrentRow(1), mCurrentFrame(0)
+SDLSceneNode::SDLSceneNode(const std::shared_ptr<LoaderParams> params) :
+    SceneNode(params), position(params->getX(), params->getY()),
+    velocity(0), acceleration(0), currentRow(1), currentFrame(0)
 {
-    mW = pParams->getWidth();
-    mH = pParams->getHeight();
-    mID = pParams->getTextureID();
+    width = params->getWidth();
+    height = params->getHeight();
+    id = params->getTextureID();
 }
 
 void SDLSceneNode::draw()
 {
-    TheResourceManager::getInstance()->drawTexture(mID, 
-		    static_cast<int>(mPosition.x), 
-		    static_cast<int>(mPosition.y),            
-		    mW, mH, mCurrentRow, mCurrentFrame,
+    TheResourceManager::getInstance()->drawTexture(id, 
+		    static_cast<int>(position.x), 
+		    static_cast<int>(position.y),            
+		    width, height, currentRow, currentFrame,
 		    TheGame::getInstance()->getRenderer());
 }
 
 void SDLSceneNode::update()
 {
-    mVelocity += mAcceleration;
-    mPosition += mVelocity;
+    velocity += acceleration;
+    position += velocity;
 }
 
 void SDLSceneNode::clean()
 {
-    TheResourceManager::getInstance()->clearTexture(mID);
+    TheResourceManager::getInstance()->clearTexture(id);
 }

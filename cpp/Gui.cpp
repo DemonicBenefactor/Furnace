@@ -1,10 +1,10 @@
 #include "InputHandler.hpp"
 #include "Gui.hpp"
 
-Button::Button(const std::shared_ptr<LoaderParams> pParams, void (*callback)()) :
-	SDLSceneNode(pParams), mCallback(callback), mReleased(false)
+Button::Button(const std::shared_ptr<LoaderParams> pParams, void (*Callback)()) :
+	SDLSceneNode(pParams), callback(Callback), released(false)
 {
-	mCurrentFrame = MOUSE_OUT; // start at frame 0
+	currentFrame = MOUSE_OUT; // start at frame 0
 }
 
 void Button::draw()
@@ -17,27 +17,27 @@ void Button::update()
 	glm::vec2 pos = TheInputHandler::getInstance()
 		->getMousePosition();
 
-	if (pos.x < mPosition.x + mW
-		&& pos.x > mPosition.x
-		&& pos.y < mPosition.y + mH
-		&& pos.y > mPosition.y)
+	if (pos.x < position.x + width
+		&& pos.x > position.x
+		&& pos.y < position.y + height
+		&& pos.y > position.y)
 	{
         if (TheInputHandler::getInstance()->getMouseButton(mouse_buttons::LEFT)
-                && mReleased)
+                && released)
 		{
-			mCurrentFrame = CLICKED;
-            mCallback();
-            mReleased = false;
+			currentFrame = CLICKED;
+            callback();
+            released = false;
 		}
         else if (!TheInputHandler::getInstance()->getMouseButton(mouse_buttons::LEFT))
         {
-            mReleased = true;
-            mCurrentFrame = MOUSE_OVER;
+            released = true;
+            currentFrame = MOUSE_OVER;
         }
 	}
 	else
 	{
-		mCurrentFrame = MOUSE_OUT;
+		currentFrame = MOUSE_OUT;
 	}
 	SDLSceneNode::update();
 }

@@ -7,7 +7,7 @@ class Enemy : public SDLSceneNode
 {
 public:
 
-	Enemy(const std::shared_ptr<LoaderParams> pParams);
+	Enemy(const std::shared_ptr<LoaderParams> params);
 
 	virtual void draw();
 	virtual void update();

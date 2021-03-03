@@ -7,63 +7,63 @@
 #include "Gui.hpp"
 #include "Player.hpp"
 
-void GameStateMachine::push(std::shared_ptr<GameState> pState)
+void GameStateMachine::push(std::shared_ptr<GameState> state)
 {
-    mGameStates.push_back(pState);
-    mGameStates.back()->onEnter();
+    gameStates.push_back(state);
+    gameStates.back()->onEnter();
 }
 
-void GameStateMachine::change(std::shared_ptr<GameState> pState)
+void GameStateMachine::change(std::shared_ptr<GameState> state)
 {
-    if (!mGameStates.empty())
+    if (!gameStates.empty())
     {
-        if (mGameStates.back()->getStateID() == pState->getStateID())
+        if (gameStates.back()->getStateID() == state->getStateID())
         {
             return; //do nothing
         }
         clean();
     }
-    mGameStates.push_back(pState);
-    mGameStates.back()->onEnter();
+    gameStates.push_back(state);
+    gameStates.back()->onEnter();
 }
 
 void GameStateMachine::update()
 {
-    if (!mGameStates.empty())
+    if (!gameStates.empty())
     {
-        mGameStates.back()->update();
+        gameStates.back()->update();
     }
-    if (mPopState)
+    if (popState)
 	{
-		if (!mGameStates.empty() && mGameStates.back()->onExit())
+		if (!gameStates.empty() && gameStates.back()->onExit())
 		{
-			mGameStates.pop_back();
-			mPopState = false;
+			gameStates.pop_back();
+			popState = false;
 		}
 	}
-	if (mChangeState)
+	if (changeState)
     {
-        switch (mCurrentState)
+        switch (currentState)
         {
         case current_state::MENU:
             TheGame::getInstance()->getStateMachine()->change(std::make_shared<MenuState>());
-            mChangeState = false;
+            changeState = false;
             break;
         case current_state::LOCAL:
             TheGame::getInstance()->getStateMachine()->change(std::make_shared<LocalState>());
-            mChangeState = false;
+            changeState = false;
             break;
         case current_state::ONLINE:
             TheGame::getInstance()->getStateMachine()->change(std::make_shared<OnlineState>());
-            mChangeState = false;
+            changeState = false;
             break;
         case current_state::OPTIONS:
             TheGame::getInstance()->getStateMachine()->change(std::make_shared<OptionsState>());
-            mChangeState = false;
+            changeState = false;
 			break;
         case current_state::PAUSE:
             TheGame::getInstance()->getStateMachine()->change(std::make_shared<PauseState>());
-            mChangeState = false;
+            changeState = false;
 			break;
         default: break;
         }
@@ -72,21 +72,21 @@ void GameStateMachine::update()
 
 void GameStateMachine::render()
 {
-    if (!mGameStates.empty())
+    if (!gameStates.empty())
     {
-        mGameStates.back()->render();
+        gameStates.back()->render();
     }
 }
 
 void GameStateMachine::clean()
 {
-    for (auto &i : mGameStates) i->onExit();
-    mGameStates.clear();
+    for (auto &i : gameStates) i->onExit();
+    gameStates.clear();
 }
 
 //===================== MENU STATE =======================
 
-const std::string MenuState::sMenuID = "MENU";
+const std::string MenuState::menuID = "MENU";
 bool MenuState::onEnter()
 {
     std::cout << "entering MenuState" << std::endl;
@@ -103,18 +103,18 @@ bool MenuState::onEnter()
     }
 
     std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(std::make_shared<LoaderParams>(-200, -240, 768, 480, "BlueMoon")));
-    std::unique_ptr<Button> localButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"), sButtonLocal));
-    std::unique_ptr<Button> onlineButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"), sButtonOnline));
-    std::unique_ptr<Button> optionButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 90, 125, 40, "MenuButtons"), sButtonOptions));
-    std::unique_ptr<Button> exitButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 130, 125, 40, "MenuButtons"), sButtonExit));
+    std::unique_ptr<Button> localButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"), buttonLocal));
+    std::unique_ptr<Button> onlineButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"), buttonOnline));
+    std::unique_ptr<Button> optionButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 90, 125, 40, "MenuButtons"), buttonOptions));
+    std::unique_ptr<Button> exitButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 130, 125, 40, "MenuButtons"), buttonExit));
     onlineButton->setRow(2);
     optionButton->setRow(3);
     exitButton->setRow(4);
-    mSceneNodes.push_back(std::move(background));
-    mSceneNodes.push_back(std::move(localButton));
-    mSceneNodes.push_back(std::move(onlineButton));
-    mSceneNodes.push_back(std::move(optionButton));
-    mSceneNodes.push_back(std::move(exitButton));
+    sceneNodes.push_back(std::move(background));
+    sceneNodes.push_back(std::move(localButton));
+    sceneNodes.push_back(std::move(onlineButton));
+    sceneNodes.push_back(std::move(optionButton));
+    sceneNodes.push_back(std::move(exitButton));
 
     return true;
 }
@@ -126,36 +126,36 @@ void MenuState::update()
     {
         mSceneNodes[i]->update();
     }*/  //THE OLD WAY,  NOW WE DO IT LIKE THIS:
-    for (auto &i : mSceneNodes) i->update();
+    for (auto &i : sceneNodes) i->update();
 }
 
 void MenuState::render()
 {
-    for (auto &i : mSceneNodes) i->draw();
+    for (auto &i : sceneNodes) i->draw();
 }
 
 bool MenuState::onExit()
 {
     std::cout << "exiting MenuState" << std::endl;
 
-    for (auto &i : mSceneNodes) i->clean();
-    mSceneNodes.clear();
+    for (auto &i : sceneNodes) i->clean();
+    sceneNodes.clear();
     return true;
 }
 
-void MenuState::sButtonLocal()
+void MenuState::buttonLocal()
 {
     TheGame::getInstance()->getStateMachine()->setState(current_state::LOCAL);
 }
 
-void MenuState::sButtonExit()
+void MenuState::buttonExit()
 {
     TheGame::getInstance()->quit();
 }
 
 //====================== LOCAL STATE =========================
 
-const std::string LocalState::sLocalID = "LOCAL";
+const std::string LocalState::localID = "LOCAL";
 bool LocalState::onEnter()
 {
     std::cout << "entering LocalState" << std::endl;
@@ -173,8 +173,8 @@ bool LocalState::onEnter()
 
     std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(std::make_shared<LoaderParams>(-200, -240, 768, 480, "WillysLab")));
     std::unique_ptr<Player> player(std::make_unique<Player>(std::make_shared<LoaderParams>(100, 100, 75, 75, "Zelda")));
-    mSceneNodes.push_back(std::move(background));
-    mSceneNodes.push_back(std::move(player));
+    sceneNodes.push_back(std::move(background));
+    sceneNodes.push_back(std::move(player));
 
     return true;
 }
@@ -185,32 +185,32 @@ void LocalState::update()
     {
         TheGame::getInstance()->getStateMachine()->push(std::make_shared<PauseState>());
     }
-	for (auto &i : mSceneNodes) i->update();
+	for (auto &i : sceneNodes) i->update();
 }
 
 void LocalState::render()
 {
-    for (auto &i : mSceneNodes) i->draw();
+    for (auto &i : sceneNodes) i->draw();
 }
 
 bool LocalState::onExit()
 {
     std::cout << "exiting LocalState" << std::endl;
-    for (auto &i : mSceneNodes) i->clean();
-    mSceneNodes.clear();
+    for (auto &i : sceneNodes) i->clean();
+    sceneNodes.clear();
     return true;
 }
 //====================== ONLINE STATE =========================
 
-const std::string OnlineState::sOnlineID = "ONLINE";
+const std::string OnlineState::onlineID = "ONLINE";
 
 //=====================OPTIONS STATE ========================
 
-const std::string OptionsState::sOptionsID = "OPTIONS";
+const std::string OptionsState::optionsID = "OPTIONS";
 
 //====================== PAUSE STATE =========================
 
-const std::string PauseState::sPauseID = "PAUSE";
+const std::string PauseState::pauseID = "PAUSE";
 
 bool PauseState::onEnter()
 {
@@ -226,13 +226,13 @@ bool PauseState::onEnter()
     }
 	
 	std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(std::make_shared<LoaderParams>(-200, -240, 768, 480, "Daily")));
-    std::unique_ptr<Button> resumeButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"), sButtonResume));
-    std::unique_ptr<Button> menuButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"), sButtonMenu));
+    std::unique_ptr<Button> resumeButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"), buttonResume));
+    std::unique_ptr<Button> menuButton(std::make_unique<Button>(std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"), buttonMenu));
 
     menuButton->setRow(2);
-    mSceneNodes.push_back(std::move(background));
-    mSceneNodes.push_back(std::move(resumeButton));
-    mSceneNodes.push_back(std::move(menuButton));
+    sceneNodes.push_back(std::move(background));
+    sceneNodes.push_back(std::move(resumeButton));
+    sceneNodes.push_back(std::move(menuButton));
 
     std::cout << "Entering Pause State." << std::endl;
     return true;
@@ -240,28 +240,28 @@ bool PauseState::onEnter()
 
 void PauseState::update()
 {
-	for (auto &i : mSceneNodes) i->update();
+	for (auto &i : sceneNodes) i->update();
 }
 
 void PauseState::render()
 {
-    for (auto &i : mSceneNodes) i->draw();
+    for (auto &i : sceneNodes) i->draw();
 }
 
 bool PauseState::onExit()
 {
     std::cout << "exiting PauseState" << std::endl;
-    for (auto &i : mSceneNodes) i->clean();
-    mSceneNodes.clear();
+    for (auto &i : sceneNodes) i->clean();
+    sceneNodes.clear();
     return true;
 }
 
-void PauseState::sButtonResume()
+void PauseState::buttonResume()
 {
     TheGame::getInstance()->getStateMachine()->pop();
 }
 
-void PauseState::sButtonMenu()
+void PauseState::buttonMenu()
 {
 	TheGame::getInstance()->getStateMachine()->setState(current_state::MENU);
 }

@@ -11,22 +11,22 @@
 class LoaderParams
 {
 public:
-    LoaderParams(int x, int y, 
-            int w, int h, std::string id) :
-       mX(x), mY(y), mW(w), mH(h), mID(id) {}
+    LoaderParams(int X, int Y, 
+            int w, int h, std::string ID) :
+       x(X), y(Y), width(w), height(h), id(ID) {}
     
     //accessor functions
-    int getX() const { return mX; }
-    int getY() const { return mY; }
-    int getWidth() const { return mW; }
-    int getHeight() const { return mH; }
-    std::string getTextureID() const { return mID; }
+    int getX() const { return x; }
+    int getY() const { return y; }
+    int getWidth() const { return width; }
+    int getHeight() const { return height; }
+    std::string getTextureID() const { return id; }
 private:
-    int mX;
-    int mY;
-    int mW;
-    int mH;
-    std::string mID;
+    int x;
+    int y;
+    int width;
+    int height;
+    std::string id;
 };
 
 class SceneNode
@@ -36,7 +36,7 @@ public:
     virtual void update() = 0;
     virtual void clean() = 0;
 protected:    
-    SceneNode(const std::shared_ptr<LoaderParams> pParams) {}
+    SceneNode(const std::shared_ptr<LoaderParams> params) {}
     virtual ~SceneNode() {}
 };
 
@@ -44,24 +44,24 @@ class SDLSceneNode : public SceneNode
 {
 public:
     typedef std::unique_ptr<SDLSceneNode> Ptr;
-    SDLSceneNode(const std::shared_ptr<LoaderParams> pParams);
+    SDLSceneNode(const std::shared_ptr<LoaderParams> params);
     virtual void draw();
     virtual void update();
     virtual void clean();
 
-    virtual void setRow(const int row) { mCurrentRow = row; }
+    virtual void setRow(const int row) { currentRow = row; }
 protected:
-    glm::vec2 mPosition;
-    glm::vec2 mVelocity;
-    glm::vec2 mAcceleration;
-    int mW;
-    int mH;
-    int mCurrentRow;
-    int mCurrentFrame;
-    std::string mID;
+    glm::vec2 position;
+    glm::vec2 velocity;
+    glm::vec2 acceleration;
+    int width;
+    int height;
+    int currentRow;
+    int currentFrame;
+    std::string id;
 private:
-    std::vector<Ptr> mChildren;
-    SDLSceneNode* mParent;
+    std::vector<Ptr> children;
+    SDLSceneNode* parent;
 };
 
 #endif //__GameObject__

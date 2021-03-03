@@ -36,23 +36,23 @@ public:
     void update();
     void render();
     void clean();
-    void quit() {mRunning = false;}
+    void quit() {running = false;}
     
     //accessor functions
-    bool running() const { return mRunning; }
-    SDL_Renderer *getRenderer() const { return mRenderer; }    
-    GameStateMachine *getStateMachine() { return mGameStateMachine; }
+    bool getRunning() const { return running; }
+    SDL_Renderer *getRenderer() const { return renderer; }    
+    GameStateMachine *getStateMachine() { return gameStateMachine; }
     
 
 private:
     
-    const GLubyte* mGLversion;
-    SDL_Window *mWindow;
-    SDL_Renderer *mRenderer;
+    const GLubyte* GLversion;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
     SDL_GLContext GLContext;
-    bool mHasOpenGL;
-    bool mRunning;
-    GameStateMachine *mGameStateMachine;
+    bool hasOpenGL;
+    bool running;
+    GameStateMachine *gameStateMachine;
 };
 
 typedef Game TheGame;

@@ -1,8 +1,8 @@
 #include "InputHandler.hpp"
 #include "Enemy.hpp"
 
-Enemy::Enemy(const std::shared_ptr<LoaderParams> pParams) :
-	SDLSceneNode(pParams)
+Enemy::Enemy(const std::shared_ptr<LoaderParams> params) :
+	SDLSceneNode(params)
 {
 
 }
@@ -19,22 +19,22 @@ void Enemy::update()
     {
         
         
-        mVelocity = vec / static_cast<float>(5000);
+        velocity = vec / static_cast<float>(5000);
             
     }
-    else {mVelocity = {0,0};}
+    else {velocity = {0,0};}
     
-    if (mPosition.x < 0.0)
-            {mPosition.x = 0.0;}
+    if (position.x < 0.0)
+            {position.x = 0.0;}
         
-    if (mPosition.x > 580.0)
-            {mPosition.x = 580.0;}
+    if (position.x > 580.0)
+            {position.x = 580.0;}
         
-    if (mPosition.y < 0.0)
-            {mPosition.y = 0.0;}
+    if (position.y < 0.0)
+            {position.y = 0.0;}
         
-    if (mPosition.y > 400.0)
-            {mPosition.y = 400.0;}
+    if (position.y > 400.0)
+            {position.y = 400.0;}
     SDLSceneNode::update();
 }
 
