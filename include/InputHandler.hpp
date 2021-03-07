@@ -40,13 +40,13 @@ class InputHandler
         //accessors
         bool        getKey(SDL_Scancode key);
         bool        getMouseButton(mouse_buttons button) const
-                    {return mMouseButtonStates[static_cast<int>(button)];}
+                    {return mouseButtonStates[static_cast<int>(button)];}
         
         glm::vec2   getMousePosition()
-                    {return mMousePosition;}       
+                    {return mousePosition;}       
         
         bool        joysticksInitialised() const 
-                    {return mGamepadsInited;}
+                    {return gamepadsInited;}
         
         glm::vec2   getPadAxis(int player, controller_axis axis);
         bool        getPadButton(int player, SDL_GameControllerButton button);
@@ -54,8 +54,8 @@ class InputHandler
             
     private:
 		
-        std::vector<bool>   mMouseButtonStates;
-        glm::vec2           mMousePosition;
+        std::vector<bool>   mouseButtonStates;
+        glm::vec2           mousePosition;
         //mouse events
         void onMouseMove(SDL_Event &event);
         void onMouseButtonDown(SDL_Event &event);
@@ -65,10 +65,10 @@ class InputHandler
         void onJoystickButtonUp(SDL_Event &event) {}
 
         //joystick members
-        std::vector<SDL_GameController*> mGamepads;	
-        bool                mGamepadsInited;
+        std::vector<SDL_GameController*> gamepads;	
+        bool                gamepadsInited;
         //keyboard members
-        const Uint8         *mKeystates; 
+        const Uint8         *keystates; 
 };
 
 typedef InputHandler TheInputHandler;
