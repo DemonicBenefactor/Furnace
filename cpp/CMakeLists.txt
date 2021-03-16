@@ -12,7 +12,9 @@ set(TINYGLTF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/tinygltf")
 set(COMPILE_DEFINITIONS "${COMPILE_DEFINITIONS};GLEW_STATIC")
     add_compile_definitions(${COMPILE_DEFINITIONS})
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows" AND NOT MINGW)
+#if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows" AND NOT MINGW)
+
+if (MSVC)
     message(STATUS "${CMAKE_SYSTEM}")
 
     set(SDL2_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12;${PROJECT_SOURCE_DIR}/../external/SDL2-2.0.12/SDL2")
@@ -42,7 +44,8 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows" AND NOT MINGW)
             set(GLEW_LIBRARIES "${PROJECT_SOURCE_DIR}/../external/glew-2.1.0/lib/Release/Win32/glew32s.lib")
     endif ()
 
-elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+#elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+elseif (UNIX AND NOT MINGW)
     message(STATUS "${CMAKE_SYSTEM}")
     message(STATUS "${CMAKE_CURRENT_LIST_DIR}")
     set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
@@ -94,13 +97,15 @@ if (MINGW)
         -static-libgcc -static-libstdc++")
 
 else()
-target_link_libraries(
-    FurnaceXX 
-    ${GLEW_LIBRARIES}
-    ${OPENGL_LIBRARIES}
-    ${TINYXML2_LIBRARIES}
-    ${SDL2_LIBRARIES} 
-    ${SDL2_IMAGE_LIBRARIES}  
-    ${SDL2_MIXER_LIBRARIES}    
+    message(${SDL2_LIBRARIES})
+    
+    target_link_libraries(
+        FurnaceXX 
+        ${GLEW_LIBRARIES}
+        ${OPENGL_LIBRARIES}
+        ${TINYXML2_LIBRARIES}
+        ${SDL2_LIBRARIES} 
+        ${SDL2_IMAGE_LIBRARIES}  
+        ${SDL2_MIXER_LIBRARIES}    
     )
 endif()
