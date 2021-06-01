@@ -45,6 +45,9 @@ FurnaceXX=~/Source/Furnace/ CD=. {
   Player.cpp
   ResourceManager.cpp
  }
+ json=./resources/json filter".json{
+  GameStates.json
+ }
 }
 
 FurnaceCurses=/Source/ncurses CD=. {

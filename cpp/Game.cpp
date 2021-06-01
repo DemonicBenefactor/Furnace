@@ -58,7 +58,7 @@ bool Game::init()
             if (GLversion < (GLubyte*)'2') 
             {
                 printf("openGL version %s not high enough\n", GLversion);
-                throw std::runtime_error("OpenGL Fail"); // openGL version fail
+                //throw std::runtime_error("OpenGL Fail"); // openGL version fail
                 hasOpenGL = false;
             }
             else

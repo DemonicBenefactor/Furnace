@@ -1,0 +1,30 @@
+{"GameStates": {
+    "MenuState": {
+		"Textures" : {
+			"MenuButtons" : "resources/images/Buttons.gif",
+			"BlueMoon" : "resources/images/BlueMoon.gif"
+		},
+		"Objects" : {
+			"background" : {
+				"type" : "SDLSceneNode",
+                "x" : -200,
+				"y" : -240,
+				"width" : 768,
+				"height" : 480,
+				"textureID" : "BlueMoon"
+			},
+			"localButton" : {
+				"type" : "Button",
+                "x" : 10,
+				"y" : 10,
+				"width" : 25,
+				"height" : 40,
+				"textureID" : "MenuButtons"
+            }
+		}
+    },
+    "LocalState" : "TBD",
+    "OnlineState" : "TBD",
+    "OptionsState" : "TBD",
+    "PauseState" : "TBD"
+}} 
