@@ -1,58 +1,55 @@
 #ifndef __ResourceManager__
 #define __ResourceManager__
 
-
-//#define TINYGLTF_IMPLEMENTATION
-//#define STB_IMAGE_IMPLEMENTATION
-//#define STB_IMAGE_WRITE_IMPLEMENTATION
+// #define TINYGLTF_IMPLEMENTATION
+// #define STB_IMAGE_IMPLEMENTATION
+// #define STB_IMAGE_WRITE_IMPLEMENTATION
 // #define TINYGLTF_NOEXCEPTION // optional. disable exception handling.
-#include "tiny_gltf.h"  //includes json.hpp
 #include "NodeGraph.hpp"
+#include "tiny_gltf.h" //includes json.hpp
+#include <fstream>
 
-class ResourceManager
-{
+class ResourceManager {
 private:
-    //singleton
-    ResourceManager() {}
-    ~ResourceManager() {}
-    static ResourceManager *instance;
+  // singleton
+  ResourceManager() {}
+  ~ResourceManager() {}
+  static ResourceManager *instance;
 
 public:
-    static ResourceManager *getInstance();
-    
-    //SDL Texture ======================================== 
-    bool loadTexture(const std::string fileName,const std::string id, 
-            SDL_Renderer *pRenderer);
-    
-    void drawTexture(const std::string id, int x, int y, 
-            int width, int height, int currentRow,
-            int currentFrame, SDL_Renderer *pRenderer,
-            SDL_RendererFlip flip = SDL_FLIP_NONE);
+  static ResourceManager *getInstance();
 
-    void clearTexture(std::string id);
+  // SDL Texture ========================================
+  bool loadTexture(const std::string fileName, const std::string id,
+                   SDL_Renderer *pRenderer);
 
-    //XML  ===============================================
-   
-    void loadXML() {}
+  void drawTexture(const std::string id, int x, int y, int width, int height,
+                   int currentRow, int currentFrame, SDL_Renderer *pRenderer,
+                   SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-    //Json  ==============================================
+  void clearTexture(std::string id);
 
-    void loadJson(const std::string fileName, const SDLSceneNode &node);
+  // XML  ===============================================
 
-    //GLTF ===============================================
+  void loadXML() {}
 
-    void loadGLTF(const std::string fileName,const std::string id);
+  // Json  ==============================================
 
-    //Shader =============================================
+  void loadJson(const std::string fileName, const std::string stateID);
 
-    void loadShader() {}
+  // GLTF ===============================================
 
+  void loadGLTF(const std::string fileName, const std::string id);
 
-    void clean();
+  // Shader =============================================
+
+  void loadShader() {}
+
+  void clean();
+
 private:
-    
-    std::map<std::string, SDL_Texture*> mTextureMap;
-	std::map<std::string, tinygltf::Model> mGLTF;
+  std::map<std::string, SDL_Texture *> mTextureMap;
+  std::map<std::string, tinygltf::Model> mGLTF;
 };
 
 typedef ResourceManager TheResourceManager;

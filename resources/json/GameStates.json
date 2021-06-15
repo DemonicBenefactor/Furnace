@@ -17,14 +17,94 @@
 				"type" : "Button",
                 "x" : 10,
 				"y" : 10,
-				"width" : 25,
+				"width" : 125,
+				"height" : 40,
+				"textureID" : "MenuButtons"
+            },
+            "onlineButton" : {
+				"type" : "Button",
+                "x" : 10,
+				"y" : 50,
+				"width" : 125,
+				"height" : 40,
+				"textureID" : "MenuButtons"
+            },
+            "optionButton" : {
+				"type" : "Button",
+                "x" : 10,
+				"y" : 90,
+				"width" : 125,
+				"height" : 40,
+				"textureID" : "MenuButtons"
+            },
+            "exitButton" : {
+				"type" : "Button",
+                "x" : 10,
+				"y" : 1300,
+				"width" : 125,
 				"height" : 40,
 				"textureID" : "MenuButtons"
             }
 		}
     },
-    "LocalState" : "TBD",
+    "LocalState" : {
+        "Textures" : {
+			"Zelda" : "resources/images/ZeldaWS.gif",
+			"WillysLab" : "resources/images/DrWillysLab.gif"
+		},
+		"Objects" : {
+			"background" : {
+				"type" : "SDLSceneNode",
+                "x" : -200,
+				"y" : -240,
+				"width" : 768,
+				"height" : 480,
+				"textureID" : "WillysLab"
+			},
+			"player" : {
+				"type" : "Player",
+                "x" : 100,
+				"y" : 100,
+				"width" : 75,
+				"height" : 75,
+				"textureID" : "Zelda"
+            }
+		}
+    },
+
     "OnlineState" : "TBD",
     "OptionsState" : "TBD",
-    "PauseState" : "TBD"
+
+    "PauseState" : {
+        "Textures" : {
+			"MenuButtons" : "resources/images/Buttons.gif",
+			"Daily" : "resources/images/Daily.gif"
+		},
+		"Objects" : {
+			"background" : {
+				"type" : "SDLSceneNode",
+                "x" : -200,
+				"y" : -240,
+				"width" : 768,
+				"height" : 480,
+				"textureID" : "Daily"
+			},
+			"resumeButton" : {
+				"type" : "Button",
+                "x" : 10,
+				"y" : 10,
+				"width" : 125,
+				"height" : 40,
+				"textureID" : "MenuButtons"
+            },
+            "menuButton" : {
+				"type" : "Button",
+                "x" : 10,
+				"y" : 50,
+				"width" : 125,
+				"height" : 40,
+				"textureID" : "MenuButtons"
+            }
+		}
+    }    
 }} 

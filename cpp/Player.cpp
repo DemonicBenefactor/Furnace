@@ -1,11 +1,6 @@
 #include "Player.hpp"
 #include "InputHandler.hpp"
 
-Player::Player(const std::shared_ptr<LoaderParams> params) :
-	SDLSceneNode(params)
-{
-
-}
 
 void Player::draw()
 {

@@ -6,8 +6,10 @@
 class Button : public SDLSceneNode
 {
 public:
-	Button(const std::shared_ptr<LoaderParams> params, void (*Callback)());
+	//Button(const std::shared_ptr<LoaderParams> params, void (*Callback)());
+    Button() : currentFrame(MOUSE_OUT), released(false) {}
 
+    virtual void load(const std::shared_ptr<LoaderParams> params) { SDLSceneNode::load(params) }
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
@@ -23,5 +25,10 @@ private:
     void (*callback)();
     bool released;
 };
+
+class ButtonCreator : public NodeCreator
+{
+    nodePtr createSceneNode() const { return std::make_shared<Button> }
+}
 
 #endif //__Gui__

@@ -1,11 +1,11 @@
 #include "InputHandler.hpp"
 #include "Gui.hpp"
 
-Button::Button(const std::shared_ptr<LoaderParams> pParams, void (*Callback)()) :
-	SDLSceneNode(pParams), callback(Callback), released(false)
-{
-	currentFrame = MOUSE_OUT; // start at frame 0
-}
+//Button::Button(const std::shared_ptr<LoaderParams> pParams, void (*Callback)()) :
+//	SDLSceneNode(pParams), callback(Callback), released(false)
+//{
+//	currentFrame = MOUSE_OUT; // start at frame 0
+//}
 
 void Button::draw()
 {

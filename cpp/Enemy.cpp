@@ -1,11 +1,6 @@
 #include "InputHandler.hpp"
 #include "Enemy.hpp"
 
-Enemy::Enemy(const std::shared_ptr<LoaderParams> params) :
-	SDLSceneNode(params)
-{
-
-}
 
 void Enemy::draw()
 {
@@ -15,12 +10,10 @@ void Enemy::draw()
 void Enemy::update()
 {
     glm::vec2 vec = TheInputHandler::getInstance()->getPadAxis(0,controller_axis::RIGHT_STICK) ;
+    
     if (vec.x > DEADZONE || vec.x < -DEADZONE || vec.y > DEADZONE || vec.y < -DEADZONE)
     {
-        
-        
         velocity = vec / static_cast<float>(5000);
-            
     }
     else {velocity = {0,0};}
     
