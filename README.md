@@ -8,6 +8,7 @@ Warrior Power Axe   - http://gw2skills.net/editor/?PKzAceRlZkxoiaYhtkSWZlO+K6LPA
 Warrior Condi - http://gw2skills.net/editor/?PKzAwyNlFwUYYsEGKOuKtJVA-zRJYmR3fpkQEEXRFbIWcio6FJI+bZ8dA-e
 Berserk Power - http://gw2skills.net/editor/?PKyAceRlRExSKZYhtmGHalO+WetKA-zRJYiR3/p0moqOhamSgQVAC8iEG/1QhZAA-e
 Berserk Condi - http://gw2skills.net/editor/?PKyAw+NlFUwWSbYhtrumZlWaTpNVA-zRJYmR3/hkgoKTFQvSVFfRCiFwrJFrRA-e
+Bladesworn Power - http://gw2skills.net/editor/?PKQAElJkwSKZt1uxGnbuO+OWRTA-zRZYBRBbICGxgLlGDqMTgeLgoDUZvIhxm/1QhlNA-e
 
 Engineer Condi - http://gw2skills.net/editor/?PezAoqRlZwCZJMPWJWyPXrbA-zRIYb01fIxJFaUVUsARkTypdA-e
 Engineer Celest - http://gw2skills.net/editor/?PezAoqRlFwuYhMNmKOaL+JNA-zxIY1or/MyUq0rqQxXkhIPak9DOK2B-e
@@ -21,6 +22,7 @@ Thief Power - http://gw2skills.net/editor/?PazAwqVlNw2YiMP2IWyOXrVA-zRRYbR3IG+ip
 Ranger Power - http://gw2skills.net/editor/?POxAMxflZwCZZMMGKOuL6pySeVCA-zRJYiR9/p0miqOJaeCheGB25iEG/lE6FA-e
 Ranger Condi - http://gw2skills.net/editor/?POxAc+VlFw+YWsO2JWePnryKeKE-zRRYkBbGdvTpARVCSgIVAZKUV8FJI+bZ8bA-e
 Druid Power - http://gw2skills.net/editor/?POgAYFlFUw8ybNBuu62ZoecXqtvU8OszJA-zRJYiR1fZ0WVVXqa5FRM+IZNUYGA-e
+Soulbeast Condi - http://gw2skills.net/editor/?POwAg+VlRExsiaP9MqumZmWeP3PzUgsFxfG-zRJYmR3fZkZV1bq6xFJI+rBErRA-e
 
 Guardian Celest - http://gw2skills.net/editor/?PWCBw+t3lFUwADcYhtu62YjO+L+rNA-zxIY14vMqIV7oqk/iME5RjcscqaE-e
 Guardian Condi - http://gw2skills.net/editor/?PWyAw+FlJkw6qbHBOwO2YjO0KarNA-zRJYvR3fhkQB0YqmZUJ/FJI+rpBrRA-e
