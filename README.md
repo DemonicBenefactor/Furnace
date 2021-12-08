@@ -29,6 +29,8 @@ Mesmer Power - http://gw2skills.net/editor/?Pi1AEx3lJwuYesD2IOSP3pbA-zRRYBR9TM4D
 
 Mesmer Condi - http://gw2skills.net/editor/?Pi1AYtrlJwuYcsEGKWOPvLfA-zRRYLBbG1vSprCoyQIzII3EQ+DSQ8XijdA-e
 
+Chrono Power - http://gw2skills.net/editor/?PizAw6FlNwuYesFWZjOSTrtLA-zRJYiR3/h0mQNTRVrKAVeRCjx/rhCLbA-e
+
 Virtuoso Power - http://gw2skills.net/editor/?PiwAgyFllW6uadqpO2YnbjOSTrxKA-zRJYiR3/Z0mUNTVlFvIhxfNUYZD-e
 
 =================================================
