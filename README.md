@@ -39,6 +39,8 @@ Thief Condi - http://gw2skills.net/editor/?PaDBoihrlNw2YfMPGJO2S/rcA-zRJYkxfpkXR
 
 Thief Power - http://gw2skills.net/editor/?PazAwqVlNw2YiMP2IWyOXrVA-zRRYbR3IG+iptoquANvCowEIzQQhLSY8XSoXA-e
 
+Daredevil Power - http://gw2skills.net/editor/?PayAYxrlN0w2qbg5truGZjW0T+NbA-zRJYiR9f50WIUXA2XikZR0aEEdAZ3FJM+bR4ZA-e
+
 =================================================
 
 Ranger Power - http://gw2skills.net/editor/?POxAMxflZkxCLcZlNswGaoOuL2pyUkggXDD-zRZYbR9KQMsjg8Pl2UU1JRzTI0zIwSXEx4jklM6FA-e
