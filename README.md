@@ -49,6 +49,8 @@ Ranger Condi - http://gw2skills.net/editor/?POxAc+VlFw+YWsO2JWePnryKeKE-zRRYkBbG
 
 Druid Power - http://gw2skills.net/editor/?POgAYFlFUw8ybNBuu62ZoecXqtvU8OszJA-zRJYiR1fZ0WVVXqa5FRM+IZNUYGA-e
 
+Druid Celestial - http://gw2skills.net/editor/?POwEUiNssgCGTe7rv1V3OD1x7Zt5nSBQK33A-zxIY1o+vMKNVzuqc/iMAHRbk1QgzKA-e
+
 Soulbeast Condi - http://gw2skills.net/editor/?POwAg+VlRExsiaP9MqumZmWeP3PzUgsFxfG-zRJYmR3fZkZV1bq6xFJI+rBErRA-e
 
 =================================================
