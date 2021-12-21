@@ -59,6 +59,8 @@ Guardian Celest - http://gw2skills.net/editor/?PWCBw+t3lFUwADcYhtu62YjO+L+rNA-zx
 
 Guardian Condi - http://gw2skills.net/editor/?PWyAw+FlJkw6qbHBOwO2YjO0KarNA-zRJYvR3fhkQB0YqmZUJ/FJI+rpBrRA-e
 
+Dragonhunter Celestial -  http://gw2skills.net/editor/?PWzAMx/lNUw6qbg9NmoWZjW0WbtaA-zxIY1o+vMCMVjoqk/iEA/1MghNA-e
+
 =================================================
 
 Necro Power - http://gw2skills.net/editor/?PS0Ac2ZlFUwmaaVVNqo2YjOyOVLXA-zRJYiR3/p0mCoORVfSgMFqK+gEG/1QhZAA-e
