@@ -77,4 +77,6 @@ Weaver Celest - http://gw2skills.net/editor/?PGjAw2lZkx8ibR1NpkmZmOSXbvfA-zxIY1o
 
 Revenant Power = http://gw2skills.net/editor/?PmwAIxzlxETJdMv8iKn1VXT1Mu4qqnRGZh9NiIaognsU+6H-zRIYTU/XGtlq9WVudRCj/WEeGA-e
 
+Herald Celestial- http://gw2skills.net/editor/?PmDBwel7lhkSKhsosyqoJ1VXJNowCLoBmYiBOhKqIhDt1frF-zxIY14vUisIqMRKNE7Nik/iIAfhsF6XjA-e
+
 
