@@ -70,3 +70,9 @@ Eli DD Celest - http://gw2skills.net/editor/?PGxAgiZlFUw8ybgxNu22ZoOUPWpKA-zxIY1
 Tempest Celest - http://gw2skills.net/editor/?PGAFsEGaUZERMv8WTNjJmVWpj0zV7G-zxIY1ovvQqMEysKCNRs7iEE7nXDBOAA-e
 
 Weaver Celest - http://gw2skills.net/editor/?PGjAw2lZkx8ibR1NpkmZmOSXbvfA-zxIY1opvMysI6NRc+iEEbmXzAWjA-e
+
+=================================================
+
+Revenant Power = http://gw2skills.net/editor/?PmwAIxzlxETJdMv8iKn1VXT1Mu4qqnRGZh9NiIaognsU+6H-zRIYTU/XGtlq9WVudRCj/WEeGA-e
+
+
