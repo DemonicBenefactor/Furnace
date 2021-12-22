@@ -67,6 +67,8 @@ Necro Power - http://gw2skills.net/editor/?PS0Ac2ZlFUwmaaVVNqo2YjOyOVLXA-zRJYiR3
 
 Necro Condi - http://gw2skills.net/editor/?PS0AsiZlREx8ybdBusyGZkW+TeLPA-zRRYkBbGdvyIyUtyqSxLSQ8XDIWjA-e
 
+Scourge Celestial - http://gw2skills.net/editor/?PSDBg+t3lN0w8ybXdtsymZmO+K/PVA-zxIY14vM6sSLNtk/iEE/1Mg1IA-e
+
 =================================================
 
 Eli DD Celest - http://gw2skills.net/editor/?PGxAgiZlFUw8ybgxNu22ZoOUPWpKA-zxIY1orvQqMBCNUKtKk/iMCZRbsfQzAWjA-e
