@@ -15,6 +15,8 @@ Berserk Condi - http://gw2skills.net/editor/?PKyAw+NlFUwWSbYhtrumZlWaTpNVA-zRJYm
 
 Spellbreaker Power - http://gw2skills.net/editor/?PKzAgiRlVUwSKZP9sruGanOeTpveA-zRJYiR3fZ0WqmZVJ7FJM+bR/lN-e
 
+Spellbreaker - http://gw2skills.net/editor/?PKwAwmNlZkxwCbTNtxGXZlOMLaPdA-zxIY1o7vMCMV7tqk/iEE/1Mg1IA-e
+
 Bladesworn Power - http://gw2skills.net/editor/?PKQAElJkwSKZt1uxGnbuO+OWRTA-zRZYBRBbICGxgLlGDqMTgeLgoDUZvIhxm/1QhlNA-e
 
 =================================================
