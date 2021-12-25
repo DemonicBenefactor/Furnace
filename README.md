@@ -63,6 +63,8 @@ Guardian Condi - http://gw2skills.net/editor/?PWyAw+FlJkw6qbHBOwO2YjO0KarNA-zRJY
 
 Dragonhunter Celestial -  http://gw2skills.net/editor/?PWzAMx/lNUw6qbg9NmoWZjW0WbtaA-zxIY1o+vMCMVjoqk/iEA/1MghNA-e
 
+Firebrand Celestial - http://gw2skills.net/editor/?PWzAEx/lREx+6bSJNwA3YmW2PqPbA-zxIY1o+/UqURkpIqTJSvCRFfRCi/aGwaE-e
+
 =================================================
 
 Necro Power - http://gw2skills.net/editor/?PS0Ac2ZlFUwmaaVVNqo2YjOyOVLXA-zRJYiR3/p0mCoORVfSgMFqK+gEG/1QhZAA-e
