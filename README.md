@@ -31,6 +31,8 @@ Mesmer Power - http://gw2skills.net/editor/?Pi1AEx3lJwuYesD2IOSP3pbA-zRRYBR9TM4D
 
 Mesmer Condi - http://gw2skills.net/editor/?Pi1AYtrlJwuYcsEGKWOPvLfA-zRRYLBbG1vSprCoyQIzII3EQ+DSQ8XijdA-e
 
+Mirage Celestial - http://gw2skills.net/editor/?PizAYx3lVUxuCZe5tkS2Yje+T3PTA-zxIY1o+vMysqKNV17iEE/tQ/aE-e
+
 Chrono Power - http://gw2skills.net/editor/?PizAw6FlNUwuabe5tl6WZjOSTrtLA-zRJYiR3/p0mQtPJQmiqWVAK+iEGj/3yoKbA-e
 
 Virtuoso Power - http://gw2skills.net/editor/?PiwAgyFllW6uadqpO2YnbjOSTrxKA-zRJYiR3/Z0mUNTVlFvIhxfNUYZD-e
