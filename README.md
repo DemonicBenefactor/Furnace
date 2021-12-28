@@ -57,6 +57,8 @@ Druid Celestial - http://gw2skills.net/editor/?POwEUiNssgCGTe7rv1V3OD1x7Zt5nSBQK
 
 Soulbeast Condi - http://gw2skills.net/editor/?POwAg+VlRExsiaP9MqumZmWeP3PzUgsFxfG-zRJYmR3fZkZV1bq6xFJI+rBErRA-e
 
+Soulbeast Celestial - http://gw2skills.net/editor/?POzEwEWpsgCmVWbqv1V3OD1y+Z99lCkF8snA-zxIY1o7vM6rqCMVl/iEE/1AihNA-e
+
 =================================================
 
 Guardian Celest - http://gw2skills.net/editor/?PWCBw+t3lFUwADcYhtu62YjO+L+rNA-zxIY14vMqIV7oqk/iME5RjcscqaE-e
