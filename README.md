@@ -83,6 +83,8 @@ Eli DD Celest - http://gw2skills.net/editor/?PGxAgiZlFUw8ybgxNu22ZoOUPWpKA-zxIY1
 
 Tempest Celest - http://gw2skills.net/editor/?PGAFsEGaUZERMv8WTNjJmVWpj0zV7G-zxIY1ovvQqMEysKCNRs7iEE7nXDBOAA-e
 
+Tempest Celest Warhorn - http://gw2skills.net/editor/?PGzEsEmpMiImXerpmt12Kr0U1ardD-zxIY1orvMyMVKtKc/iEE7n3C9rRA-e
+
 Weaver Celest - http://gw2skills.net/editor/?PGjAw2lZkx8ibR1NpkmZmOSXbvfA-zxIY1opvMysI6NRc+iEEbmXzAWjA-e
 
 =================================================
