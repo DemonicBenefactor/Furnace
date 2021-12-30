@@ -79,7 +79,7 @@ Scourge Celestial - http://gw2skills.net/editor/?PSDBg+t3lN0w8ybXdtsymZmO+K/PVA-
 
 =================================================
 
-Elimentalist Celest - http://gw2skills.net/editor/?PGxAgiZlFUw8ybgxNu22ZoOUPWpKA-zxIY1orvQqMBCNUKtKk/iMCZRbsfQzAWjA-e
+Elimentalist Celest - http://gw2skills.net/editor/?PGxAgiZlFUw8ybgxNu22ZoOUPXpKA-zxIY1orvQqMBCNUKtKk/iMCZRbsfQzAWjA-e
 
 Tempest Celest Dagger - http://gw2skills.net/editor/?PGwAgiZlZkx8ybZlNw02ZlOUPntfA-zxIY1orvUqsAyMICNSKNFM+iEE7nXDBOAA-e
 
