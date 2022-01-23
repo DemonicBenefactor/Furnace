@@ -41,7 +41,7 @@ Virtuoso Power - http://gw2skills.net/editor/?PiwAgyFllW6uadqpO2YnbjOSTrxKA-zRJY
 
 Thief Condi - http://gw2skills.net/editor/?PaDBoihrlNw2YfMPGJO2S/rcA-zRJYkxfpkXRVYCkZE0cIY3FJI+D-e
 
-Thief Power - http://gw2skills.net/editor/?PazAwqVlNw2YiMP2IWyOXrVA-zRRYbR3IG+iptoquANvCowEIzQQhLSY8XSoXA-e
+Thief Power - http://gw2skills.net/editor/?PazAwqVlFUw2CbiJukS2ZnW2PbpNA-zRJYiR3fZ0Wq2bVJ4FJM+LJ0LA-e
 
 Daredevil Power - http://gw2skills.net/editor/?PayAYxrlN0w2qbg5truGZjW0T+NbA-zRJYiR9f50WIUXA2XikZR0aEEdAZ3FJM+bR4ZA-e
 
