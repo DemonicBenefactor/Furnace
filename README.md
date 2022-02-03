@@ -75,6 +75,8 @@ Necro Power - http://gw2skills.net/editor/?PS0Ac2ZlFUwmaaVVNqo2YjOyOVLXA-zRJYiR3
 
 Necro Condi - http://gw2skills.net/editor/?PS0AsiZlREx8ybdBusyGZkW+TeLPA-zRRYkBbGdvyIyUtyqSxLSQ8XDIWjA-e
 
+Necro Celestial - http://gw2skills.net/editor/?PSzAYtjlVUx8ybJlMwAHZkWsPqLVA-zxIY1o+vQiMCysoKNVl/iEE/1QghNA-e
+
 Scourge Celestial - http://gw2skills.net/editor/?PSDBg+t3lN0w8ybXdtsymZmO+K/PVA-zxIY14vM6sSLNtk/iEE/1Mg1IA-e
 
 =================================================
