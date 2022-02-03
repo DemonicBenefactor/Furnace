@@ -77,6 +77,8 @@ Necro Condi - http://gw2skills.net/editor/?PS0AsiZlREx8ybdBusyGZkW+TeLPA-zRRYkBb
 
 Necro Celestial - http://gw2skills.net/editor/?PSzAYtjlVUx8ybJlMwAHZkWsPqLVA-zxIY1o+vQiMCysoKNVl/iEE/1QghNA-e
 
+Reaper Celestial - http://gw2skills.net/editor/?PSjAEZlJkw8ybN1MncWZlOuXqtUA-zxIY1o6/UiUIUpEtTFQpiKPeRCi/aIwaE-e
+
 Scourge Celestial - http://gw2skills.net/editor/?PSDBg+t3lN0w8ybXdtsymZmO+K/PVA-zxIY14vM6sSLNtk/iEE/1Mg1IA-e
 
 =================================================
