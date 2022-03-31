@@ -116,6 +116,7 @@ public:
 private:
 	static void buttonResume();
 	static void buttonMenu();
+
 	
 	static const std::string pauseID;
 	std::vector<std::unique_ptr<SDLSceneNode>> sceneNodes;

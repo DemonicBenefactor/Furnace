@@ -1,5 +1,5 @@
-#ifndef __GameObject__
-#define __GameObject__
+#ifndef __NodeGraph__
+#define __NodeGraph__
 
 #include "SDL2/SDL.h"
 #include <glm/glm.hpp>
@@ -10,16 +10,17 @@
 
 class LoaderParams {
 public:
-  LoaderParams(int X, int Y, int W, int H, std::string ID, int frameNum,
-               int frameSpeed = 0, int callback = 0)
+  LoaderParams(int X, int Y, int W, int H, std::string ID, int callbackID = 0,
+               int frameNum = 0, int frameSpeed = 0)
       : x(X), y(Y), width(W), height(H), id(ID), frames(frameNum),
-        speed(frameSpeed), callback(CallbackID) {}
+        speed(frameSpeed), callback(callbackID) {}
 
   // accessor functions
   int getX() const { return x; }
   int getY() const { return y; }
   int getWidth() const { return width; }
   int getHeight() const { return height; }
+  int getCallbackID() const { return callback; }
   std::string getTextureID() const { return id; }
 
 private:
@@ -55,6 +56,7 @@ public:
   virtual void clean();
 
   virtual void setRow(const int row) { currentRow = row; }
+  virtual int getCallbackID() { return callbackID; }
 
 protected:
   glm::vec2 position;
@@ -64,6 +66,7 @@ protected:
   int height;
   int currentRow;
   int currentFrame;
+  int callbackID;
   std::string id;
 
 private:
@@ -71,4 +74,4 @@ private:
   SDLSceneNode *parent;
 };
 
-#endif //__GameObject__
+#endif //__NodeGraph__

@@ -81,49 +81,40 @@ void GameStateMachine::clean() {
 //===================== MENU STATE =======================
 
 const std::string MenuState::menuID = "MENU";
+
 bool MenuState::onEnter() {
-  std::cout << "entering MenuState" << std::endl;
+  TheResourceManager::getInstance()->loadJson("resources/json/GameStates.json",
+                                              "MenuState", sceneNodes);
 
-  std::map<std::string, std::string> lImages{
-      {"resources/images/Buttons.gif", "MenuButtons"},
-      {"resources/images/BlueMoon.gif", "BlueMoon"}};
-  for (auto &i : lImages) {
-    TheResourceManager::getInstance()->loadTexture(
-        i.first, i.second, TheGame::getInstance()->getRenderer());
+  for (auto &i : sceneNodes) {
+    if (dynamic_cast<Button *>(i.get())) {
+      switch (i->getCallbackID()) {
+      case 1:
+        dynamic_cast<Button *>(i.get())->setCallback(buttonLocal);
+        break;
+      case 2:
+        dynamic_cast<Button *>(i.get())->setCallback(buttonOnline);
+        break;
+      case 3:
+        dynamic_cast<Button *>(i.get())->setCallback(buttonOptions);
+        break;
+      case 4:
+        dynamic_cast<Button *>(i.get())->setCallback(buttonExit);
+        break;
+      default:
+        break;
+      }
+    }
   }
-
-  std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(
-      std::make_shared<LoaderParams>(-200, -240, 768, 480, "BlueMoon")));
-  std::unique_ptr<Button> localButton(std::make_unique<Button>(
-      std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"),
-      buttonLocal));
-  std::unique_ptr<Button> onlineButton(std::make_unique<Button>(
-      std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"),
-      buttonOnline));
-  std::unique_ptr<Button> optionButton(std::make_unique<Button>(
-      std::make_shared<LoaderParams>(10, 90, 125, 40, "MenuButtons"),
-      buttonOptions));
-  std::unique_ptr<Button> exitButton(std::make_unique<Button>(
-      std::make_shared<LoaderParams>(10, 130, 125, 40, "MenuButtons"),
-      buttonExit));
-  onlineButton->setRow(2);
-  optionButton->setRow(3);
-  exitButton->setRow(4);
-  sceneNodes.push_back(std::move(background));
-  sceneNodes.push_back(std::move(localButton));
-  sceneNodes.push_back(std::move(onlineButton));
-  sceneNodes.push_back(std::move(optionButton));
-  sceneNodes.push_back(std::move(exitButton));
-
   return true;
 }
 
 void MenuState::update() {
-  /*for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
-      i != mSceneNodes.size(); i++)
-  {
-      mSceneNodes[i]->update();
-  }*/  //THE OLD WAY,  NOW WE DO IT LIKE THIS:
+  // for (std::vector<std::unique_ptr<SceneNode>>::size_type i = 0;
+  //    i != mSceneNodes.size(); i++)
+  //{
+  //    mSceneNodes[i]->update();
+  //}//  //THE OLD WAY,  NOW WE DO IT LIKE THIS:
   for (auto &i : sceneNodes)
     i->update();
 }
@@ -141,7 +132,6 @@ bool MenuState::onExit() {
   sceneNodes.clear();
   return true;
 }
-
 void MenuState::buttonLocal() {
   TheGame::getInstance()->getStateMachine()->setState(current_state::LOCAL);
 }
@@ -151,23 +141,10 @@ void MenuState::buttonExit() { TheGame::getInstance()->quit(); }
 //====================== LOCAL STATE =========================
 
 const std::string LocalState::localID = "LOCAL";
+
 bool LocalState::onEnter() {
-  std::cout << "entering LocalState" << std::endl;
-
-  std::map<std::string, std::string> lImages{
-      {"resources/images/ZeldaWS.gif", "Zelda"},
-      {"resources/images/DrWillysLab.gif", "WillysLab"}};
-  for (auto &i : lImages) {
-    TheResourceManager::getInstance()->loadTexture(
-        i.first, i.second, TheGame::getInstance()->getRenderer());
-  }
-
-  std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(
-      std::make_shared<LoaderParams>(-200, -240, 768, 480, "WillysLab")));
-  std::unique_ptr<Player> player(std::make_unique<Player>(
-      std::make_shared<LoaderParams>(100, 100, 75, 75, "Zelda")));
-  sceneNodes.push_back(std::move(background));
-  sceneNodes.push_back(std::move(player));
+  TheResourceManager::getInstance()->loadJson("resources/json/GameStates.json",
+                                              "LocalState", sceneNodes);
 
   return true;
 }
@@ -193,6 +170,7 @@ bool LocalState::onExit() {
   sceneNodes.clear();
   return true;
 }
+
 //====================== ONLINE STATE =========================
 
 const std::string OnlineState::onlineID = "ONLINE";
@@ -206,28 +184,22 @@ const std::string OptionsState::optionsID = "OPTIONS";
 const std::string PauseState::pauseID = "PAUSE";
 
 bool PauseState::onEnter() {
-  std::map<std::string, std::string> lImages{
-      {"resources/images/Buttons.gif", "MenuButtons"},
-      {"resources/images/Daily.gif", "Daily"}};
-  for (auto &i : lImages) {
-    TheResourceManager::getInstance()->loadTexture(
-        i.first, i.second, TheGame::getInstance()->getRenderer());
+  TheResourceManager::getInstance()->loadJson("resources/json/GameStates.json",
+                                              "PauseState", sceneNodes);
+  for (auto &i : sceneNodes) {
+    if (dynamic_cast<Button *>(i.get())) {
+      switch (i->getCallbackID()) {
+      case 1:
+        dynamic_cast<Button *>(i.get())->setCallback(buttonResume);
+        break;
+      case 2:
+        dynamic_cast<Button *>(i.get())->setCallback(buttonMenu);
+        break;
+      default:
+        break;
+      }
+    }
   }
-
-  std::unique_ptr<SDLSceneNode> background(std::make_unique<SDLSceneNode>(
-      std::make_shared<LoaderParams>(-200, -240, 768, 480, "Daily")));
-  std::unique_ptr<Button> resumeButton(std::make_unique<Button>(
-      std::make_shared<LoaderParams>(10, 10, 125, 40, "MenuButtons"),
-      buttonResume));
-  std::unique_ptr<Button> menuButton(std::make_unique<Button>(
-      std::make_shared<LoaderParams>(10, 50, 125, 40, "MenuButtons"),
-      buttonMenu));
-
-  menuButton->setRow(2);
-  sceneNodes.push_back(std::move(background));
-  sceneNodes.push_back(std::move(resumeButton));
-  sceneNodes.push_back(std::move(menuButton));
-
   std::cout << "Entering Pause State." << std::endl;
   return true;
 }
@@ -257,3 +229,4 @@ void PauseState::buttonResume() {
 void PauseState::buttonMenu() {
   TheGame::getInstance()->getStateMachine()->setState(current_state::MENU);
 }
+

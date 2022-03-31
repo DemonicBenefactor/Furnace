@@ -1,6 +1,6 @@
 
-
 #include "ResourceManager.hpp"
+#include "Game.hpp"
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "json.hpp"
@@ -46,22 +46,60 @@ void ResourceManager::drawTexture(std::string id, int x, int y, int width,
 void ResourceManager::clearTexture(std::string id) { mTextureMap.erase(id); }
 
 // JSON==========================================================================
-void ResourceManager::loadJson(const std::string fileName,
-                               const std::string stateID) {
+void ResourceManager::loadJson(
+    const std::string fileName, const std::string stateID,
+    std::vector<std::unique_ptr<SDLSceneNode>> &sceneNodes) {
   std::ifstream ifs(fileName);
   nlohmann::json jf = nlohmann::json::parse(ifs);
-  for (auto &state : jf.items()) {
+  for (auto &state : jf["GameStates"].items()) {
     if (state.key() == stateID) {
       for (auto &catagory : state.value().items()) {
         if (catagory.key() == "Textures") {
           std::cout << "TBD textures" << std::endl;
           for (auto &texture : catagory.value().items()) {
             std::cout << texture.key() << " : " << texture.value() << std::endl;
+            loadTexture(texture.value(), texture.key(),
+                        TheGame::getInstance()->getRenderer());
           }
         }
         if (catagory.key() == "Objects") {
           for (auto &object : catagory.value().items()) {
-            std::cout << "create some objects" << std::endl;
+            std::cout << object.value().at("type") << std::endl;
+
+            if (object.value().at("type") == "SDLSceneNode") {
+              std::unique_ptr<SDLSceneNode> node(
+                  std::make_unique<SDLSceneNode>());
+              node->load(std::make_shared<LoaderParams>(
+                  object.value().at("x"), object.value().at("y"),
+                  object.value().at("width"), object.value().at("height"),
+                  object.value().at("textureID")));
+              node->setRow(object.value().at("row"));
+              sceneNodes.push_back(std::move(node));
+            }
+
+            if (object.value().at("type") == "Button") {
+              std::unique_ptr<Button> node(
+                  std::make_unique<Button>());
+              node->load(std::make_shared<LoaderParams>(
+                  object.value().at("x"), object.value().at("y"),
+                  object.value().at("width"), object.value().at("height"),
+                  object.value().at("textureID"),
+                  object.value().at("callbackID")));
+              node->setRow(object.value().at("row"));
+              sceneNodes.push_back(std::move(node));
+            }
+            
+            if (object.value().at("type") == "Player") {
+              std::unique_ptr<Player> node(
+                  std::make_unique<Player>());
+              node->load(std::make_shared<LoaderParams>(
+                  object.value().at("x"), object.value().at("y"),
+                  object.value().at("width"), object.value().at("height"),
+                  object.value().at("textureID")
+                  ));
+              node->setRow(object.value().at("row"));
+              sceneNodes.push_back(std::move(node));
+            }
           }
         }
       }

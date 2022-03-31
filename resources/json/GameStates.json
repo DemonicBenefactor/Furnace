@@ -11,6 +11,7 @@
 				"y" : -240,
 				"width" : 768,
 				"height" : 480,
+                "row" : 1,
 				"textureID" : "BlueMoon"
 			},
 			"localButton" : {
@@ -19,7 +20,9 @@
 				"y" : 10,
 				"width" : 125,
 				"height" : 40,
-				"textureID" : "MenuButtons"
+                "row" : 1,
+				"textureID" : "MenuButtons",
+                "callbackID" : 1
             },
             "onlineButton" : {
 				"type" : "Button",
@@ -27,7 +30,9 @@
 				"y" : 50,
 				"width" : 125,
 				"height" : 40,
-				"textureID" : "MenuButtons"
+                "row" : 2,
+				"textureID" : "MenuButtons",
+                "callbackID" : 2
             },
             "optionButton" : {
 				"type" : "Button",
@@ -35,15 +40,19 @@
 				"y" : 90,
 				"width" : 125,
 				"height" : 40,
-				"textureID" : "MenuButtons"
+                "row" : 3,
+				"textureID" : "MenuButtons",
+                "callbackID" : 3
             },
             "exitButton" : {
 				"type" : "Button",
                 "x" : 10,
-				"y" : 1300,
+				"y" : 130,
 				"width" : 125,
 				"height" : 40,
-				"textureID" : "MenuButtons"
+                "row" : 4,
+				"textureID" : "MenuButtons",
+                "callbackID" : 4
             }
 		}
     },
@@ -59,6 +68,7 @@
 				"y" : -240,
 				"width" : 768,
 				"height" : 480,
+                "row" : 1,
 				"textureID" : "WillysLab"
 			},
 			"player" : {
@@ -67,6 +77,7 @@
 				"y" : 100,
 				"width" : 75,
 				"height" : 75,
+                "row" : 1,
 				"textureID" : "Zelda"
             }
 		}
@@ -87,6 +98,7 @@
 				"y" : -240,
 				"width" : 768,
 				"height" : 480,
+                "row" : 1,
 				"textureID" : "Daily"
 			},
 			"resumeButton" : {
@@ -95,7 +107,9 @@
 				"y" : 10,
 				"width" : 125,
 				"height" : 40,
-				"textureID" : "MenuButtons"
+                "row" : 1,
+				"textureID" : "MenuButtons",
+                "callbackID" : 1
             },
             "menuButton" : {
 				"type" : "Button",
@@ -103,7 +117,9 @@
 				"y" : 50,
 				"width" : 125,
 				"height" : 40,
-				"textureID" : "MenuButtons"
+                "row" : 2,
+				"textureID" : "MenuButtons",
+                "callbackID" : 2
             }
 		}
     }    

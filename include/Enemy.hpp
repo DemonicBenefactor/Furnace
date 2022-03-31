@@ -1,25 +1,26 @@
 #ifndef __Enemy__
 #define __Enemy__
 
-#include "NodeGraph.hpp"
 #include "NodeFactory.hpp"
+#include "NodeGraph.hpp"
 
-
-class Enemy : public SDLSceneNode
-{
+class Enemy : public SDLSceneNode {
 public:
+  Enemy() {}
 
-	Enemy() {}
-
-	virtual void load(const std::shared_ptr<LoaderParams> params) { SDLSceneNode::load(params) }
-    virtual void draw();
-	virtual void update();
-	virtual void clean();	
+  virtual void load(const std::shared_ptr<LoaderParams> params) {
+    SDLSceneNode::load(params);
+  }
+  virtual void draw();
+  virtual void update();
+  virtual void clean();
 };
 
-class EnemyCreator : public NodeCreator
-{
-    nodePtr createSceneNode() const { return std::make_shared<Enemy> } 
-}
+class EnemyCreator : public NodeCreator {
+  nodePtr createSceneNode() const {
+      //std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>();
+      return std::make_shared<Enemy>();
+  }
+};
 
 #endif //__Enemy__

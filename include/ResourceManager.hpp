@@ -6,6 +6,8 @@
 // #define STB_IMAGE_WRITE_IMPLEMENTATION
 // #define TINYGLTF_NOEXCEPTION // optional. disable exception handling.
 #include "NodeGraph.hpp"
+#include "Gui.hpp"
+#include "Player.hpp"
 #include "tiny_gltf.h" //includes json.hpp
 #include <fstream>
 
@@ -35,7 +37,8 @@ public:
 
   // Json  ==============================================
 
-  void loadJson(const std::string fileName, const std::string stateID);
+  void loadJson(const std::string fileName, const std::string stateID,
+          std::vector<std::unique_ptr<SDLSceneNode>> &sceneNodes);
 
   // GLTF ===============================================
 
