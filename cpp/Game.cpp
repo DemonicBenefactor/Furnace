@@ -162,6 +162,7 @@ int main(int argc, char *argv[])
             TheGame::getInstance()->handleEvents();
             TheGame::getInstance()->update();
             TheGame::getInstance()->render();
+            frameTime = SDL_GetTicks() - frameStart;
             if(frameTime < DELAY_TIME)
             {
                 SDL_Delay(static_cast<int>(DELAY_TIME - frameTime));
