@@ -8,6 +8,7 @@ void Level::update() {
 
 void Level::render() {
   for (auto &layer : layers) {
-    lbayer->render();
+    layer->render();
   }
 }
+
