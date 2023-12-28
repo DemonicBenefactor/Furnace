@@ -2,26 +2,29 @@
 #define __Node__
 
 #include <array>
+#include <memory>
 
 using namespace std;
 
 class Node {
 public:
   Node() : X(0), Y(0), Z(0) {}
-  Node(double x, double y, double z ) : X(x), Y(y), Z(z) {}
-  Node(&Node) {}
-  
+  Node(double ix, double iy, double iz) : X(ix), Y(iy), Z(iz) {}
+  Node(const Node&) {}
+  ~Node() {}
 
-  ~Omni() {}
+  Node& operator=(const Node&) {return *this;}
 
-  x(double x) { X = x; }
-  y(double y) { Y = y; }
-  z(double z) { Z = z; }
-  Set() {}
+//  void x(double x) { X = x; }
+//  void y(double y) { Y = y; }
+//  void z(double z) { Z = z; }
+//  void Set() {}
 
-  x() { return X; }
-  y() { return Y; }
-  z() { return Z; }
+//  double x() { return X; }
+//  double y() { return Y; }
+//  double z() { return Z; }
+
+unique_ptr<double> x;
 
 private:
   double X, Y, Z;
