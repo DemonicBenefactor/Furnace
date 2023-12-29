@@ -1,33 +1,46 @@
 #ifndef __Node__
 #define __Node__
 
-#include <array>
+#include <string>
 #include <memory>
 
 using namespace std;
 
+/*------------BASE CLASS-----------*/
+
 class Node {
 public:
-  Node() : X(0), Y(0), Z(0) {}
-  Node(double ix, double iy, double iz) : X(ix), Y(iy), Z(iz) {}
-  Node(const Node&) {}
-  ~Node() {}
+  virtual void update() = 0;
 
-  Node& operator=(const Node&) {return *this;}
+protected:
+  virtual ~Node() {}
+};
 
-//  void x(double x) { X = x; }
-//  void y(double y) { Y = y; }
-//  void z(double z) { Z = z; }
-//  void Set() {}
+/*-----------DERIVED CLASS----------*/
 
-//  double x() { return X; }
-//  double y() { return Y; }
-//  double z() { return Z; }
+class Node2D : Node {
+public:
+  Node2D() : x(0), y(0) {}
+  Node2D(double ix, double iy) : x(ix), y(iy) {}
+  Node2D(const Node2D &) {}
+  ~Node2D() {}
 
-unique_ptr<double> x;
+  Node2D &operator=(const Node2D &) { return *this; }
+
+  virtual void update() {}
+
+  double x, y;
 
 private:
-  double X, Y, Z;
+};
+
+/*-----------DERIVED CLASS----------*/
+
+class Node3D : Node2D {
+public:
+  void update();
+
+private:
 };
 
 #endif //__Node__

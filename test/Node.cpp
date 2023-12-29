@@ -1,7 +1,15 @@
 #include "Node.hpp"
+#include <iostream>
 
-int main (int argc, char** argv) 
-{
+using namespace std;
 
-return 0;
+int main(int argc, char **argv) {
+
+Node2D n1;
+Node2D n2(5.3, 3.7);
+
+
+
+
+  return 0;
 }
