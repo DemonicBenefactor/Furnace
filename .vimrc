@@ -5,6 +5,10 @@ runtime! debian.vim
 syntax on
 set background=dark
 
+:packadd project 
+:packadd termdebug
+:packadd omnicppcomplete
+let OmniCpp_MayCompleteScope = 1
 
 filetype plugin indent on
 set tabstop=4
@@ -44,5 +48,14 @@ if has ("cscope")
     set csverb
 endif
 
-map <C-K> :py3file /usr/share/clang/clang-format-7/clang-format.py<cr>
-imap <C-K> <c-o>:py3file /usr/share/clang/clang-format-7/clang-format.py<cr>
+:source $VIMRUNTIME/menu.vim
+:set wildmenu
+:set cpo-=<
+:set wcm=<C-Z>
+:map <F2> :emenu <C-Z>
+
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <C-S> :wa <cr>
+map <C-K> :py3file /usr/share/clang/clang-format-14/clang-format.py<cr>
+imap <C-K> <c-o> :py3file /usr/share/clang/clang-format-14/clang-format.py<cr>
+

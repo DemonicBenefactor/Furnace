@@ -25,7 +25,8 @@ public:
   Node2D() : mX(0), mY(0), x(mX), y(mY), xy({mX, mY}), yx({mY, mX}) {}
   Node2D(double ix, double iy)
       : mX(ix), mY(iy), x(mX), y(mY), xy({mX, mY}), yx({mY, mX}) {}
-  // Node2D(const Node2D &) {}
+  Node2D(const Node2D &m)
+      : mX(m.x), mY(m.y), x(mX), y(mY), xy({mX, mY}), yx({mY, mX}) {}
   ~Node2D() {}
 
   Node2D &operator=(const Node2D &) { return *this; }
