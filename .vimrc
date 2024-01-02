@@ -60,30 +60,30 @@ if has ("cscope")
 	nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 	nmap <C-\>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 
-    nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
-	nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-	nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>a :scs find a <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space><C-Space>s
+    nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>a :scs find a <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-Space>s
 		\:vert scs find s <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space><C-Space>g
+	nmap <C-@><C-@>g
 		\:vert scs find g <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space><C-Space>c
+	nmap <C-@><C-@>c
 		\:vert scs find c <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space><C-Space>t
+	nmap <C-@><C-@>t
 		\:vert scs find t <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space><C-Space>e
+	nmap <C-@><C-@>e
 		\:vert scs find e <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space><C-Space>i
+	nmap <C-@><C-@>i
 		\:vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-	nmap <C-Space><C-Space>d
+	nmap <C-@><C-@>d
 		\:vert scs find d <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space><C-Space>a
+	nmap <C-@><C-@>a
 		\:vert scs find a <C-R>=expand("<cword>")<CR><CR>
 endif
 
