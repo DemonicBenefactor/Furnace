@@ -17,19 +17,19 @@ struct Tileset {
   int width;
   int height;
   int numColums;
-  strinng name;
+  string name;
 };
 
-Class Layer {
-Public:
+class Layer {
+public:
   virtual void update() = 0;
   virtual void render() = 0;
-Private:
+private:
   virtual ~Layer() {}
 };
 
-Class Level {
-Public:
+class Level {
+public:
 
   Level();
   ~Level() {}
@@ -37,12 +37,12 @@ Public:
   void update();
   void render();
 
-  shared_ptr<vector<Tileset>> getTilesets() { return tilesets; }
-  shared_ptr<vector<unique_ptr<Layer>>> getLayers() { return layers; }
+//  shared_ptr<vector<Tileset>> getTilesets() { return tilesets; }
+//  shared_ptr<vector<unique_ptr<Layer>>> getLayers() { return layers; }
 
-Private:
-  shared_ptr<vector<Tileset>> tilesets;
-  shared_ptr<vector<unique_ptr<Layer>>> layers;
+private:
+//  shared_ptr<vector<Tileset>> tilesets;
+//  shared_ptr<vector<unique_ptr<Layer>>> layers;
 };
 
 #endif // __Level__
