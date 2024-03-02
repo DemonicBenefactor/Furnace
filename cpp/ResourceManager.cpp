@@ -5,16 +5,6 @@
 #include "SDL2/SDL_image.h"
 #include "json.hpp"
 
-///////////////////////Singleton Setup Start
-ResourceManager *ResourceManager::instance = 0;
-ResourceManager *ResourceManager::getInstance() {
-  if (instance == 0) {
-    instance = new ResourceManager();
-  }
-  return instance;
-}
-/////////////////////////Singleton Setup End
-
 bool ResourceManager::loadTexture(std::string fileName, std::string id,
                                   SDL_Renderer *pRenderer) {
   SDL_Texture *pTexture = IMG_LoadTexture(pRenderer, fileName.c_str());
@@ -59,7 +49,7 @@ void ResourceManager::loadJson(
           for (auto &texture : catagory.value().items()) {
             std::cout << texture.key() << " : " << texture.value() << std::endl;
             loadTexture(texture.value(), texture.key(),
-                        TheGame::getInstance()->getRenderer());
+                        Game::Get().getRenderer());
           }
         }
         if (catagory.key() == "Objects") {

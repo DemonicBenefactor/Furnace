@@ -12,14 +12,17 @@
 #include <fstream>
 
 class ResourceManager {
-private:
-  // singleton
-  ResourceManager() {}
-  ~ResourceManager() {}
-  static ResourceManager *instance;
 
 public:
-  static ResourceManager *getInstance();
+  ResourceManager(const ResourceManager&) = delete;
+  ResourceManager(ResourceManager&&) = delete;
+  ResourceManager& operator=(const ResourceManager &) = delete;
+  ResourceManager& operator=(ResourceManager&&) = delete;
+    
+    static ResourceManager &Get() {
+    static ResourceManager singleton;
+    return singleton;
+  }
 
   // SDL Texture ========================================
   bool loadTexture(const std::string fileName, const std::string id,
@@ -51,10 +54,9 @@ public:
   void clean();
 
 private:
+  ResourceManager() {} //singleton
   std::map<std::string, SDL_Texture *> mTextureMap;
   std::map<std::string, tinygltf::Model> mGLTF;
 };
-
-typedef ResourceManager TheResourceManager;
 
 #endif // __ResourceManager__

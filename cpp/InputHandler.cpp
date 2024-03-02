@@ -2,16 +2,6 @@
 #include "Game.hpp"
 #include <iostream>
 
-//===========================================
-InputHandler *InputHandler::instance = 0;
-InputHandler *InputHandler::getInstance() {
-  if (instance == 0) {
-    instance = new InputHandler();
-  }
-  return instance;
-}
-//===========================================
-
 InputHandler::InputHandler()
     : gamepads(0), keystates(nullptr), mousePosition{0, 0} {
   for (int i = 0; i < 3; i++) {
@@ -54,7 +44,7 @@ void InputHandler::update() {
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
     case SDL_QUIT:
-      TheGame::getInstance()->quit();
+      Game::Get().quit();
       break;
     case SDL_JOYAXISMOTION:
       break;

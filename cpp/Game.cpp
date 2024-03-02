@@ -5,17 +5,7 @@
 #include "ResourceManager.hpp"
 #include "InputHandler.hpp"
 
-///////////////////////Singleton Setup Start
-Game *Game::instance = 0;
-Game *Game::getInstance()
-{
-    if (instance == 0)
-    {
-        instance = new Game();
-    }
-    return instance;
-}
-/////////////////////////Singleton Setup End
+#define __arm__
 
 bool Game::init()
 {    
@@ -119,7 +109,7 @@ bool Game::init()
 
 void Game::handleEvents()
 {
-    TheInputHandler::getInstance()->update();    
+    InputHandler::Get().update();    
 }
 
 
@@ -140,7 +130,7 @@ void Game::clean()
 {
     std::cout << "Cleaning Up" << std::endl;
     gameStateMachine->clean();
-    TheResourceManager::getInstance()->clean();
+    ResourceManager::Get().clean();
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
@@ -151,17 +141,17 @@ void Game::clean()
 int main(int argc, char *argv[])
 {
     std::cout << "Initializing Furnace..." << std::endl;
-    if (TheGame::getInstance()->init())
+    if (Game::Get().init())
     {
         std::cout << "Initialization success." << std::endl;
         Uint32 frameStart, frameTime = 0;
         
-        while (TheGame::getInstance()->getRunning())
+        while (Game::Get().getRunning())
         {
             frameStart = SDL_GetTicks();
-            TheGame::getInstance()->handleEvents();
-            TheGame::getInstance()->update();
-            TheGame::getInstance()->render();
+            Game::Get().handleEvents();
+            Game::Get().update();
+            Game::Get().render();
             frameTime = SDL_GetTicks() - frameStart;
             if(frameTime < DELAY_TIME)
             {
@@ -177,6 +167,6 @@ int main(int argc, char *argv[])
     }
 
     std::cout << "Closing Furnace.." <<  std::endl;
-    TheGame::getInstance()->clean();
+    Game::Get().clean();
     return 0;   
 }

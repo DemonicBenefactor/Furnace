@@ -23,7 +23,7 @@ void Player::update() {
           {position.y = 400.0;}
   */
 
-  glm::vec2 vec = TheInputHandler::getInstance()->getMousePosition();
+  glm::vec2 vec = InputHandler::Get().getMousePosition();
   velocity = (vec - position) / (float)100;
   SDLSceneNode::update();
 }

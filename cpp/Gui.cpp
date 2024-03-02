@@ -10,16 +10,16 @@
 void Button::draw() { SDLSceneNode::draw(); }
 
 void Button::update() {
-  glm::vec2 pos = TheInputHandler::getInstance()->getMousePosition();
+  glm::vec2 pos = InputHandler::Get().getMousePosition();
 
   if (pos.x < position.x + width && pos.x > position.x &&
       pos.y < position.y + height && pos.y > position.y) {
-    if (TheInputHandler::getInstance()->getMouseButton(mouse_buttons::LEFT) &&
+    if (InputHandler::Get().getMouseButton(mouse_buttons::LEFT) &&
         released) {
       currentFrame = CLICKED;
       callback();
       released = false;
-    } else if (!TheInputHandler::getInstance()->getMouseButton(
+    } else if (!InputHandler::Get().getMouseButton(
                    mouse_buttons::LEFT)) {
       released = true;
       currentFrame = MOUSE_OVER;

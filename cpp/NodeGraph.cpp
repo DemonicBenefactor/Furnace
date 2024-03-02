@@ -15,9 +15,9 @@ void SDLSceneNode::load(const std::shared_ptr<LoaderParams> params) {
 }
 
 void SDLSceneNode::draw() {
-  TheResourceManager::getInstance()->drawTexture(
+  ResourceManager::Get().drawTexture(
       id, static_cast<int>(position.x), static_cast<int>(position.y), width,
-      height, currentRow, currentFrame, TheGame::getInstance()->getRenderer());
+      height, currentRow, currentFrame, Game::Get().getRenderer());
 }
 
 void SDLSceneNode::update() {
@@ -26,5 +26,5 @@ void SDLSceneNode::update() {
 }
 
 void SDLSceneNode::clean() {
-  TheResourceManager::getInstance()->clearTexture(id);
+  ResourceManager::Get().clearTexture(id);
 }

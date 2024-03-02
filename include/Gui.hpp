@@ -1,7 +1,6 @@
 #ifndef __Gui__
 #define __Gui__
 
-#include "NodeFactory.hpp"
 #include "NodeGraph.hpp"
 
 class Button : public SDLSceneNode {

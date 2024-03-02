@@ -31,7 +31,6 @@ FurnaceXX=~/Source/Furnace/ CD=. {
    Gui.hpp
    Level.hpp
    NodeGraph.hpp
-   NodeFactory.hpp
    GameStateMachine.hpp
    InputHandler.hpp
    Player.hpp
@@ -43,7 +42,6 @@ FurnaceXX=~/Source/Furnace/ CD=. {
   Gui.cpp
   Level.cpp
   NodeGraph.cpp
-  NodeFactory.cpp
   GameStateMachine.cpp
   InputHandler.cpp
   Player.cpp

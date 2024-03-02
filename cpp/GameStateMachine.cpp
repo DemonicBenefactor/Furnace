@@ -36,27 +36,27 @@ void GameStateMachine::update() {
   if (changeState) {
     switch (currentState) {
     case current_state::MENU:
-      TheGame::getInstance()->getStateMachine()->change(
+      Game::Get().getStateMachine()->change(
           std::make_shared<MenuState>());
       changeState = false;
       break;
     case current_state::LOCAL:
-      TheGame::getInstance()->getStateMachine()->change(
+      Game::Get().getStateMachine()->change(
           std::make_shared<LocalState>());
       changeState = false;
       break;
     case current_state::ONLINE:
-      TheGame::getInstance()->getStateMachine()->change(
+      Game::Get().getStateMachine()->change(
           std::make_shared<OnlineState>());
       changeState = false;
       break;
     case current_state::OPTIONS:
-      TheGame::getInstance()->getStateMachine()->change(
+      Game::Get().getStateMachine()->change(
           std::make_shared<OptionsState>());
       changeState = false;
       break;
     case current_state::PAUSE:
-      TheGame::getInstance()->getStateMachine()->change(
+      Game::Get().getStateMachine()->change(
           std::make_shared<PauseState>());
       changeState = false;
       break;
@@ -83,7 +83,7 @@ void GameStateMachine::clean() {
 const std::string MenuState::menuID = "MENU";
 
 bool MenuState::onEnter() {
-  TheResourceManager::getInstance()->loadJson("resources/json/GameStates.json",
+  ResourceManager::Get().loadJson("resources/json/GameStates.json",
                                               "MenuState", sceneNodes);
 
   for (auto &i : sceneNodes) {
@@ -133,25 +133,25 @@ bool MenuState::onExit() {
   return true;
 }
 void MenuState::buttonLocal() {
-  TheGame::getInstance()->getStateMachine()->setState(current_state::LOCAL);
+  Game::Get().getStateMachine()->setState(current_state::LOCAL);
 }
 
-void MenuState::buttonExit() { TheGame::getInstance()->quit(); }
+void MenuState::buttonExit() { Game::Get().quit(); }
 
 //====================== LOCAL STATE =========================
 
 const std::string LocalState::localID = "LOCAL";
 
 bool LocalState::onEnter() {
-  TheResourceManager::getInstance()->loadJson("resources/json/GameStates.json",
+  ResourceManager::Get().loadJson("resources/json/GameStates.json",
                                               "LocalState", sceneNodes);
 
   return true;
 }
 
 void LocalState::update() {
-  if (TheInputHandler::getInstance()->getKey(SDL_SCANCODE_ESCAPE)) {
-    TheGame::getInstance()->getStateMachine()->push(
+  if (InputHandler::Get().getKey(SDL_SCANCODE_ESCAPE)) {
+    Game::Get().getStateMachine()->push(
         std::make_shared<PauseState>());
   }
   for (auto &i : sceneNodes)
@@ -184,7 +184,7 @@ const std::string OptionsState::optionsID = "OPTIONS";
 const std::string PauseState::pauseID = "PAUSE";
 
 bool PauseState::onEnter() {
-  TheResourceManager::getInstance()->loadJson("resources/json/GameStates.json",
+  ResourceManager::Get().loadJson("resources/json/GameStates.json",
                                               "PauseState", sceneNodes);
   for (auto &i : sceneNodes) {
     if (dynamic_cast<Button *>(i.get())) {
@@ -223,10 +223,10 @@ bool PauseState::onExit() {
 }
 
 void PauseState::buttonResume() {
-  TheGame::getInstance()->getStateMachine()->pop();
+  Game::Get().getStateMachine()->pop();
 }
 
 void PauseState::buttonMenu() {
-  TheGame::getInstance()->getStateMachine()->setState(current_state::MENU);
+  Game::Get().getStateMachine()->setState(current_state::MENU);
 }
 

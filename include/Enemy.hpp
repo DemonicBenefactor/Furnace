@@ -1,7 +1,6 @@
 #ifndef __Enemy__
 #define __Enemy__
 
-#include "NodeFactory.hpp"
 #include "NodeGraph.hpp"
 
 class Enemy : public SDLSceneNode {

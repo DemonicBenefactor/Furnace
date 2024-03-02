@@ -1,7 +1,6 @@
 #ifndef __Player__
 #define __Player__
 
-#include "NodeFactory.hpp"
 #include "NodeGraph.hpp"
 
 class Player : public SDLSceneNode {

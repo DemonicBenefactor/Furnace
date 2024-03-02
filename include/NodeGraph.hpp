@@ -74,4 +74,11 @@ private:
   SDLSceneNode *parent;
 };
 
+class NodeCreator {
+public:
+  typedef std::shared_ptr<SceneNode> nodePtr;
+  virtual nodePtr createSceneNode() const = 0;
+  virtual ~NodeCreator() {}
+};
+
 #endif //__NodeGraph__

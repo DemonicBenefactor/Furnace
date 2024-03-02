@@ -1,10 +1,10 @@
 #ifndef __Game__
 #define __Game__
 
-#include <vector>
-#include <memory>
-#include "NodeGraph.hpp"
 #include "GameStateMachine.hpp"
+#include "NodeGraph.hpp"
+#include <memory>
+#include <vector>
 #ifdef __arm__
 #include <SDL2/SDL_opengles2.h>
 #else
@@ -20,41 +20,39 @@ const int WIN_W = 640;
 const int WIN_H = 480;
 const bool FULLSCREEN = false;
 
-
-class Game
-{
-private:
-    //singleton
-    Game() {}
-    ~Game() {}
-    static Game *instance;
-
+class Game {
 public:
-    static Game *getInstance();
-    bool init();
-    void handleEvents();
-    void update();
-    void render();
-    void clean();
-    void quit() {running = false;}
-    
-    //accessor functions
-    bool getRunning() const { return running; }
-    SDL_Renderer *getRenderer() const { return renderer; }    
-    GameStateMachine *getStateMachine() { return gameStateMachine; }
-    
+  Game(const Game &) = delete;
+  Game(Game &&) = delete;
+  Game &operator=(const Game &) = delete;
+  Game &operator=(Game &&) = delete;
+
+  static Game &Get() {
+    static Game singleton;
+    return singleton;
+  }
+  bool init();
+  void handleEvents();
+  void update();
+  void render();
+  void clean();
+  void quit() { running = false; }
+
+  // accessor functions
+  bool getRunning() const { return running; }
+  SDL_Renderer *getRenderer() const { return renderer; }
+  GameStateMachine *getStateMachine() { return gameStateMachine; }
 
 private:
-    
-    const GLubyte* GLversion;
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    SDL_GLContext GLContext;
-    bool hasOpenGL;
-    bool running;
-    GameStateMachine *gameStateMachine;
-};
+  Game() {} // singleton
 
-typedef Game TheGame;
+  const GLubyte *GLversion;
+  SDL_Window *window;
+  SDL_Renderer *renderer;
+  SDL_GLContext GLContext;
+  bool hasOpenGL;
+  bool running;
+  GameStateMachine *gameStateMachine;
+};
 
 #endif // __Game__
