@@ -2,12 +2,12 @@
 #include "InputHandler.hpp"
 
 // Button::Button(const std::shared_ptr<LoaderParams> pParams, void
-// (*Callback)()) : 	SDLSceneNode(pParams), callback(Callback), released(false)
+// (*Callback)()) : 	Node2D(pParams), callback(Callback), released(false)
 //{
 //	currentFrame = MOUSE_OUT; // start at frame 0
 //}
 
-void Button::draw() { SDLSceneNode::draw(); }
+void Button::draw() { Node2D::draw(); }
 
 void Button::update() {
   glm::vec2 pos = InputHandler::Get().getMousePosition();
@@ -27,7 +27,7 @@ void Button::update() {
   } else {
     currentFrame = MOUSE_OUT;
   }
-  SDLSceneNode::update();
+  Node2D::update();
 }
 
-void Button::clean() { SDLSceneNode::clean(); }
+void Button::clean() { Node2D::clean(); }

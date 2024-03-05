@@ -63,7 +63,7 @@ class MenuState : public GameState
 		static void buttonExit();
 
 		static const std::string menuID;
-		std::vector<std::unique_ptr<SDLSceneNode>> sceneNodes;
+		std::vector<std::unique_ptr<Node2D>> sceneNodes;
 };
 //LOCAL STATE==============================================================
 class LocalState : public GameState
@@ -76,7 +76,7 @@ class LocalState : public GameState
 		virtual std::string getStateID() const {return localID;}
 	private:
 		static const std::string localID;
-		std::vector<std::unique_ptr<SDLSceneNode>> sceneNodes;
+		std::vector<std::unique_ptr<Node2D>> sceneNodes;
 };
 //ONLINE STATE==============================================================
 class OnlineState : public GameState
@@ -89,7 +89,7 @@ public:
 	virtual std::string getStateID() const { return onlineID; }
 private:
 	static const std::string onlineID;
-	std::vector<std::unique_ptr<SDLSceneNode>> sceneNodes;
+	std::vector<std::unique_ptr<Node2D>> sceneNodes;
 };
 //OPTIONS STATE=============================================================
 class OptionsState : public GameState
@@ -102,7 +102,7 @@ public:
 	virtual std::string getStateID() const { return optionsID; }
 private:
 	static const std::string optionsID;
-	std::vector<std::unique_ptr<SDLSceneNode>> sceneNodes;
+	std::vector<std::unique_ptr<Node2D>> sceneNodes;
 };
 //PAUSE STATE================================================================
 class PauseState : public GameState
@@ -119,7 +119,7 @@ private:
 
 	
 	static const std::string pauseID;
-	std::vector<std::unique_ptr<SDLSceneNode>> sceneNodes;
+	std::vector<std::unique_ptr<Node2D>> sceneNodes;
 };
 
 #endif //__GameStateMachine__

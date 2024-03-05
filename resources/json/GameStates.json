@@ -6,7 +6,7 @@
 		},
 		"Objects" : {
 			"background" : {
-				"type" : "SDLSceneNode",
+				"type" : "Node2D",
                 "x" : -200,
 				"y" : -240,
 				"width" : 768,
@@ -63,7 +63,7 @@
 		},
 		"Objects" : {
 			"background" : {
-				"type" : "SDLSceneNode",
+				"type" : "Node2D",
                 "x" : -200,
 				"y" : -240,
 				"width" : 768,
@@ -93,7 +93,7 @@
 		},
 		"Objects" : {
 			"background" : {
-				"type" : "SDLSceneNode",
+				"type" : "Node2D",
                 "x" : -200,
 				"y" : -240,
 				"width" : 768,

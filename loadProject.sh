@@ -1,3 +1,3 @@
-!#/bin/sh
+#!/bin/sh
 
 vim -c "Project .vimprojects"

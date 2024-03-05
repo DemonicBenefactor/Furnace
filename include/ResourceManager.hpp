@@ -41,7 +41,7 @@ public:
   // Json  ==============================================
 
   void loadJson(const std::string fileName, const std::string stateID,
-          std::vector<std::unique_ptr<SDLSceneNode>> &sceneNodes);
+          std::vector<std::unique_ptr<Node2D>> &sceneNodes);
 
   // GLTF ===============================================
 

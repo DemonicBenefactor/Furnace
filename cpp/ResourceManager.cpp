@@ -38,7 +38,7 @@ void ResourceManager::clearTexture(std::string id) { mTextureMap.erase(id); }
 // JSON==========================================================================
 void ResourceManager::loadJson(
     const std::string fileName, const std::string stateID,
-    std::vector<std::unique_ptr<SDLSceneNode>> &sceneNodes) {
+    std::vector<std::unique_ptr<Node2D>> &sceneNodes) {
   std::ifstream ifs(fileName);
   nlohmann::json jf = nlohmann::json::parse(ifs);
   for (auto &state : jf["GameStates"].items()) {
@@ -56,9 +56,9 @@ void ResourceManager::loadJson(
           for (auto &object : catagory.value().items()) {
             std::cout << object.value().at("type") << std::endl;
 
-            if (object.value().at("type") == "SDLSceneNode") {
-              std::unique_ptr<SDLSceneNode> node(
-                  std::make_unique<SDLSceneNode>());
+            if (object.value().at("type") == "Node2D") {
+              std::unique_ptr<Node2D> node(
+                  std::make_unique<Node2D>());
               node->load(std::make_shared<LoaderParams>(
                   object.value().at("x"), object.value().at("y"),
                   object.value().at("width"), object.value().at("height"),

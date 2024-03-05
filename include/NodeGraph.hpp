@@ -8,22 +8,11 @@
 #include <memory>
 #include <vector>
 
-class LoaderParams {
-public:
+struct LoaderParams {
   LoaderParams(int X, int Y, int W, int H, std::string ID, int callbackID = 0,
                int frameNum = 0, int frameSpeed = 0)
       : x(X), y(Y), width(W), height(H), id(ID), frames(frameNum),
         speed(frameSpeed), callback(callbackID) {}
-
-  // accessor functions
-  int getX() const { return x; }
-  int getY() const { return y; }
-  int getWidth() const { return width; }
-  int getHeight() const { return height; }
-  int getCallbackID() const { return callback; }
-  std::string getTextureID() const { return id; }
-
-private:
   int x;
   int y;
   int width;
@@ -34,7 +23,7 @@ private:
   int callback;
 };
 
-class SceneNode {
+class Node {
 public:
   virtual void load(const std::shared_ptr<LoaderParams> params) = 0;
   virtual void draw() = 0;
@@ -42,14 +31,14 @@ public:
   virtual void clean() = 0;
 
 protected:
-  SceneNode() {}
-  virtual ~SceneNode() {}
+  Node() {}
+  virtual ~Node() {}
 };
 
-class SDLSceneNode : public SceneNode {
+class Node2D : public Node {
 public:
-  typedef std::unique_ptr<SDLSceneNode> Ptr;
-  SDLSceneNode() {}
+  typedef std::unique_ptr<Node2D> Ptr;
+  Node2D() {}
   virtual void load(const std::shared_ptr<LoaderParams> params);
   virtual void draw();
   virtual void update();
@@ -71,13 +60,13 @@ protected:
 
 private:
   std::vector<Ptr> children;
-  SDLSceneNode *parent;
+  Node2D *parent;
 };
 
 class NodeCreator {
 public:
-  typedef std::shared_ptr<SceneNode> nodePtr;
-  virtual nodePtr createSceneNode() const = 0;
+  typedef std::shared_ptr<Node> nodePtr;
+  virtual nodePtr createNode() const = 0;
   virtual ~NodeCreator() {}
 };
 

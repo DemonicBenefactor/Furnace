@@ -5,8 +5,6 @@
 #include "ResourceManager.hpp"
 #include "InputHandler.hpp"
 
-#define __arm__
-
 bool Game::init()
 {    
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0)

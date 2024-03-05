@@ -1,7 +1,7 @@
 #include "Player.hpp"
 #include "InputHandler.hpp"
 
-void Player::draw() { SDLSceneNode::draw(); }
+void Player::draw() { Node2D::draw(); }
 
 void Player::update() {
   /*
@@ -25,7 +25,7 @@ void Player::update() {
 
   glm::vec2 vec = InputHandler::Get().getMousePosition();
   velocity = (vec - position) / (float)100;
-  SDLSceneNode::update();
+  Node2D::update();
 }
 
 void Player::clean() {}

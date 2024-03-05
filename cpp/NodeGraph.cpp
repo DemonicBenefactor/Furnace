@@ -2,29 +2,29 @@
 #include "Game.hpp"
 #include "ResourceManager.hpp"
 
-void SDLSceneNode::load(const std::shared_ptr<LoaderParams> params) {
-  position = {params->getX(), params->getY()};
+void Node2D::load(const std::shared_ptr<LoaderParams> params) {
+  position = {params->x, params->y};
   velocity = {0, 0};
   acceleration = {0, 0};
-  width = params->getWidth();
-  height = params->getHeight();
-  id = params->getTextureID();
-  callbackID = params->getCallbackID();
+  width = params->width;
+  height = params->height;
+  id = params->id;
+  callbackID = params->callback;
   currentRow = 1;
   currentFrame = 0;
 }
 
-void SDLSceneNode::draw() {
+void Node2D::draw() {
   ResourceManager::Get().drawTexture(
       id, static_cast<int>(position.x), static_cast<int>(position.y), width,
       height, currentRow, currentFrame, Game::Get().getRenderer());
 }
 
-void SDLSceneNode::update() {
+void Node2D::update() {
   velocity += acceleration;
   position += velocity;
 }
 
-void SDLSceneNode::clean() {
+void Node2D::clean() {
   ResourceManager::Get().clearTexture(id);
 }

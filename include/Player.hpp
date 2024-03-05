@@ -3,12 +3,12 @@
 
 #include "NodeGraph.hpp"
 
-class Player : public SDLSceneNode {
+class Player : public Node2D {
 public:
   Player() {}
 
   virtual void load(const std::shared_ptr<LoaderParams> params) {
-    SDLSceneNode::load(params);
+    Node2D::load(params);
   }
   virtual void draw();
   virtual void update();

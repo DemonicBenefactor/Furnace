@@ -3,13 +3,13 @@
 
 #include "NodeGraph.hpp"
 
-class Button : public SDLSceneNode {
+class Button : public Node2D {
 public:
   // Button(const std::shared_ptr<LoaderParams> params, void (*Callback)());
   Button() : /*currentFrame(MOUSE_OUT),*/ released(false) {}
 
   virtual void load(const std::shared_ptr<LoaderParams> params) {
-    SDLSceneNode::load(params);
+    Node2D::load(params);
   }
   virtual void draw();
   virtual void update();
