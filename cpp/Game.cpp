@@ -7,7 +7,7 @@
 
 bool Game::init()
 {    
-    if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
+    if (!SDL_Init(SDL_INIT_EVERYTHING))
     {
       #ifdef __arm__
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
